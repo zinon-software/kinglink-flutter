@@ -15,9 +15,12 @@ class _PostBodyState extends State<PostBody> {
   TextEditingController nameController = TextEditingController();
   TextEditingController linkController = TextEditingController();
 
-  void clearText() {
-    nameController.clear();
-    linkController.clear();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameController.dispose();
+    linkController.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,13 +48,17 @@ class _PostBodyState extends State<PostBody> {
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () async {
+                
+
                 String name = nameController.text;
                 String link = linkController.text;
 
-                GroupsModel data = await fetchApi.sendGroup(name, link);
-                // Navigator.pop(context);
-                clearText;
+                nameController.clear();
+                linkController.clear();
 
+                GroupsModel data = await fetchApi.sendGroup(name, link);
+
+              
                 setState(() {
                   groupModel = data;
                 });

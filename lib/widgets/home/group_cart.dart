@@ -52,28 +52,24 @@ class GroupCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Spacer(),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: kDefaultPadding),
-                          child: Text(
-                            groups.id.toString(),
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: kDefaultPadding),
-                          child: Text(
-                            ' اسم القروب  ${groups.name}',
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding),
+                      child: Text(
+                        groups.id.toString(),
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: kDefaultPadding),
+                      child: Text(
+                        ' اسم القروب  ${groups.name}',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(kDefaultPadding),
