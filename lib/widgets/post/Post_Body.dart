@@ -30,26 +30,42 @@ class _PostBodyState extends State<PostBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: ' اسم المجموعة',
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.tealAccent,
+                borderRadius: BorderRadius.circular(32),
               ),
-              controller: nameController,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(fontSize: 17),
+                  hintText: 'اسم المجموعة',
+                  suffixIcon: Icon(Icons.people),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(20),
+                ),
+                controller: nameController,
+              ),
             ),
             SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'الرابط',
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.tealAccent,
+                borderRadius: BorderRadius.circular(32),
               ),
-              controller: linkController,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(fontSize: 17),
+                  hintText: 'الرابط',
+                  suffixIcon: Icon(Icons.link),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(20),
+                ),
+                controller: linkController,
+              ),
             ),
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () async {
-                
-
                 String name = nameController.text;
                 String link = linkController.text;
 
@@ -58,7 +74,6 @@ class _PostBodyState extends State<PostBody> {
 
                 GroupsModel data = await fetchApi.sendGroup(name, link);
 
-              
                 setState(() {
                   groupModel = data;
                 });
