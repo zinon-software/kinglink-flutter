@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       elevation: 0,
       title: Text(
-        'مرحبا بكم ',
+        'مرحبا بكم في تطبيق قروباتي ',
         style: GoogleFonts.getFont('Almarai'),
       ),
       centerTitle: false,

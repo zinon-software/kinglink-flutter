@@ -58,7 +58,10 @@ class DetailsBody extends StatelessWidget {
                         '   مجموعة:   ${group.name}',
                         style: Theme.of(context).textTheme.headline6,
                       ),
-                      SizedBox(height: 20, width: 20,),
+                      SizedBox(
+                        height: 20,
+                        width: 20,
+                      ),
                       Text(
                         '   الناشر:   ${group.createdBy}',
                         style: Theme.of(context).textTheme.headline6,
@@ -79,7 +82,7 @@ class DetailsBody extends StatelessWidget {
                     }
                   },
                   child: Text(
-                    "الواتساب",
+                    "الواتساب   \u{2714}",
                     style: TextStyle(
                       fontSize: 28.0,
                       fontWeight: FontWeight.w600,
