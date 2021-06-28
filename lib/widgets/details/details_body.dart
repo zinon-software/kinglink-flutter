@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
@@ -15,6 +18,7 @@ class DetailsBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        AdsClass(),
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
@@ -106,6 +110,49 @@ class DetailsBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class AdsClass extends StatefulWidget {
+  const AdsClass({Key key}) : super(key: key);
+
+  @override
+  _AdsClassState createState() => _AdsClassState();
+}
+
+class _AdsClassState extends State<AdsClass> {
+  final _nativeAdController = NativeAdmobController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    //Ads
+
+    _nativeAdController.reloadAd(forceRefresh: true);
+  }
+
+  @override
+  void dispose() {
+    _nativeAdController.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.width / 3,
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(bottom: 20.0),
+      child: NativeAdmob(
+        adUnitID: AdsManager.nativeAdUnitId,
+        numberAds: 3,
+        controller: _nativeAdController,
+        type: NativeAdmobType.full,
+      ),
     );
   }
 }
