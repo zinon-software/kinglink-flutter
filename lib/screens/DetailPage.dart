@@ -1,5 +1,7 @@
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/details_body.dart';
@@ -12,19 +14,20 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AdmobBannerSize bannerSize;
+
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: detailsAppBar(context),
       body: DetailsBody(
         group: group,
       ),
-      // bottomNavigationBar: Container(
-      //   child: AdWidget(
-      //     ad: AdmobHelper.getBannerAd()..load(),
-      //     key: UniqueKey(),
-      //   ),
-      //   height: 50,
-      // ),
+      bottomNavigationBar: Container(
+        child: AdmobBanner(
+          adUnitId: AdsManager.bannerAdUnitId,
+          adSize: AdmobBannerSize.SMART_BANNER(context),
+        ),
+      ),
     );
   }
 

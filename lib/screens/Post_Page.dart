@@ -23,13 +23,6 @@ class PostPage extends StatelessWidget {
         ),
       ),
       body: PostBody(),
-      // bottomNavigationBar: Container(
-      //   child: AdWidget(
-      //     ad: AdmobHelper.getBannerAd()..load(),
-      //     key: UniqueKey(),
-      //   ),
-      //   height: 50,
-      // ),
     );
   }
 
