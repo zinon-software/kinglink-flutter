@@ -11,7 +11,6 @@ class FetchApi {
 
     if (response.statusCode == 200) {
       var body = jsonDecode(utf8.decode(response.bodyBytes));
-      print(body);
 
       List<GroupsModel> group = [];
 
@@ -31,8 +30,7 @@ class FetchApi {
       'name': name,
       'link': link,
     });
-    var data = response.body;
-    print(data);
+    
     if (response.statusCode == 201) {
       String responseString = response.body;
       welcomeFromJson(responseString);

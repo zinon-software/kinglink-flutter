@@ -4,6 +4,7 @@ import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/details_body.dart';
 
+
 class DetailPage extends StatelessWidget {
   final GroupsModel group;
 
@@ -17,6 +18,13 @@ class DetailPage extends StatelessWidget {
       body: DetailsBody(
         group: group,
       ),
+      // bottomNavigationBar: Container(
+      //   child: AdWidget(
+      //     ad: AdmobHelper.getBannerAd()..load(),
+      //     key: UniqueKey(),
+      //   ),
+      //   height: 50,
+      // ),
     );
   }
 

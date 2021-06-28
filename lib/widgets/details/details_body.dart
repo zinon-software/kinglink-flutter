@@ -52,7 +52,7 @@ class DetailsBody extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
                 child: Center(
-                  child: Row(
+                  child: Column(
                     children: [
                       Text(
                         '   مجموعة:   ${group.name}',

@@ -1,4 +1,8 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
+import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 
@@ -15,11 +19,35 @@ class _PostBodyState extends State<PostBody> {
   TextEditingController nameController = TextEditingController();
   TextEditingController linkController = TextEditingController();
 
+  final _nativeAdController = NativeAdmobController();
+
+  AdmobInterstitial interstitialAd;
+
+  @override
+  void initState() {
+    super.initState();
+
+    //Ads
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitId,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+      },
+    );
+
+    interstitialAd.load();
+    _nativeAdController.reloadAd(forceRefresh: true);
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     nameController.dispose();
     linkController.dispose();
+
+    interstitialAd.dispose();
+    _nativeAdController.dispose();
+
     super.dispose();
   }
 
@@ -30,6 +58,18 @@ class _PostBodyState extends State<PostBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            Container(
+              color: Colors.white,
+              height: MediaQuery.of(context).size.width / 3,
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(bottom: 20.0),
+              child: NativeAdmob(
+                adUnitID: AdsManager.nativeAdUnitId,
+                numberAds: 3,
+                controller: _nativeAdController,
+                type: NativeAdmobType.full,
+              ),
+            ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.tealAccent,
