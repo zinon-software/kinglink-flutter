@@ -14,9 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Admob
-
-  AdmobBannerSize bannerSize;
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +32,6 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
-      bottomNavigationBar: Container(
-        child: AdmobBanner(
-          adUnitId: AdsManager.bannerAdUnitId,
-          adSize: AdmobBannerSize.SMART_BANNER(context),
-        ),
-      ),
-      
     );
   }
 

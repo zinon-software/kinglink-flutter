@@ -1,5 +1,7 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 import 'package:whatsapp_group_links/screens/DetailPage.dart';
@@ -12,11 +14,18 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AdmobBannerSize bannerSize;
     FetchApi fetchApi = FetchApi();
     return SafeArea(
       bottom: false,
       child: Column(
         children: [
+          Container(
+            child: AdmobBanner(
+              adUnitId: AdsManager.bannerAdUnitId,
+              adSize: AdmobBannerSize.SMART_BANNER(context),
+            ),
+          ),
           SizedBox(
             height: kDefaultPadding / 2,
           ),
