@@ -34,11 +34,7 @@ class FetchApi {
     if (response.statusCode == 201) {
       String responseString = response.body;
       welcomeFromJson(responseString);
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text('تمت العملية بنجاح'),
-      //   ),
-      // );
+      
     } else {
       return null;
     }

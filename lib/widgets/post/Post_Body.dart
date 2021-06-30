@@ -20,7 +20,6 @@ class _PostBodyState extends State<PostBody> {
 
   final _nativeAdController = NativeAdmobController();
 
-
   @override
   void initState() {
     super.initState();
@@ -97,6 +96,20 @@ class _PostBodyState extends State<PostBody> {
               onPressed: () async {
                 String name = nameController.text;
                 String link = linkController.text;
+
+                if (link == '') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('ادخل الرابط بالشكل الصحيح'),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('تم الارسال بنجاح'),
+                    ),
+                  );
+                }
 
                 nameController.clear();
                 linkController.clear();
