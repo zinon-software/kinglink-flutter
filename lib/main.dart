@@ -5,8 +5,6 @@ import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // AdmobHelper.initialization();
   runApp(MyApp());
 }
 

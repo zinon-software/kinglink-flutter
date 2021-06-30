@@ -4,8 +4,8 @@
     "type": "PROCESSED_RES",
     "kind": "Directory"
   },
-  "applicationId": "com.example.whatsapp_group_links",
-  "variantName": "processDebugResources",
+  "applicationId": "com.zainon.whatsapp_group_links",
+  "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",

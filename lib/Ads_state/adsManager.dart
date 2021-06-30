@@ -41,7 +41,7 @@ class AdsManager {
 
   static String get nativeAdUnitId {
     if (_testMode == true) {
-      return "ca-app-pub-3940256099942544/1044960115";
+      return "ca-app-pub-3940256099942544/2247696110";
     } else if (Platform.isAndroid) {
       return "ca-app-pub-9553130506719526/7072791493";
     } else if (Platform.isIOS) {

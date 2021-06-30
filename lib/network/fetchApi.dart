@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,7 +23,6 @@ class FetchApi {
     return null;
   }
 
-
   // post request
   Future<GroupsModel> sendGroup(String name, String link) async {
     var response = await http
@@ -30,10 +30,15 @@ class FetchApi {
       'name': name,
       'link': link,
     });
-    
+
     if (response.statusCode == 201) {
       String responseString = response.body;
       welcomeFromJson(responseString);
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text('تمت العملية بنجاح'),
+      //   ),
+      // );
     } else {
       return null;
     }

@@ -14,7 +14,6 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AdmobBannerSize bannerSize;
 
     return Scaffold(
       backgroundColor: kPrimaryColor,
