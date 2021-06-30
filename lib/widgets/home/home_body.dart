@@ -14,7 +14,7 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AdmobBannerSize bannerSize;
+    // AdmobBannerSize bannerSize;
     FetchApi fetchApi = FetchApi();
     return SafeArea(
       bottom: false,
