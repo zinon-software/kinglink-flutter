@@ -92,7 +92,7 @@ class GroupCard extends StatelessWidget {
                               if (groups.activation == true) {
                                 return "موثوق";
                               } else {
-                                return "مغلق";
+                                return "معلق";
                               }
                             })())
                           ],
