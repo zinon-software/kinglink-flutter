@@ -22,7 +22,7 @@ class GroupCard extends StatelessWidget {
         horizontal: kDefaultPadding,
         vertical: kDefaultPadding / 2,
       ),
-      height: 120.0,
+      height: 135.0,
       child: InkWell(
         onTap: press,
         child: Stack(
@@ -47,7 +47,7 @@ class GroupCard extends StatelessWidget {
               child: SizedBox(
                 height: 136.0,
                 // Because oure image is 200 width, then: width - 200
-                width: size.width - 200,
+                //width: size.width - 200,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -67,7 +67,7 @@ class GroupCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text(
-                        ' اسم القروب  ${groups.name}',
+                        ' || اسم القروب  ${groups.name}',
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ),
@@ -90,7 +90,7 @@ class GroupCard extends StatelessWidget {
                             ),
                             Text((() {
                               if (groups.activation == true) {
-                                return "فعال";
+                                return "موثوق";
                               } else {
                                 return "مغلق";
                               }

@@ -1,6 +1,7 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
@@ -9,8 +10,37 @@ import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({Key key}) : super(key: key);
+
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  
+  AdmobInterstitial interstitialAd;
+
+  @override
+  void initState() {
+    super.initState();
+
+    //Ads
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitId,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+      },
+    );
+
+    interstitialAd.load();
+  }
+
+  @override
+  void dispose() {
+    interstitialAd.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +50,6 @@ class HomeBody extends StatelessWidget {
       bottom: false,
       child: Column(
         children: [
-          Container(
-            child: AdmobBanner(
-              adUnitId: AdsManager.bannerAdUnitId,
-              adSize: AdmobBannerSize.SMART_BANNER(context),
-            ),
-          ),
           SizedBox(
             height: kDefaultPadding / 2,
           ),
@@ -69,13 +93,9 @@ class HomeBody extends StatelessWidget {
                               groups: groups[index],
                               press: () {
                                 if (groups[index].activation == true) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPage(
-                                        group: groups[index],
-                                      ),
-                                    ),
+                                  interstitialAd.show();
+                                  Get.to(
+                                    () => DetailPage(group: groups[index]),
                                   );
                                 } else {
                                   showDialog<String>(

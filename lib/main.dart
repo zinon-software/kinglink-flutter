@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Whatsapp Group Links',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

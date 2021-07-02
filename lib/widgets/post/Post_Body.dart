@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
@@ -19,11 +20,20 @@ class _PostBodyState extends State<PostBody> {
   TextEditingController linkController = TextEditingController();
 
   final _nativeAdController = NativeAdmobController();
+  AdmobInterstitial interstitialAd;
 
   @override
   void initState() {
     super.initState();
 
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitId,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+      },
+    );
+
+    interstitialAd.load();
     //Ads
     _nativeAdController.reloadAd(forceRefresh: true);
   }
@@ -35,6 +45,7 @@ class _PostBodyState extends State<PostBody> {
     linkController.dispose();
 
     _nativeAdController.dispose();
+    interstitialAd.dispose();
 
     super.dispose();
   }
@@ -119,6 +130,7 @@ class _PostBodyState extends State<PostBody> {
                 setState(() {
                   groupModel = data;
                 });
+                interstitialAd.show();
               },
               child: Text('إرسال'),
             ),
