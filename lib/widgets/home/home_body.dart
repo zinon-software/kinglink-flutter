@@ -18,7 +18,6 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  
   AdmobInterstitial interstitialAd;
 
   @override
@@ -93,7 +92,9 @@ class _HomeBodyState extends State<HomeBody> {
                               groups: groups[index],
                               press: () {
                                 if (groups[index].activation == true) {
-                                  interstitialAd.show();
+                                  if (interstitialAd != null) {
+                                    interstitialAd.show();
+                                  }
                                   Get.to(
                                     () => DetailPage(group: groups[index]),
                                   );

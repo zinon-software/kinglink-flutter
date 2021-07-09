@@ -46,8 +46,6 @@ class GroupCard extends StatelessWidget {
               right: 0.0,
               child: SizedBox(
                 height: 136.0,
-                // Because oure image is 200 width, then: width - 200
-                //width: size.width - 200,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -67,7 +65,7 @@ class GroupCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: kDefaultPadding),
                       child: Text(
-                        ' || اسم القروب  ${groups.name}',
+                        '  اسم القروب || ${groups.name}',
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ),

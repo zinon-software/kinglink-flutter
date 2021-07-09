@@ -15,8 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   AdmobInterstitial interstitialAd;
 
   @override
@@ -51,7 +49,9 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Increment',
         // Within the `FirstRoute` widget
         onPressed: () {
-          interstitialAd.show();
+          if (interstitialAd != null) {
+            interstitialAd.show();
+          }
           Get.to(
             () => PostPage(),
           );
