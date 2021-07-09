@@ -20,6 +20,9 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   AdmobInterstitial interstitialAd;
 
+  GroupsModel groupModel;
+  FetchApi fetchApi = FetchApi();
+
   @override
   void initState() {
     super.initState();
@@ -50,7 +53,7 @@ class _HomeBodyState extends State<HomeBody> {
       child: Column(
         children: [
           SizedBox(
-            height: kDefaultPadding / 2,
+            height: kDefaultPadding / 3,
           ),
           Expanded(
             child: Stack(
@@ -95,6 +98,11 @@ class _HomeBodyState extends State<HomeBody> {
                                   if (interstitialAd != null) {
                                     interstitialAd.show();
                                   }
+                                  selectViews(
+                                      groups[index].id,
+                                      groups[index].views + 1,
+                                      groups[index].name,
+                                      groups[index].link);
                                   Get.to(
                                     () => DetailPage(group: groups[index]),
                                   );
@@ -128,5 +136,13 @@ class _HomeBodyState extends State<HomeBody> {
         ],
       ),
     );
+  }
+
+  selectViews(int id, int views, String name, String link) async {
+    GroupsModel data = await fetchApi.updateViews(id, views, name, link);
+
+    setState(() {
+      groupModel = data;
+    });
   }
 }

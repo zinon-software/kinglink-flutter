@@ -18,7 +18,6 @@ class DetailsBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AdsClass(),
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
@@ -52,6 +51,7 @@ class DetailsBody extends StatelessWidget {
                   ],
                 ),
               ),
+              AdsClass(),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),

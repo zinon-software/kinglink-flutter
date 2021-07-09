@@ -11,6 +11,7 @@ class GroupsModel {
         this.link,
         this.activation,
         this.createdDt,
+        this.views,
         this.createdBy,
     });
 
@@ -19,6 +20,7 @@ class GroupsModel {
     String link;
     bool activation;
     DateTime createdDt;
+    int views;
     dynamic createdBy;
 
     factory GroupsModel.fromJson(Map<String, dynamic> json) => GroupsModel(
@@ -27,6 +29,7 @@ class GroupsModel {
         link: json["link"],
         activation: json["activation"],
         createdDt: DateTime.parse(json["created_dt"]),
+        views: json["views"],
         createdBy: json["created_by"],
     );
 
@@ -36,6 +39,7 @@ class GroupsModel {
         "link": link,
         "activation": activation,
         "created_dt": createdDt.toIso8601String(),
+        "views": views,
         "created_by": createdBy,
     };
 }
