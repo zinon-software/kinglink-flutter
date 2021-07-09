@@ -105,7 +105,7 @@ class DetailsBody extends StatelessWidget {
             vertical: kDefaultPadding / 2,
           ),
           child: Text(
-            'تاريخ النشر   ${group.createdDt.toString()}',
+            ' الساعة :  ${group.createdDt.hour}   ||  التاريخ :  ${group.createdDt.day} / ${group.createdDt.month} / ${group.createdDt.year}',
             style: TextStyle(color: Colors.white, fontSize: 19.0),
           ),
         ),
