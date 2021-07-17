@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
+import 'package:whatsapp_group_links/screens/CommentsPage.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
 
@@ -76,6 +78,7 @@ class DetailsBody extends StatelessWidget {
               ),
               SizedBox(height: kDefaultPadding),
               Center(
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   onPressed: () async {
                     var url = group.link;
@@ -85,8 +88,8 @@ class DetailsBody extends StatelessWidget {
                       throw 'تعذر الإطلاق  $url';
                     }
                   },
-                  child: Text(
-                    "الواتساب   \u{2714}",
+                  child: Text(group.category.name,
+                    
                     style: TextStyle(
                       fontSize: 28.0,
                       fontWeight: FontWeight.w600,
@@ -98,15 +101,38 @@ class DetailsBody extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding * 1.5,
-            vertical: kDefaultPadding / 2,
+        Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+            padding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding * 1.5,
+              vertical: kDefaultPadding / 2,
+            ),
+            child: Text(
+              ' الساعة :  ${group.createdDt.hour}   ||  التاريخ :  ${group.createdDt.day} / ${group.createdDt.month} / ${group.createdDt.year}',
+              style: TextStyle(color: Colors.white, fontSize: 19.0),
+            ),
           ),
-          child: Text(
-            ' الساعة :  ${group.createdDt.hour}   ||  التاريخ :  ${group.createdDt.day} / ${group.createdDt.month} / ${group.createdDt.year}',
-            style: TextStyle(color: Colors.white, fontSize: 19.0),
+        ),
+        Center(
+          child: Container(
+            // ignore: deprecated_member_use
+            child: RaisedButton(
+              onPressed: () {
+                var groupId = group.id;
+                var groupName = group.name;
+                //     if (interstitialAd != null) {
+                //   interstitialAd.show();
+                // }
+                Get.to(
+                  () => CommentsPage(
+                    groupId: groupId,
+                    groupName: groupName,
+                  ),
+                );
+              },
+              child: Text('التعليقات'),
+            ),
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'dart:io';
+// ignore: unused_import
 import 'package:admob_flutter/admob_flutter.dart';
 
 class AdsManager {
@@ -17,7 +18,8 @@ class AdsManager {
 
   static String get bannerAdUnitId {
     if (_testMode == true) {
-      return AdmobBanner.testAdUnitId;
+      return '';
+      // return AdmobBanner.testAdUnitId;
     } else if (Platform.isAndroid) {
       return "ca-app-pub-9553130506719526/9427492091";
     } else if (Platform.isIOS) {
@@ -29,7 +31,8 @@ class AdsManager {
 
   static String get interstitialAdUnitId {
     if (_testMode == true) {
-      return AdmobInterstitial.testAdUnitId;
+      return '';
+      // return AdmobInterstitial.testAdUnitId;
     } else if (Platform.isAndroid) {
       return "ca-app-pub-9553130506719526/7487778363";
     } else if (Platform.isIOS) {

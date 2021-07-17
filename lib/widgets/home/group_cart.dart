@@ -16,6 +16,7 @@ class GroupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     return Container(
       margin:
@@ -47,7 +48,7 @@ class GroupCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5.0),
                     child: Text(
-                      '${groups.name}',
+                      "${groups.name}",
                       style: TextStyle(
                         fontSize: 19,
                         color: Colors.black,
@@ -57,51 +58,57 @@ class GroupCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(kDefaultPadding),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: kDefaultPadding * 1.5, // 30 px padding
-                            vertical: kDefaultPadding / 5, // 5 px padding
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          child: Row(
-                            children: [
-                              Text("الحالة : "),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text((() {
-                                if (groups.activation == true) {
-                                  return "موثوق";
-                                } else {
-                                  return "معلق";
-                                }
-                              })())
-                            ],
+                  Align(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(kDefaultPadding),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  kDefaultPadding * 1.5, // 30 px padding
+                              vertical: kDefaultPadding / 5, // 5 px padding
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(22),
+                            ),
+                            child: Row(
+                              children: [
+                                Text("الحالة : "),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text((() {
+                                  if (groups.activation == true) {
+                                    return "موثوق";
+                                  } else {
+                                    return "معلق";
+                                  }
+                                })())
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(kDefaultPadding),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: kDefaultPadding * 1.5, // 30 px padding
-                            vertical: kDefaultPadding / 5, // 5 px padding
+                        Padding(
+                          padding: const EdgeInsets.all(kDefaultPadding),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  kDefaultPadding * 1.5, // 30 px padding
+                              vertical: kDefaultPadding / 5, // 5 px padding
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(22),
+                            ),
+                            child: Text(groups.category.name),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          child: Text("WhatsApp"),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                    alignment: Alignment.bottomLeft,
                   ),
                 ],
               ),
@@ -146,7 +153,7 @@ class GroupCard extends StatelessWidget {
                         ),
                         SizedBox(width: 7),
                         Text(
-                            ' الساعة :  ${groups.createdDt.hour}   ||  التاريخ :  ${groups.createdDt.day} / ${groups.createdDt.month} / ${groups.createdDt.year}'),
+                            ' الساعة :  ${groups.createdDt.hour}:${groups.createdDt.second}   ||  التاريخ :  ${groups.createdDt.day} / ${groups.createdDt.month} / ${groups.createdDt.year}'),
                       ],
                     ),
                   )

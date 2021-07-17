@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
+
+import 'package:http/http.dart' as http;
 
 class PostBody extends StatefulWidget {
   const PostBody({Key key}) : super(key: key);
@@ -13,6 +17,35 @@ class PostBody extends StatefulWidget {
 }
 
 class _PostBodyState extends State<PostBody> {
+  String _mySelection;
+  String _myCategory;
+
+  final String urlSelection = "https://kinglink.herokuapp.com/api/Sections";
+  final String urlCategory = "https://kinglink.herokuapp.com/api/Category";
+
+  List dataSelection = []; //edited line
+  List dataCategory = []; //edited line
+
+  Future<String> getSectionsData() async {
+    var res = await http
+        .get(Uri.parse(urlSelection), headers: {"Accept": "application/json"});
+    var resBody = jsonDecode(utf8.decode(res.bodyBytes));
+    setState(() {
+      dataSelection = resBody;
+    });
+    return "Sucess";
+  }
+
+  Future<String> getCategoryData() async {
+    var res = await http
+        .get(Uri.parse(urlCategory), headers: {"Accept": "application/json"});
+    var resBody = jsonDecode(utf8.decode(res.bodyBytes));
+    setState(() {
+      dataCategory = resBody;
+    });
+    return "Sucess";
+  }
+
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
   TextEditingController nameController = TextEditingController();
@@ -25,6 +58,9 @@ class _PostBodyState extends State<PostBody> {
     super.initState();
     //Ads
     _nativeAdController.reloadAd(forceRefresh: true);
+
+    this.getSectionsData();
+    this.getCategoryData();
   }
 
   @override
@@ -91,33 +127,105 @@ class _PostBodyState extends State<PostBody> {
               ),
             ),
             SizedBox(height: 10),
+            Row(
+              children: [
+                SizedBox(width: 20),
+                Text(' قسم الرابط'),
+                SizedBox(width: 10),
+                Container(
+                  alignment: Alignment.center,
+                  color: Colors.white,
+                  child: DropdownButton(
+                    items: dataSelection.map((item) {
+                      return new DropdownMenuItem(
+                        child: new Text(item['name']),
+                        value: item['id'].toString(),
+                      );
+                    }).toList(),
+                    onChanged: (newVal) {
+                      setState(() {
+                        _mySelection = newVal;
+                      });
+                    },
+                    value: _mySelection,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(' فئة الرابط'),
+                SizedBox(width: 10),
+                Container(
+                  alignment: Alignment.center,
+                  color: Colors.white,
+                  child: DropdownButton(
+                    items: dataCategory.map((item) {
+                      return new DropdownMenuItem(
+                        child: new Text(item['name']),
+                        value: item['id'].toString(),
+                      );
+                    }).toList(),
+                    onChanged: (newVal) {
+                      setState(() {
+                        _myCategory = newVal;
+                      });
+                    },
+                    value: _myCategory,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+
+            // ignore: deprecated_member_use
             RaisedButton(
               onPressed: () async {
                 String name = nameController.text;
                 String link = linkController.text;
 
-                if (link == '') {
+                if (name == '') {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('ادخل الرابط بالشكل الصحيح'),
+                      content: Text('ادخل العنوان بالشكل الصحيح'),
                     ),
                   );
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('تم الارسال بنجاح'),
-                    ),
-                  );
+                  if (link == '') {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('ادخل الرابط بالشكل الصحيح'),
+                      ),
+                    );
+                  } else {
+                    if (_myCategory == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('قم ب اختيار فئة الرابط'),
+                        ),
+                      );
+                    } else {
+                      if (_mySelection == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('قم ب اختيار قسم الرابط'),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('تم الارسال بنجاح'),
+                          ),
+                        );
+                        nameController.clear();
+                        linkController.clear();
+
+                        GroupsModel data = await fetchApi.sendGroup(name, link, _myCategory, _mySelection);
+
+                        setState(() {
+                          groupModel = data;
+                        });
+                      }
+                    }
+                  }
                 }
-
-                nameController.clear();
-                linkController.clear();
-
-                GroupsModel data = await fetchApi.sendGroup(name, link);
-
-                setState(() {
-                  groupModel = data;
-                });
               },
               child: Text('إرسال'),
             ),
