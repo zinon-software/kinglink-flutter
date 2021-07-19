@@ -119,7 +119,7 @@ class DetailsBody extends StatelessWidget {
             // ignore: deprecated_member_use
             child: RaisedButton(
               onPressed: () {
-                var groupId = group.id;
+                var groupId = group.id.toString();
                 var groupName = group.name;
                 //     if (interstitialAd != null) {
                 //   interstitialAd.show();

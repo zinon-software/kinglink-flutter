@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:whatsapp_group_links/models/CommentsModel.dart';
 import 'package:whatsapp_group_links/models/ReportModel.dart';
 import 'package:whatsapp_group_links/models/SectionsModel.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
@@ -86,6 +87,21 @@ class FetchApi {
 
 
   // التعليقات
+  // ignore: missing_return
+  Future<CommentsModel> submitComment(String message, String groupId) async {
+    var response = await http
+        .post(Uri.parse('https://kinglink.herokuapp.com/api/Comment'), body: {
+      'message': message,
+      'group': groupId,
+    });
+
+    if (response.statusCode == 201) {
+      String responseString = response.body;
+      commentsModelFromJson(responseString);
+    } else {
+      return null;
+    }
+  }
 
    // الاقسام
   Future<List<SectionsModel>> fetchSections() async {

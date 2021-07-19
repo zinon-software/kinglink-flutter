@@ -130,7 +130,7 @@ class _PostBodyState extends State<PostBody> {
             Row(
               children: [
                 SizedBox(width: 20),
-                Text(' قسم الرابط'),
+                Text(' أقسام الرابط'),
                 SizedBox(width: 10),
                 Container(
                   alignment: Alignment.center,
@@ -211,16 +211,19 @@ class _PostBodyState extends State<PostBody> {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('تم الارسال بنجاح'),
+                            content: Text(' تم الارسال بنجاح سيتم النشر بعد المراجعة'),
                           ),
                         );
                         nameController.clear();
                         linkController.clear();
 
-                        GroupsModel data = await fetchApi.sendGroup(name, link, _myCategory, _mySelection);
+                        GroupsModel data = await fetchApi.sendGroup(
+                            name, link, _myCategory, _mySelection);
 
                         setState(() {
                           groupModel = data;
+                          _myCategory = null;
+                          _mySelection = null;
                         });
                       }
                     }

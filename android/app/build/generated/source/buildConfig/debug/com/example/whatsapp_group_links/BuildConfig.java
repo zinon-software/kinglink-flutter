@@ -8,5 +8,5 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.zainon.whatsapp_group_links";
   public static final String BUILD_TYPE = "debug";
   public static final int VERSION_CODE = 5;
-  public static final String VERSION_NAME = "2.4.0";
+  public static final String VERSION_NAME = "3.6.1";
 }
