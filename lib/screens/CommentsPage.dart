@@ -2,8 +2,7 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
-import 'package:whatsapp_group_links/widgets/comments/comments_body.dart';
+import 'package:whatsapp_group_links/widgets/comments/comment_cart.dart';
 
 class CommentsPage extends StatelessWidget {
   final groupId;
@@ -13,9 +12,8 @@ class CommentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
       appBar: commentsAppBar(context),
-      body: CommentsBody(
+      body: TestMe(
         groupId: groupId,
       ),
       bottomNavigationBar: Container(

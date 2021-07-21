@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 
 class FetchApi {
   // القروبات
-  Future<List<GroupsModel>> fetchProducts() async {
+  Future<List<GroupsModel>> fetchProducts(String url) async {
     http.Response response =
-        await http.get(Uri.parse("https://kinglink.herokuapp.com/api/Groub"));
+        await http.get(Uri.parse("https://kinglink.herokuapp.com/api/$url"));
 
     if (response.statusCode == 200) {
       var body = jsonDecode(utf8.decode(response.bodyBytes));
@@ -27,7 +27,8 @@ class FetchApi {
 
   // نشر رابط
   // ignore: missing_return
-  Future<GroupsModel> sendGroup(String name, String link, String category, String sections) async {
+  Future<GroupsModel> sendGroup(
+      String name, String link, String category, String sections) async {
     var response = await http
         .post(Uri.parse('https://kinglink.herokuapp.com/api/Groub'), body: {
       'name': name,
@@ -45,7 +46,8 @@ class FetchApi {
   }
 
   // المشاهدات
-  Future<GroupsModel> updateViews(int id, int views, String name, String link) async {
+  Future<GroupsModel> updateViews(
+      int id, int views, String name, String link) async {
     final response = await http.put(
       Uri.parse('https://kinglink.herokuapp.com/api/Groub/$id'),
       headers: <String, String>{
@@ -57,16 +59,13 @@ class FetchApi {
         'link': link,
       }),
     );
-   
+
     if (response.statusCode == 200) {
       return GroupsModel.fromJson(jsonDecode(response.body));
-      
     } else {
       throw Exception('Failed to update album.');
     }
-    
   }
-
 
   // البلاغات
   // ignore: missing_return
@@ -85,8 +84,8 @@ class FetchApi {
     }
   }
 
-
   // التعليقات
+  // post
   // ignore: missing_return
   Future<CommentsModel> submitComment(String message, String groupId) async {
     var response = await http
@@ -103,10 +102,36 @@ class FetchApi {
     }
   }
 
-   // الاقسام
-  Future<List<SectionsModel>> fetchSections() async {
+  // get
+  Future<List<CommentsModel>> getCommentsData(String groupId) async {
     http.Response response =
-        await http.get(Uri.parse("https://kinglink.herokuapp.com/api/Sections"));
+        await http.get(Uri.parse(
+          'https://kinglink.herokuapp.com/api/Comment?group=$groupId'),
+      headers: {"Accept": "application/json"},
+    );
+     if (response.statusCode == 200) {
+      var body = jsonDecode(utf8.decode(response.bodyBytes));
+
+      List<CommentsModel> comments = [];
+
+      for (var item in body) {
+        comments.add(CommentsModel.fromJson(item));
+      }
+      return comments;
+    }
+    return null;
+  }
+
+
+
+
+
+
+
+  // الاقسام
+  Future<List<SectionsModel>> fetchSections() async {
+    http.Response response = await http
+        .get(Uri.parse("https://kinglink.herokuapp.com/api/Sections"));
 
     if (response.statusCode == 200) {
       var body = jsonDecode(utf8.decode(response.bodyBytes));
@@ -120,5 +145,4 @@ class FetchApi {
     }
     return null;
   }
-
 }

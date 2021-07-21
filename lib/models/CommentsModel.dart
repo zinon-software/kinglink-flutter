@@ -27,7 +27,7 @@ class CommentsModel {
         id: json["id"],
         message: json["message"],
         createdDt: DateTime.parse(json["created_dt"]),
-        sender: json["sender"],
+        sender: json["sender"] == null ? null : json["sender"],
         group: json["group"],
     );
 
@@ -35,7 +35,7 @@ class CommentsModel {
         "id": id,
         "message": message,
         "created_dt": createdDt.toIso8601String(),
-        "sender": sender,
+        "sender": sender == null ? null : sender,
         "group": group,
     };
 }

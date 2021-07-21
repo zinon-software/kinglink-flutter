@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
-import 'package:whatsapp_group_links/widgets/home/home_body.dart';
+import 'package:whatsapp_group_links/widgets/home/filter_home_body.dart';
 
-class FilterDataGroup extends StatefulWidget {
+class FilterDataGroup extends StatelessWidget {
   final sectionsId;
-  const FilterDataGroup({Key key, this.sectionsId}) : super(key: key);
+  final sectionsName;
 
-  @override
-  _FilterDataGroupState createState() => _FilterDataGroupState();
-}
+  const FilterDataGroup({Key key, this.sectionsId, this.sectionsName})
+      : super(key: key);
 
-class _FilterDataGroupState extends State<FilterDataGroup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,9 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
             SizedBox(
               height: kDefaultPadding / 3,
             ),
-            HomeBody(),
+            FilterHomeBody(
+              sectionsId: sectionsId,
+            ),
           ],
         ),
       ),
@@ -45,7 +45,7 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
       ),
       centerTitle: false,
       title: Text(
-        'رجوع',
+        sectionsName,
         style: Theme.of(context).textTheme.bodyText2,
       ),
     );

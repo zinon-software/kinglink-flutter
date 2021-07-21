@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
@@ -9,133 +10,161 @@ import 'package:whatsapp_group_links/screens/CommentsPage.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
 
-class DetailsBody extends StatelessWidget {
+class DetailsBody extends StatefulWidget {
   final GroupsModel group;
 
   const DetailsBody({Key key, this.group}) : super(key: key);
 
   @override
+  _DetailsBodyState createState() => _DetailsBodyState();
+}
+
+class _DetailsBodyState extends State<DetailsBody> {
+  AdmobInterstitial interstitialAd;
+
+  @override
+  void initState() {
+    super.initState();
+    //Ads
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitId,
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+      },
+    );
+
+    interstitialAd.load();
+  }
+
+  @override
+  void dispose() {
+    interstitialAd.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // to provide us the height and the width of the sceen
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
-          decoration: BoxDecoration(
-            color: kBackgroundColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(50),
-              bottomRight: Radius.circular(50),
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ColorDot(
-                      fillColor: kTextLightColor,
-                      isSelected: true,
-                    ),
-                    ColorDot(
-                      fillColor: Colors.blue,
-                      isSelected: false,
-                    ),
-                    ColorDot(
-                      fillColor: Colors.red,
-                      isSelected: false,
-                    ),
-                  ],
-                ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
+            decoration: BoxDecoration(
+              color: kBackgroundColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
               ),
-              AdsClass(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-                child: Center(
-                  child: Column(
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: kDefaultPadding),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        '   مجموعة:   ${group.name}',
-                        style: Theme.of(context).textTheme.headline6,
+                      ColorDot(
+                        fillColor: kTextLightColor,
+                        isSelected: true,
                       ),
-                      SizedBox(
-                        height: 20,
-                        width: 20,
+                      ColorDot(
+                        fillColor: Colors.blue,
+                        isSelected: false,
                       ),
-                      Text(
-                        '   الناشر:   ${group.createdBy}',
-                        style: Theme.of(context).textTheme.headline6,
+                      ColorDot(
+                        fillColor: Colors.red,
+                        isSelected: false,
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: kDefaultPadding),
-              Center(
-                // ignore: deprecated_member_use
-                child: RaisedButton(
-                  onPressed: () async {
-                    var url = group.link;
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'تعذر الإطلاق  $url';
-                    }
-                  },
-                  child: Text(group.category.name,
-                    
-                    style: TextStyle(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w600,
-                      color: kSecondaryColor,
+                AdsClass(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          '   مجموعة:   ${widget.group.name}',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        SizedBox(
+                          height: 20,
+                          width: 20,
+                        ),
+                        Text(
+                          '   الناشر:   ${widget.group.createdBy}',
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Center(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-            padding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding * 1.5,
-              vertical: kDefaultPadding / 2,
-            ),
-            child: Text(
-              ' الساعة :  ${group.createdDt.hour}   ||  التاريخ :  ${group.createdDt.day} / ${group.createdDt.month} / ${group.createdDt.year}',
-              style: TextStyle(color: Colors.white, fontSize: 19.0),
-            ),
-          ),
-        ),
-        Center(
-          child: Container(
-            // ignore: deprecated_member_use
-            child: RaisedButton(
-              onPressed: () {
-                var groupId = group.id.toString();
-                var groupName = group.name;
-                //     if (interstitialAd != null) {
-                //   interstitialAd.show();
-                // }
-                Get.to(
-                  () => CommentsPage(
-                    groupId: groupId,
-                    groupName: groupName,
+                SizedBox(height: kDefaultPadding),
+                Center(
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    onPressed: () async {
+                      var url = widget.group.link;
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'تعذر الإطلاق  $url';
+                      }
+                    },
+                    child: Text(
+                      widget.group.category.name,
+                      style: TextStyle(
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.w600,
+                        color: kSecondaryColor,
+                      ),
+                    ),
                   ),
-                );
-              },
-              child: Text('التعليقات'),
+                ),
+              ],
             ),
           ),
-        ),
-      ],
+          Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+              padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding * 1.5,
+                vertical: kDefaultPadding / 2,
+              ),
+              child: Text(
+                ' الساعة :  ${widget.group.createdDt.hour}:${widget.group.createdDt.second}   ||  التاريخ :  ${widget.group.createdDt.day} / ${widget.group.createdDt.month} / ${widget.group.createdDt.year}',
+                style: TextStyle(color: Colors.white, fontSize: 19.0),
+              ),
+            ),
+          ),
+          Center(
+            child: Container(
+              // ignore: deprecated_member_use
+              child: RaisedButton(
+                onPressed: () {
+                  if (interstitialAd != null) {
+                    interstitialAd.show();
+                  }
+                  Get.to(
+                    () => CommentsPage(
+                      groupId: widget.group.id.toString(),
+                      groupName: widget.group.name,
+                    ),
+                  );
+                },
+                child: Text('التعليقات'),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
