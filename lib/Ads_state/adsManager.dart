@@ -21,7 +21,7 @@ class AdsManager {
       // return '';
       return AdmobBanner.testAdUnitId;
     } else if (Platform.isAndroid) {
-      return "ca-app-pub-9553130506719526/9427492091";
+      return "ca-app-pub-9553130506719526/2231417956";
     } else if (Platform.isIOS) {
       return "ca-app-pub-9553130506719526/3053655439";
     } else {
@@ -34,7 +34,7 @@ class AdsManager {
       // return '';
       return AdmobInterstitial.testAdUnitId;
     } else if (Platform.isAndroid) {
-      return "ca-app-pub-9553130506719526/7487778363";
+      return "ca-app-pub-9553130506719526/5358298262";
     } else if (Platform.isIOS) {
       return "ca-app-pub-9553130506719526/3516689861";
     } else {
@@ -46,7 +46,7 @@ class AdsManager {
     if (_testMode == true) {
       return "ca-app-pub-3940256099942544/2247696110";
     } else if (Platform.isAndroid) {
-      return "ca-app-pub-9553130506719526/7072791493";
+      return "ca-app-pub-9553130506719526/8914399890";
     } else if (Platform.isIOS) {
       return "ca-app-pub-9553130506719526/7695414503";
     } else {
