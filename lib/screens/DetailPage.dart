@@ -9,8 +9,9 @@ import 'package:whatsapp_group_links/widgets/details/details_body.dart';
 
 class DetailPage extends StatefulWidget {
   final GroupsModel group;
+  final urlServer;
 
-  const DetailPage({Key key, this.group}) : super(key: key);
+  const DetailPage({Key key, this.group, this.urlServer}) : super(key: key);
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -28,7 +29,7 @@ class _DetailPageState extends State<DetailPage> {
     );
     Navigator.pop(context, 'Cancel');
 
-    ReportModel data = await fetchApi.submitReport(message, groupId);
+    ReportModel data = await fetchApi.submitReport(widget.urlServer,message, groupId);
 
     setState(() {
       reportModel = data;
@@ -42,6 +43,7 @@ class _DetailPageState extends State<DetailPage> {
       appBar: detailsAppBar(context),
       body: DetailsBody(
         group: widget.group,
+        urlServer: widget.urlServer,
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(

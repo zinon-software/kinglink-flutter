@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:admob_flutter/admob_flutter.dart';
 
 class AdsManager {
-  static bool _testMode = true;
+  static bool _testMode = false;
 
   ///
   static String get appId {

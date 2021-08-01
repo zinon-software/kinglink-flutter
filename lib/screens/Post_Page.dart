@@ -6,7 +6,8 @@ import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/post/Post_Body.dart';
 
 class PostPage extends StatelessWidget {
-  const PostPage({Key key}) : super(key: key);
+  final urlServer;
+  const PostPage({Key key, this.urlServer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class PostPage extends StatelessWidget {
           adSize: AdmobBannerSize.SMART_BANNER(context),
         ),
       ),
-      body: PostBody(),
+      body: PostBody(urlServer:urlServer),
     );
   }
 

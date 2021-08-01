@@ -27,10 +27,10 @@ class FetchApi {
 
   // نشر رابط
   // ignore: missing_return
-  Future<GroupsModel> sendGroup(
+  Future<GroupsModel> sendGroup(String urlServer,
       String name, String link, String category, String sections) async {
     var response = await http
-        .post(Uri.parse('https://kinglink.herokuapp.com/api/Groub'), body: {
+        .post(Uri.parse('https://$urlServer.herokuapp.com/api/Groub'), body: {
       'name': name,
       'link': link,
       'category': category,
@@ -46,10 +46,10 @@ class FetchApi {
   }
 
   // المشاهدات
-  Future<GroupsModel> updateViews(
+  Future<GroupsModel> updateViews(String urlServer,
       int id, int views, String name, String link) async {
     final response = await http.put(
-      Uri.parse('https://kinglink.herokuapp.com/api/Groub/$id'),
+      Uri.parse('https://$urlServer.herokuapp.com/api/Groub/$id'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -69,9 +69,9 @@ class FetchApi {
 
   // البلاغات
   // ignore: missing_return
-  Future<ReportModel> submitReport(String message, String groupId) async {
+  Future<ReportModel> submitReport(String urlServer, String message, String groupId) async {
     var response = await http
-        .post(Uri.parse('https://kinglink.herokuapp.com/api/Report'), body: {
+        .post(Uri.parse('https://$urlServer.herokuapp.com/api/Report'), body: {
       'message': message,
       'group': groupId,
     });
@@ -87,9 +87,9 @@ class FetchApi {
   // التعليقات
   // post
   // ignore: missing_return
-  Future<CommentsModel> submitComment(String message, String groupId) async {
+  Future<CommentsModel> submitComment(String urlServer, String message, String groupId) async {
     var response = await http
-        .post(Uri.parse('https://kinglink.herokuapp.com/api/Comment'), body: {
+        .post(Uri.parse('https://$urlServer.herokuapp.com/api/Comment'), body: {
       'message': message,
       'group': groupId,
     });
@@ -103,10 +103,10 @@ class FetchApi {
   }
 
   // get
-  Future<List<CommentsModel>> getCommentsData(String groupId) async {
+  Future<List<CommentsModel>> getCommentsData(String urlServer, String groupId) async {
     http.Response response =
         await http.get(Uri.parse(
-          'https://kinglink.herokuapp.com/api/Comment?group=$groupId'),
+          'https://$urlServer.herokuapp.com/api/Comment?group=$groupId'),
       headers: {"Accept": "application/json"},
     );
      if (response.statusCode == 200) {
@@ -129,9 +129,9 @@ class FetchApi {
 
 
   // الاقسام
-  Future<List<SectionsModel>> fetchSections() async {
+  Future<List<SectionsModel>> fetchSections(String urlServer,) async {
     http.Response response = await http
-        .get(Uri.parse("https://kinglink.herokuapp.com/api/Sections"));
+        .get(Uri.parse("https://$urlServer.herokuapp.com/api/Sections"));
 
     if (response.statusCode == 200) {
       var body = jsonDecode(utf8.decode(response.bodyBytes));

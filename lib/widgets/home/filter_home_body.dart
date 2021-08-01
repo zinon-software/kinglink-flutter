@@ -130,7 +130,7 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
   }
 
   selectViews(int id, int views, String name, String link) async {
-    GroupsModel data = await fetchApi.updateViews(id, views, name, link);
+    GroupsModel data = await fetchApi.updateViews(widget.urlServer ,id, views, name, link);
 
     setState(() {
       groupModel = data;

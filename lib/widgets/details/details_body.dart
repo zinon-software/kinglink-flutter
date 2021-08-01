@@ -17,8 +17,9 @@ import 'package:http/http.dart' as http;
 
 class DetailsBody extends StatefulWidget {
   final GroupsModel group;
+  final urlServer;
 
-  const DetailsBody({Key key, this.group}) : super(key: key);
+  const DetailsBody({Key key, this.group, this.urlServer}) : super(key: key);
 
   @override
   _DetailsBodyState createState() => _DetailsBodyState();
@@ -32,7 +33,7 @@ class _DetailsBodyState extends State<DetailsBody> {
 
   Future<String> getCuontCommentsData() async {
     var res = await http
-        .get(Uri.parse('https://kinglink.herokuapp.com/api/Comment?group=${widget.group.id}'), headers: {"Accept": "application/json"});
+        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Comment?group=${widget.group.id}'), headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataCuontComments = resBody;
@@ -178,6 +179,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                     () => CommentsPage(
                       groupId: widget.group.id.toString(),
                       groupName: widget.group.name,
+                      urlServer: widget.urlServer,
                     ),
                   );
                 },

@@ -1,5 +1,4 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,8 @@ import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
 class HomeBody extends StatefulWidget {
-  const HomeBody({Key key}) : super(key: key);
+  final urlServer;
+  const HomeBody({Key key, this.urlServer}) : super(key: key);
 
   @override
   _HomeBodyState createState() => _HomeBodyState();
@@ -26,31 +26,9 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
-  String urlServer;
-
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final remoteConfig = await RemoteConfig.instance;
-      final defaults = <String, dynamic>{
-        'urlServer': 'kinglink',
-        'banarAds': 'ca-app-pub-9553130506719526/2231417956',
-      };
-    
-      setState(() {
-        urlServer = defaults['urlServer'];
-        // banarAds = defaults['banarAds'];
-      });
-    
-      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
-      await remoteConfig.activateFetched();
-      setState(() {
-        urlServer = remoteConfig.getString("urlServer");
-        // banarAds = remoteConfig.getString("ads");
-      });
-    });
 
     //Ads
     interstitialAd = AdmobInterstitial(
@@ -101,7 +79,7 @@ class _HomeBodyState extends State<HomeBody> {
                   return Future.value(false);
                 },
                 child: FutureBuilder(
-                    future: fetchApi.fetchProducts(urlServer, 'Groub'),
+                    future: fetchApi.fetchProducts(widget.urlServer, 'Groub'),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       List<GroupsModel> groups = snapshot.data;
                       if (snapshot.data == null) {
@@ -127,7 +105,7 @@ class _HomeBodyState extends State<HomeBody> {
                                     groups[index].name,
                                     groups[index].link);
                                 Get.to(
-                                  () => DetailPage(group: groups[index]),
+                                  () => DetailPage(group: groups[index], urlServer:widget.urlServer),
                                 );
                               } else {
                                 showDialog<String>(
@@ -161,7 +139,7 @@ class _HomeBodyState extends State<HomeBody> {
   }
 
   selectViews(int id, int views, String name, String link) async {
-    GroupsModel data = await fetchApi.updateViews(id, views, name, link);
+    GroupsModel data = await fetchApi.updateViews(widget.urlServer, id, views, name, link);
 
     setState(() {
       groupModel = data;
@@ -171,7 +149,7 @@ class _HomeBodyState extends State<HomeBody> {
   sectionsRow() {
     return Container(
       child: FutureBuilder(
-          future: fetchApi.fetchSections(),
+          future: fetchApi.fetchSections(widget.urlServer),
           // ignore: missing_return
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             // ignore: unused_local_variable
@@ -207,7 +185,7 @@ class _HomeBodyState extends State<HomeBody> {
                         () => FilterDataGroup(
                           sectionsId: '/top',
                           sectionsName: 'الأكثر مشاهدة',
-                          urlServer: urlServer,
+                          urlServer: widget.urlServer,
                         ),
                       );
                     },
@@ -251,7 +229,7 @@ class _HomeBodyState extends State<HomeBody> {
                                       sectionsId:
                                           '?sections=${sections[index].id.toString()}',
                                       sectionsName: sections[index].name,
-                                      urlServer: urlServer,
+                                      urlServer: widget.urlServer,
                                     ),
                                   );
                                 },

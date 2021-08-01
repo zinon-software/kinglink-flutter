@@ -7,7 +7,8 @@ import 'package:whatsapp_group_links/widgets/comments/comment_cart.dart';
 class CommentsPage extends StatelessWidget {
   final groupId;
   final groupName;
-  const CommentsPage({Key key, this.groupId, this.groupName}) : super(key: key);
+  final urlServer;
+  const CommentsPage({Key key, this.groupId, this.groupName, this.urlServer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class CommentsPage extends StatelessWidget {
       appBar: commentsAppBar(context),
       body: TestMe(
         groupId: groupId,
+        urlServer: urlServer,
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(

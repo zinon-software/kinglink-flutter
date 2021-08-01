@@ -5,8 +5,9 @@ import 'package:whatsapp_group_links/network/fetchApi.dart';
 
 class TestMe extends StatefulWidget {
   final groupId;
+  final urlServer;
 
-  const TestMe({Key key, @required this.groupId}) : super(key: key);
+  const TestMe({Key key, @required this.groupId, this.urlServer}) : super(key: key);
 
   @override
   _TestMeState createState() => _TestMeState();
@@ -17,7 +18,7 @@ class _TestMeState extends State<TestMe> {
   CommentsModel commentsModel;
 
   void _addCommentApi(String val) async {
-    CommentsModel data = await fetchApi.submitComment(val, widget.groupId);
+    CommentsModel data = await fetchApi.submitComment(widget.urlServer, val, widget.groupId);
     setState(() {
       commentsModel = data;
     });
@@ -28,7 +29,7 @@ class _TestMeState extends State<TestMe> {
 
   Widget commentChild() {
     return FutureBuilder(
-        future: fetchApi.getCommentsData(widget.groupId),
+        future: fetchApi.getCommentsData(widget.urlServer, widget.groupId),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           List<CommentsModel> comments = snapshot.data;
           if (snapshot.data == null) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
@@ -10,7 +11,8 @@ import 'package:whatsapp_group_links/network/fetchApi.dart';
 import 'package:http/http.dart' as http;
 
 class PostBody extends StatefulWidget {
-  const PostBody({Key key}) : super(key: key);
+  final urlServer;
+  const PostBody({Key key , this.urlServer}) : super(key: key);
 
   @override
   _PostBodyState createState() => _PostBodyState();
@@ -20,15 +22,13 @@ class _PostBodyState extends State<PostBody> {
   String _mySelection;
   String _myCategory;
 
-  final String urlSelection = "https://kinglink.herokuapp.com/api/Sections";
-  final String urlCategory = "https://kinglink.herokuapp.com/api/Category";
 
   List dataSelection = []; //edited line
   List dataCategory = []; //edited line
 
   Future<String> getSectionsData() async {
     var res = await http
-        .get(Uri.parse(urlSelection), headers: {"Accept": "application/json"});
+        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Sections'), headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataSelection = resBody;
@@ -38,7 +38,7 @@ class _PostBodyState extends State<PostBody> {
 
   Future<String> getCategoryData() async {
     var res = await http
-        .get(Uri.parse(urlCategory), headers: {"Accept": "application/json"});
+        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Category'), headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataCategory = resBody;
@@ -56,6 +56,7 @@ class _PostBodyState extends State<PostBody> {
   @override
   void initState() {
     super.initState();
+
     //Ads
     _nativeAdController.reloadAd(forceRefresh: true);
 
@@ -217,7 +218,7 @@ class _PostBodyState extends State<PostBody> {
                         nameController.clear();
                         linkController.clear();
 
-                        GroupsModel data = await fetchApi.sendGroup(
+                        GroupsModel data = await fetchApi.sendGroup(widget.urlServer,
                             name, link, _myCategory, _mySelection);
 
                         setState(() {
