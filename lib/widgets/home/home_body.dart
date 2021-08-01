@@ -1,4 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,9 +26,32 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
+  String urlServer = 'kinglink';
+
   @override
   void initState() {
     super.initState();
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   final remoteConfig = await RemoteConfig.instance;
+    //   final defaults = <String, dynamic>{
+    //     'urlServer': 'kinglink',
+    //     'banarAds': 'ca-app-pub-9553130506719526/2231417956',
+    //   };
+    //
+    //   setState(() {
+    //     urlServer = defaults['urlServer'];
+    //     banarAds = defaults['banarAds'];
+    //   });
+    //
+    //   await remoteConfig.fetch(expiration: const Duration(hours: 4));
+    //   await remoteConfig.activateFetched();
+    //   setState(() {
+    //     urlServer = remoteConfig.getString("urlServer");
+    //     banarAds = remoteConfig.getString("ads");
+    //   });
+    // });
+
     //Ads
     interstitialAd = AdmobInterstitial(
       adUnitId: AdsManager.interstitialAdUnitId,
@@ -77,7 +101,7 @@ class _HomeBodyState extends State<HomeBody> {
                   return Future.value(false);
                 },
                 child: FutureBuilder(
-                    future: fetchApi.fetchProducts('Groub'),
+                    future: fetchApi.fetchProducts(urlServer, 'Groub'),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       List<GroupsModel> groups = snapshot.data;
                       if (snapshot.data == null) {
@@ -174,6 +198,37 @@ class _HomeBodyState extends State<HomeBody> {
             } else {
               return new Row(
                 children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      if (interstitialAd != null) {
+                        interstitialAd.show();
+                      }
+                      Get.to(
+                        () => FilterDataGroup(
+                          sectionsId: '/top',
+                          sectionsName: 'الأكثر مشاهدة',
+                          urlServer: urlServer,
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: kDefaultPadding * 0.5, // 30 px padding
+                        vertical: kDefaultPadding / 5, // 5 px padding
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Text(
+                        'الأكثر مشاهدة',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: kDefaultPadding / 3,
+                  ),
                   Expanded(
                     child: SizedBox(
                       height: 30.0,
@@ -193,9 +248,11 @@ class _HomeBodyState extends State<HomeBody> {
                                   }
                                   Get.to(
                                     () => FilterDataGroup(
-                                        sectionsId:
-                                            sections[index].id.toString(),
-                                        sectionsName: sections[index].name),
+                                      sectionsId:
+                                          '?sections=${sections[index].id.toString()}',
+                                      sectionsName: sections[index].name,
+                                      urlServer: urlServer,
+                                    ),
                                   );
                                 },
                                 child: Container(

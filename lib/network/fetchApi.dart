@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 
 class FetchApi {
   // القروبات
-  Future<List<GroupsModel>> fetchProducts(String url) async {
+  Future<List<GroupsModel>> fetchProducts(String urlServer, String url) async {
     http.Response response =
-        await http.get(Uri.parse("https://kinglink.herokuapp.com/api/$url"));
+        await http.get(Uri.parse("https://$urlServer.herokuapp.com/api/$url"));
 
     if (response.statusCode == 200) {
       var body = jsonDecode(utf8.decode(response.bodyBytes));

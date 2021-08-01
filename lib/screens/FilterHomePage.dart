@@ -5,8 +5,9 @@ import 'package:whatsapp_group_links/widgets/home/filter_home_body.dart';
 class FilterDataGroup extends StatelessWidget {
   final sectionsId;
   final sectionsName;
+  final urlServer;
 
-  const FilterDataGroup({Key key, this.sectionsId, this.sectionsName})
+  const FilterDataGroup({Key key, this.sectionsId, this.sectionsName, this.urlServer})
       : super(key: key);
 
   @override
@@ -22,6 +23,7 @@ class FilterDataGroup extends StatelessWidget {
             ),
             FilterHomeBody(
               sectionsId: sectionsId,
+              urlServer: urlServer,
             ),
           ],
         ),

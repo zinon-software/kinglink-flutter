@@ -12,7 +12,8 @@ import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
 class FilterHomeBody extends StatefulWidget {
   final sectionsId;
-  const FilterHomeBody({Key key, @required this.sectionsId}) : super(key: key);
+  final urlServer;
+  const FilterHomeBody({Key key, @required this.sectionsId, this.urlServer}) : super(key: key);
 
   @override
   _FilterHomeBodyState createState() => _FilterHomeBodyState();
@@ -72,7 +73,7 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
             },
             child: FutureBuilder(
                 future: fetchApi
-                    .fetchProducts("Groub?sections=${widget.sectionsId}"),
+                    .fetchProducts(widget.urlServer, "Groub${widget.sectionsId}"),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   List<GroupsModel> groups = snapshot.data;
                   if (snapshot.data == null) {
