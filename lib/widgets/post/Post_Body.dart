@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
