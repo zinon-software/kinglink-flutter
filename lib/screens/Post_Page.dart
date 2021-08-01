@@ -48,42 +48,44 @@ class PostPage extends StatelessWidget {
               context: context,
               builder: (BuildContext context) => AlertDialog(
                 title: const Text('تعليمات النشر'),
-                content: Column(
-                  children: [
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text("بسم الله الرحمن الرحيم"),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Icon(Icons.report),
-                    Text(" قم بتعبئة جميع الحقول "),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text(" لن يتم عرض الرابط المنشُر الا بعد التاكد من صحته "),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text(
-                        " لاتقم بتكرار الرابط عند تعقب التكرار يتم حذف جميع الروابط "),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text(
-                        " احرص علئ ان يحصل الرابط الخاص بك على اعلى نسب المشاهدة "),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text(
-                        "تاكد بان حقل الرابط لا يحتوي على احرف او كلامات زائدة "),
-                    SizedBox(
-                      height: kDefaultPadding / 3,
-                    ),
-                    Text(
-                        "يمكنك نشر جميع حسابتك من مختلف منصات التواصل الاجتماعي مثلاً  Tik Tok   يوتيوب سناب واتساب.... "),
-                  ],
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text("بسم الله الرحمن الرحيم"),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Icon(Icons.report),
+                      Text(" قم بتعبئة جميع الحقول "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text(" لن يتم عرض الرابط المنشٌُور الا بعد التاكد من صحته "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text(
+                          " لاتقم بتكرار الرابط عند تعقبنا لتكرار يتم حذف جميع الروابط "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text(
+                          " احرص علئ ان يحصل الرابط الخاص بك على اعلى نسب المشاهدة "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text(
+                          "تاكد بان حقل الرابط لا يحتوي على احرف او كلمات زائدة "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
+                      Text(
+                          "يمكنك نشر جميع حسابتك من مختلف منصات التواصل الاجتماعي مثلاً  Tik Tok   يوتيوب سناب واتساب.... "),
+                    ],
+                  ),
                 ),
                 actions: <Widget>[
                   TextButton(

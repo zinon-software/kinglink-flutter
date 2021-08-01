@@ -68,51 +68,53 @@ class _DetailPageState extends State<DetailPage> {
               context: context,
               builder: (BuildContext context) => AlertDialog(
                 title: const Text('تقديم بلاغ'),
-                content: Column(
-                  children: [
-                    Icon(Icons.report),
-                    Text(" اسم المجموعة"),
-                    Text(widget.group.name),
-                    Text("  "),
-                    Text("  "),
-                    Text("  "),
-                    // ignore: deprecated_member_use
-                    RaisedButton(
-                      onPressed: () async {
-                        String message = 'الرابط لا يعمل';
-                        String groupId = '${widget.group.id}';
-                        reportOnPressed(message, groupId);
-                      },
-                      child: Text("الرابط لا يعمل"),
-                    ),
-                    // ignore: deprecated_member_use
-                    RaisedButton(
-                      onPressed: () async {
-                        String message = 'العنوان وهمي';
-                        String groupId = '${widget.group.id}';
-                        reportOnPressed(message, groupId);
-                      },
-                      child: Text("العنوان وهمي"),
-                    ),
-                    // ignore: deprecated_member_use
-                    RaisedButton(
-                      onPressed: () async {
-                        String message = 'المجموعة غير اخلاقية';
-                        String groupId = '${widget.group.id}';
-                        reportOnPressed(message, groupId);
-                      },
-                      child: Text("المجموعة غير اخلاقية"),
-                    ),
-                    // ignore: deprecated_member_use
-                    RaisedButton(
-                      onPressed: () {
-                        String message = 'القسم غير صحيح';
-                        String groupId = '${widget.group.id}';
-                        reportOnPressed(message, groupId);
-                      },
-                      child: Text("القسم غير صحيح"),
-                    ),
-                  ],
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Icon(Icons.report),
+                      Text(" اسم المجموعة"),
+                      Text(widget.group.name),
+                      Text("  "),
+                      Text("  "),
+                      Text("  "),
+                      // ignore: deprecated_member_use
+                      RaisedButton(
+                        onPressed: () async {
+                          String message = 'الرابط لا يعمل';
+                          String groupId = '${widget.group.id}';
+                          reportOnPressed(message, groupId);
+                        },
+                        child: Text("الرابط لا يعمل"),
+                      ),
+                      // ignore: deprecated_member_use
+                      RaisedButton(
+                        onPressed: () async {
+                          String message = 'العنوان وهمي';
+                          String groupId = '${widget.group.id}';
+                          reportOnPressed(message, groupId);
+                        },
+                        child: Text("العنوان وهمي"),
+                      ),
+                      // ignore: deprecated_member_use
+                      RaisedButton(
+                        onPressed: () async {
+                          String message = 'المجموعة غير اخلاقية';
+                          String groupId = '${widget.group.id}';
+                          reportOnPressed(message, groupId);
+                        },
+                        child: Text("المجموعة غير اخلاقية"),
+                      ),
+                      // ignore: deprecated_member_use
+                      RaisedButton(
+                        onPressed: () {
+                          String message = 'القسم غير صحيح';
+                          String groupId = '${widget.group.id}';
+                          reportOnPressed(message, groupId);
+                        },
+                        child: Text("القسم غير صحيح"),
+                      ),
+                    ],
+                  ),
                 ),
                 actions: <Widget>[
                   TextButton(

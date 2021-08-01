@@ -33,13 +33,13 @@ class FilterDataGroup extends StatelessWidget {
 
   AppBar detailsAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: Colors.black45,
       elevation: 0,
       leading: IconButton(
         padding: EdgeInsets.only(right: kDefaultPadding),
         icon: Icon(
           Icons.arrow_back,
-          color: kPrimaryColor,
+          color: Colors.white,
         ),
         onPressed: () {
           Navigator.pop(context);

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
@@ -9,6 +11,9 @@ import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/screens/CommentsPage.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
+
+import 'package:http/http.dart' as http;
+
 
 class DetailsBody extends StatefulWidget {
   final GroupsModel group;
@@ -22,9 +27,23 @@ class DetailsBody extends StatefulWidget {
 class _DetailsBodyState extends State<DetailsBody> {
   AdmobInterstitial interstitialAd;
 
+
+  List dataCuontComments = []; //edited line
+
+  Future<String> getCuontCommentsData() async {
+    var res = await http
+        .get(Uri.parse('https://kinglink.herokuapp.com/api/Comment?group=${widget.group.id}'), headers: {"Accept": "application/json"});
+    var resBody = jsonDecode(utf8.decode(res.bodyBytes));
+    setState(() {
+      dataCuontComments = resBody;
+    });
+    return "Sucess";
+  }
+
   @override
   void initState() {
     super.initState();
+
     //Ads
     interstitialAd = AdmobInterstitial(
       adUnitId: AdsManager.interstitialAdUnitId,
@@ -34,6 +53,9 @@ class _DetailsBodyState extends State<DetailsBody> {
     );
 
     interstitialAd.load();
+
+    getCuontCommentsData();
+
   }
 
   @override
@@ -159,7 +181,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                     ),
                   );
                 },
-                child: Text('التعليقات'),
+                child: Text('التعليقات  (${dataCuontComments.length})'),
               ),
             ),
           ),
