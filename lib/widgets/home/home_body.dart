@@ -1,5 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
-// import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,31 +26,31 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
-  String urlServer = 'kinglink';
+  String urlServer;
 
   @override
   void initState() {
     super.initState();
 
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   final remoteConfig = await RemoteConfig.instance;
-    //   final defaults = <String, dynamic>{
-    //     'urlServer': 'kinglink',
-    //     'banarAds': 'ca-app-pub-9553130506719526/2231417956',
-    //   };
-    //
-    //   setState(() {
-    //     urlServer = defaults['urlServer'];
-    //     banarAds = defaults['banarAds'];
-    //   });
-    //
-    //   await remoteConfig.fetch(expiration: const Duration(hours: 4));
-    //   await remoteConfig.activateFetched();
-    //   setState(() {
-    //     urlServer = remoteConfig.getString("urlServer");
-    //     banarAds = remoteConfig.getString("ads");
-    //   });
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final remoteConfig = await RemoteConfig.instance;
+      final defaults = <String, dynamic>{
+        'urlServer': 'kinglink',
+        'banarAds': 'ca-app-pub-9553130506719526/2231417956',
+      };
+    
+      setState(() {
+        urlServer = defaults['urlServer'];
+        // banarAds = defaults['banarAds'];
+      });
+    
+      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
+      await remoteConfig.activateFetched();
+      setState(() {
+        urlServer = remoteConfig.getString("urlServer");
+        // banarAds = remoteConfig.getString("ads");
+      });
+    });
 
     //Ads
     interstitialAd = AdmobInterstitial(
