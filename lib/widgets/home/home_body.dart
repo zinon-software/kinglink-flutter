@@ -224,7 +224,9 @@ class _HomeBodyState extends State<HomeBody> {
                               InkWell(
                                 onTap: () {
                                   if (interstitialAd != null) {
-                                    interstitialAd.show();
+                                    if (sections[index].id % 2 == 0) {
+                                      interstitialAd.show(); 
+                                    }
                                   }
                                   Get.to(
                                     () => FilterDataGroup(
