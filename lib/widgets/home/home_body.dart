@@ -97,7 +97,9 @@ class _HomeBodyState extends State<HomeBody> {
                             press: () {
                               if (groups[index].activation == true) {
                                 if (interstitialAd != null) {
-                                  interstitialAd.show();
+                                  if (groups[index].id % 2 == 0) {
+                                    interstitialAd.show(); 
+                                  }
                                 }
                                 selectViews(
                                     groups[index].id,

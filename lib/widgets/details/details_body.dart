@@ -162,7 +162,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 vertical: kDefaultPadding / 2,
               ),
               child: Text(
-                ' الساعة :  ${widget.group.createdDt.hour}:${widget.group.createdDt.second}   ||  التاريخ :  ${widget.group.createdDt.day} / ${widget.group.createdDt.month} / ${widget.group.createdDt.year}',
+                ' ${widget.group.createdDt.hour}:${widget.group.createdDt.second}   ${widget.group.createdDt.day} / ${widget.group.createdDt.month} / ${widget.group.createdDt.year}',
                 style: TextStyle(color: Colors.white, fontSize: 19.0),
               ),
             ),
@@ -173,7 +173,9 @@ class _DetailsBodyState extends State<DetailsBody> {
               child: RaisedButton(
                 onPressed: () {
                   if (interstitialAd != null) {
-                    interstitialAd.show();
+                    if (widget.group.id % 2 == 0) {
+                                    interstitialAd.show(); 
+                                  }
                   }
                   Get.to(
                     () => CommentsPage(

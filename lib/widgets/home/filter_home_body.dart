@@ -13,7 +13,8 @@ import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 class FilterHomeBody extends StatefulWidget {
   final sectionsId;
   final urlServer;
-  const FilterHomeBody({Key key, @required this.sectionsId, this.urlServer}) : super(key: key);
+  const FilterHomeBody({Key key, @required this.sectionsId, this.urlServer})
+      : super(key: key);
 
   @override
   _FilterHomeBodyState createState() => _FilterHomeBodyState();
@@ -72,8 +73,8 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
               return Future.value(false);
             },
             child: FutureBuilder(
-                future: fetchApi
-                    .fetchProducts(widget.urlServer, "Groub${widget.sectionsId}"),
+                future: fetchApi.fetchProducts(
+                    widget.urlServer, "Groub${widget.sectionsId}"),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   List<GroupsModel> groups = snapshot.data;
                   if (snapshot.data == null) {
@@ -91,7 +92,9 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
                         press: () {
                           if (groups[index].activation == true) {
                             if (interstitialAd != null) {
-                              interstitialAd.show();
+                              if (groups[index].id % 2 != 0) {
+                                interstitialAd.show();
+                              }
                             }
                             selectViews(
                                 groups[index].id,
@@ -99,7 +102,9 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
                                 groups[index].name,
                                 groups[index].link);
                             Get.to(
-                              () => DetailPage(group: groups[index]),
+                              () => DetailPage(
+                                  group: groups[index],
+                                  urlServer: widget.urlServer),
                             );
                           } else {
                             showDialog<String>(
@@ -130,7 +135,8 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
   }
 
   selectViews(int id, int views, String name, String link) async {
-    GroupsModel data = await fetchApi.updateViews(widget.urlServer ,id, views, name, link);
+    GroupsModel data =
+        await fetchApi.updateViews(widget.urlServer, id, views, name, link);
 
     setState(() {
       groupModel = data;

@@ -153,7 +153,7 @@ class GroupCard extends StatelessWidget {
                         ),
                         SizedBox(width: 7),
                         Text(
-                            ' الساعة :  ${groups.createdDt.hour}:${groups.createdDt.second}   ||  التاريخ :  ${groups.createdDt.day} / ${groups.createdDt.month} / ${groups.createdDt.year}'),
+                            ' ${groups.createdDt.hour}:${groups.createdDt.second}   ${groups.createdDt.day} / ${groups.createdDt.month} / ${groups.createdDt.year}'),
                       ],
                     ),
                   )
