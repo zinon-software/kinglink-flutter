@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/ReportModel.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
@@ -10,8 +11,18 @@ import 'package:whatsapp_group_links/widgets/details/details_body.dart';
 class DetailPage extends StatefulWidget {
   final GroupsModel group;
   final urlServer;
+  final bannarIsAd;
+  final interstIsAd;
+  final nativeIsAd;
 
-  const DetailPage({Key key, this.group, this.urlServer}) : super(key: key);
+  const DetailPage(
+      {Key key,
+      this.group,
+      this.urlServer,
+      this.bannarIsAd,
+      this.nativeIsAd,
+      this.interstIsAd})
+      : super(key: key);
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -21,6 +32,8 @@ class _DetailPageState extends State<DetailPage> {
   ReportModel reportModel;
   FetchApi fetchApi = FetchApi();
 
+  static bool _testMode = false; // مفعل الاعلانات
+
   reportOnPressed(String message, String groupId) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -29,7 +42,8 @@ class _DetailPageState extends State<DetailPage> {
     );
     Navigator.pop(context, 'Cancel');
 
-    ReportModel data = await fetchApi.submitReport(widget.urlServer,message, groupId);
+    ReportModel data =
+        await fetchApi.submitReport(widget.urlServer, message, groupId);
 
     setState(() {
       reportModel = data;
@@ -44,10 +58,22 @@ class _DetailPageState extends State<DetailPage> {
       body: DetailsBody(
         group: widget.group,
         urlServer: widget.urlServer,
+        interstIsAd:widget.interstIsAd,
+        nativeIsAd:widget.nativeIsAd,
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(
-          adUnitId: AdsManager.bannerAdUnitId,
+          adUnitId: () {
+            if (_testMode == true) {
+              return AdmobBanner.testAdUnitId;
+            } else if (Platform.isAndroid) {
+              return widget.bannarIsAd;
+            } else if (Platform.isIOS) {
+              return "ca-app-pub-9553130506719526/3053655439";
+            } else {
+              throw new UnsupportedError("Unsupported platform");
+            }
+          }(),
           adSize: AdmobBannerSize.SMART_BANNER(context),
         ),
       ),

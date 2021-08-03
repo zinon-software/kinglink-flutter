@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/SectionsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 import 'package:whatsapp_group_links/screens/Post_Page.dart';
@@ -23,7 +24,9 @@ class _HomePageState extends State<HomePage> {
   SectionsModel sectionsModel;
   FetchApi fetchApi = FetchApi();
 
-  String urlServer;
+  String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
+  static bool _testMode = false;  // مفعل الاعلانات
+
 
   @override
   void initState() {
@@ -33,25 +36,42 @@ class _HomePageState extends State<HomePage> {
       final remoteConfig = await RemoteConfig.instance;
       final defaults = <String, dynamic>{
         'urlServer': 'kinglink',
-        'banarAds': 'ca-app-pub-9553130506719526/2231417956',
+        'banarAdsisAndroid': '',
+        'AdmobInterstitialisAndroid': '',
+        'NativeAdmobisAndroid': '',
       };
     
       setState(() {
         urlServer = defaults['urlServer'];
-        // banarAds = defaults['banarAds'];
+        bannarIsAd = defaults['banarAdsisAndroid'];
+        interstIsAd = defaults['AdmobInterstitialisAndroid'];
+        nativeIsAd = defaults['NativeAdmobisAndroid'];
       });
     
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
       setState(() {
         urlServer = remoteConfig.getString("urlServer");
-        // banarAds = remoteConfig.getString("ads");
+        bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
+        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroid");
+        nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
       });
     });
 
     //Ads
     interstitialAd = AdmobInterstitial(
-      adUnitId: AdsManager.interstitialAdUnitId,
+      adUnitId: (){
+          if (_testMode == true) {
+            // return '';
+            return AdmobInterstitial.testAdUnitId;
+          } else if (Platform.isAndroid) {
+            return interstIsAd;
+          } else if (Platform.isIOS) {
+            return "ca-app-pub-9553130506719526/3516689861";
+          } else {
+            throw new UnsupportedError("Unsupported platform");
+          }
+        }(),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
       },
@@ -73,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       appBar: homeAppBar(),
       body: SafeArea(
         bottom: false,
-        child: HomeBody(urlServer:urlServer),
+        child: HomeBody(urlServer:urlServer, bannarIsAd:bannarIsAd, nativeIsAd:nativeIsAd, interstIsAd: interstIsAd,),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -84,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             interstitialAd.show();
           }
           Get.to(
-            () => PostPage(urlServer:urlServer),
+            () => PostPage(urlServer:urlServer, bannarIsAd:bannarIsAd, nativeIsAd:nativeIsAd, ),
           );
         },
       ),

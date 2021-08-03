@@ -2,7 +2,6 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/SectionsModel.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
@@ -12,9 +11,15 @@ import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
+import 'dart:io';
+
+
 class HomeBody extends StatefulWidget {
   final urlServer;
-  const HomeBody({Key key, this.urlServer}) : super(key: key);
+  final interstIsAd;
+  final nativeIsAd;
+  final bannarIsAd;
+  const HomeBody({Key key, this.urlServer, this.nativeIsAd, this.interstIsAd, this.bannarIsAd}) : super(key: key);
 
   @override
   _HomeBodyState createState() => _HomeBodyState();
@@ -26,13 +31,26 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
+  static bool _testMode = false;  // مفعل الاعلانات
+
   @override
   void initState() {
     super.initState();
 
     //Ads
     interstitialAd = AdmobInterstitial(
-      adUnitId: AdsManager.interstitialAdUnitId,
+      adUnitId: (){
+          if (_testMode == true) {
+            // return '';
+            return AdmobInterstitial.testAdUnitId;
+          } else if (Platform.isAndroid) {
+            return widget.interstIsAd;
+          } else if (Platform.isIOS) {
+            return "ca-app-pub-9553130506719526/3516689861";
+          } else {
+            throw new UnsupportedError("Unsupported platform");
+          }
+        }(),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
       },
@@ -107,7 +125,7 @@ class _HomeBodyState extends State<HomeBody> {
                                     groups[index].name,
                                     groups[index].link);
                                 Get.to(
-                                  () => DetailPage(group: groups[index], urlServer:widget.urlServer),
+                                  () => DetailPage(group: groups[index], urlServer:widget.urlServer, bannarIsAd: widget.bannarIsAd, interstIsAd: widget.interstIsAd , nativeIsAd: widget.nativeIsAd,),
                                 );
                               } else {
                                 showDialog<String>(
@@ -169,7 +187,7 @@ class _HomeBodyState extends State<HomeBody> {
                       borderRadius: BorderRadius.circular(22),
                     ),
                     child: Text(
-                      '                    ',
+                      'جاري التحميل',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -188,6 +206,9 @@ class _HomeBodyState extends State<HomeBody> {
                           sectionsId: '/top',
                           sectionsName: 'الأكثر مشاهدة',
                           urlServer: widget.urlServer,
+                          bannarIsAd: widget.bannarIsAd,
+                          interstIsAd: widget.interstIsAd,
+                          nativeIsAd: widget.nativeIsAd,
                         ),
                       );
                     },

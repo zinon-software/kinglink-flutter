@@ -1,13 +1,17 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/post/Post_Body.dart';
+import 'dart:io';
 
 class PostPage extends StatelessWidget {
   final urlServer;
-  const PostPage({Key key, this.urlServer}) : super(key: key);
+  final nativeIsAd;
+  final bannarIsAd;
+  const PostPage({Key key, this.urlServer, this.bannarIsAd, this.nativeIsAd}) : super(key: key);
+
+  static bool _testMode = false;  // مفعل الاعلانات
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +20,21 @@ class PostPage extends StatelessWidget {
       appBar: detailsAppBar(context),
       bottomNavigationBar: Container(
         child: AdmobBanner(
-          adUnitId: AdsManager.bannerAdUnitId,
+          adUnitId: (){
+            if (_testMode == true) {
+      return AdmobBanner.testAdUnitId;
+    } else if (Platform.isAndroid) {
+      return bannarIsAd;
+    } else if (Platform.isIOS) {
+      return "ca-app-pub-9553130506719526/3053655439";
+    } else {
+      throw new UnsupportedError("Unsupported platform");
+    }
+          }(),
           adSize: AdmobBannerSize.SMART_BANNER(context),
         ),
       ),
-      body: PostBody(urlServer:urlServer),
+      body: PostBody(urlServer:urlServer, nativeIsAd:nativeIsAd,),
     );
   }
 

@@ -6,8 +6,14 @@ class FilterDataGroup extends StatelessWidget {
   final sectionsId;
   final sectionsName;
   final urlServer;
+  final bannarIsAd;
+  final interstIsAd;
+  final nativeIsAd;
 
-  const FilterDataGroup({Key key, this.sectionsId, this.sectionsName, this.urlServer})
+  const FilterDataGroup({Key key, this.sectionsId, this.sectionsName, this.urlServer,
+      this.bannarIsAd,
+      this.nativeIsAd,
+      this.interstIsAd,})
       : super(key: key);
 
   @override
@@ -24,6 +30,9 @@ class FilterDataGroup extends StatelessWidget {
             FilterHomeBody(
               sectionsId: sectionsId,
               urlServer: urlServer,
+              bannarIsAd: bannarIsAd,
+              interstIsAd: interstIsAd,
+              nativeIsAd: nativeIsAd,
             ),
           ],
         ),

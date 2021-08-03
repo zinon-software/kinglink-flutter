@@ -1,7 +1,8 @@
+import 'dart:io';
+
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/widgets/comments/comment_cart.dart';
 
 class CommentsPage extends StatelessWidget {
@@ -9,6 +10,8 @@ class CommentsPage extends StatelessWidget {
   final groupName;
   final urlServer;
   const CommentsPage({Key key, this.groupId, this.groupName, this.urlServer}) : super(key: key);
+
+  static bool _testMode = false;  // مفعل الاعلانات
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,17 @@ class CommentsPage extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(
-          adUnitId: AdsManager.bannerAdUnitId,
+          adUnitId: (){
+            if (_testMode == true) {
+      return AdmobBanner.testAdUnitId;
+    } else if (Platform.isAndroid) {
+      return "ca-app-pub-9553130506719526/2231417956";
+    } else if (Platform.isIOS) {
+      return "ca-app-pub-9553130506719526/3053655439";
+    } else {
+      throw new UnsupportedError("Unsupported platform");
+    }
+          }(),
           adSize: AdmobBannerSize.SMART_BANNER(context),
         ),
       ),

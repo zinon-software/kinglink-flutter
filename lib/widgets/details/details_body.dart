@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/screens/CommentsPage.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
@@ -14,12 +14,15 @@ import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
 
 import 'package:http/http.dart' as http;
 
-
 class DetailsBody extends StatefulWidget {
   final GroupsModel group;
   final urlServer;
+  final interstIsAd;
+  final nativeIsAd;
 
-  const DetailsBody({Key key, this.group, this.urlServer}) : super(key: key);
+  const DetailsBody(
+      {Key key, this.group, this.urlServer, this.nativeIsAd, this.interstIsAd})
+      : super(key: key);
 
   @override
   _DetailsBodyState createState() => _DetailsBodyState();
@@ -28,12 +31,13 @@ class DetailsBody extends StatefulWidget {
 class _DetailsBodyState extends State<DetailsBody> {
   AdmobInterstitial interstitialAd;
 
-
   List dataCuontComments = []; //edited line
 
   Future<String> getCuontCommentsData() async {
-    var res = await http
-        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Comment?group=${widget.group.id}'), headers: {"Accept": "application/json"});
+    var res = await http.get(
+        Uri.parse(
+            'https://${widget.urlServer}.herokuapp.com/api/Comment?group=${widget.group.id}'),
+        headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataCuontComments = resBody;
@@ -41,13 +45,26 @@ class _DetailsBodyState extends State<DetailsBody> {
     return "Sucess";
   }
 
+  static bool _testMode = false; // مفعل الاعلانات
+
   @override
   void initState() {
     super.initState();
 
     //Ads
     interstitialAd = AdmobInterstitial(
-      adUnitId: AdsManager.interstitialAdUnitId,
+      adUnitId: () {
+        if (_testMode == true) {
+          // return '';
+          return AdmobInterstitial.testAdUnitId;
+        } else if (Platform.isAndroid) {
+          return widget.interstIsAd;
+        } else if (Platform.isIOS) {
+          return "ca-app-pub-9553130506719526/3516689861";
+        } else {
+          throw new UnsupportedError("Unsupported platform");
+        }
+      }(),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
       },
@@ -56,7 +73,6 @@ class _DetailsBodyState extends State<DetailsBody> {
     interstitialAd.load();
 
     getCuontCommentsData();
-
   }
 
   @override
@@ -106,7 +122,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                     ],
                   ),
                 ),
-                AdsClass(),
+                AdsClass(nativeIsAd: widget.nativeIsAd),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
@@ -174,8 +190,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                 onPressed: () {
                   if (interstitialAd != null) {
                     if (widget.group.id % 2 == 0) {
-                                    interstitialAd.show(); 
-                                  }
+                      interstitialAd.show();
+                    }
                   }
                   Get.to(
                     () => CommentsPage(
@@ -196,7 +212,8 @@ class _DetailsBodyState extends State<DetailsBody> {
 }
 
 class AdsClass extends StatefulWidget {
-  const AdsClass({Key key}) : super(key: key);
+  final nativeIsAd;
+  const AdsClass({Key key, this.nativeIsAd}) : super(key: key);
 
   @override
   _AdsClassState createState() => _AdsClassState();
@@ -204,6 +221,7 @@ class AdsClass extends StatefulWidget {
 
 class _AdsClassState extends State<AdsClass> {
   final _nativeAdController = NativeAdmobController();
+  static bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -229,7 +247,17 @@ class _AdsClassState extends State<AdsClass> {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(bottom: 20.0),
       child: NativeAdmob(
-        adUnitID: AdsManager.nativeAdUnitId,
+        adUnitID: () {
+          if (_testMode == true) {
+            return "ca-app-pub-3940256099942544/2247696110";
+          } else if (Platform.isAndroid) {
+            return widget.nativeIsAd;
+          } else if (Platform.isIOS) {
+            return "ca-app-pub-9553130506719526/7695414503";
+          } else {
+            throw new UnsupportedError("Unsupported platform");
+          }
+        }(),
         numberAds: 3,
         controller: _nativeAdController,
         type: NativeAdmobType.full,

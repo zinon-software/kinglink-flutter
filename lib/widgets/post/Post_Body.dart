@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
-import 'package:whatsapp_group_links/Ads_state/adsManager.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 
@@ -11,7 +11,8 @@ import 'package:http/http.dart' as http;
 
 class PostBody extends StatefulWidget {
   final urlServer;
-  const PostBody({Key key , this.urlServer}) : super(key: key);
+  final nativeIsAd;
+  const PostBody({Key key, this.urlServer, this.nativeIsAd}) : super(key: key);
 
   @override
   _PostBodyState createState() => _PostBodyState();
@@ -21,13 +22,13 @@ class _PostBodyState extends State<PostBody> {
   String _mySelection;
   String _myCategory;
 
-
   List dataSelection = []; //edited line
   List dataCategory = []; //edited line
 
   Future<String> getSectionsData() async {
-    var res = await http
-        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Sections'), headers: {"Accept": "application/json"});
+    var res = await http.get(
+        Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Sections'),
+        headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataSelection = resBody;
@@ -36,8 +37,9 @@ class _PostBodyState extends State<PostBody> {
   }
 
   Future<String> getCategoryData() async {
-    var res = await http
-        .get(Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Category'), headers: {"Accept": "application/json"});
+    var res = await http.get(
+        Uri.parse('https://${widget.urlServer}.herokuapp.com/api/Category'),
+        headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {
       dataCategory = resBody;
@@ -51,6 +53,8 @@ class _PostBodyState extends State<PostBody> {
   TextEditingController linkController = TextEditingController();
 
   final _nativeAdController = NativeAdmobController();
+
+  static bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -87,7 +91,17 @@ class _PostBodyState extends State<PostBody> {
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(bottom: 20.0),
               child: NativeAdmob(
-                adUnitID: AdsManager.nativeAdUnitId,
+                adUnitID: () {
+                  if (_testMode == true) {
+                    return "ca-app-pub-3940256099942544/2247696110";
+                  } else if (Platform.isAndroid) {
+                    return widget.nativeIsAd;
+                  } else if (Platform.isIOS) {
+                    return "ca-app-pub-9553130506719526/7695414503";
+                  } else {
+                    throw new UnsupportedError("Unsupported platform");
+                  }
+                }(),
                 numberAds: 3,
                 controller: _nativeAdController,
                 type: NativeAdmobType.full,
@@ -211,14 +225,19 @@ class _PostBodyState extends State<PostBody> {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(' تم الارسال بنجاح سيتم النشر بعد المراجعة'),
+                            content: Text(
+                                ' تم الارسال بنجاح سيتم النشر بعد المراجعة'),
                           ),
                         );
                         nameController.clear();
                         linkController.clear();
 
-                        GroupsModel data = await fetchApi.sendGroup(widget.urlServer,
-                            name, link, _myCategory, _mySelection);
+                        GroupsModel data = await fetchApi.sendGroup(
+                            widget.urlServer,
+                            name,
+                            link,
+                            _myCategory,
+                            _mySelection);
 
                         setState(() {
                           groupModel = data;
