@@ -164,6 +164,12 @@ class _PostBodyState extends State<PostBody> {
                     value: _mySelection,
                   ),
                 ),
+                
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
                 SizedBox(width: 10),
                 Text(' فئة الرابط'),
                 SizedBox(width: 10),
@@ -185,7 +191,7 @@ class _PostBodyState extends State<PostBody> {
                     value: _myCategory,
                   ),
                 ),
-              ],
+              ]
             ),
             SizedBox(height: 10),
 
