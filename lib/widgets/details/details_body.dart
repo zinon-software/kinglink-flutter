@@ -137,8 +137,11 @@ class _DetailsBodyState extends State<DetailsBody> {
                           height: 20,
                           width: 20,
                         ),
-                        Text(
-                          '   الناشر:   ${widget.group.createdBy}',
+                        Text( (){if (widget.group.createdBy == null ) {
+                           return '   الناشر:  مجهول';
+                        } else {
+                          return '   الناشر:   ${widget.group.createdBy}';
+                        }}(),
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ],

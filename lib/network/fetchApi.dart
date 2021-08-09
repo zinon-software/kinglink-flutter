@@ -30,7 +30,7 @@ class FetchApi {
   Future<GroupsModel> sendGroup(String urlServer,
       String name, String link, String category, String sections) async {
     var response = await http
-        .post(Uri.parse('https://$urlServer.herokuapp.com/api/Groub'), body: {
+        .post(Uri.parse('https://$urlServer.herokuapp.com/api/Groub/post'), body: {
       'name': name,
       'link': link,
       'category': category,
