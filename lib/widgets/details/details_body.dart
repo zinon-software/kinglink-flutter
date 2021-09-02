@@ -14,6 +14,9 @@ import 'package:whatsapp_group_links/widgets/details/color_dot.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'package:timeago/timeago.dart' as timeago;
+
+
 class DetailsBody extends StatefulWidget {
   final GroupsModel group;
   final urlServer;
@@ -47,30 +50,34 @@ class _DetailsBodyState extends State<DetailsBody> {
 
   static bool _testMode = false; // مفعل الاعلانات
 
+  //////
+  /////////
+
   @override
   void initState() {
     super.initState();
 
-    //Ads
-    interstitialAd = AdmobInterstitial(
-      adUnitId: () {
-        if (_testMode == true) {
-          // return '';
-          return AdmobInterstitial.testAdUnitId;
-        } else if (Platform.isAndroid) {
-          return widget.interstIsAd;
-        } else if (Platform.isIOS) {
-          return "ca-app-pub-9553130506719526/3516689861";
-        } else {
-          throw new UnsupportedError("Unsupported platform");
-        }
-      }(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-      },
-    );
 
-    interstitialAd.load();
+    //Ads
+    // interstitialAd = AdmobInterstitial(
+    //   adUnitId: () {
+    //     if (_testMode == true) {
+    //       // return '';
+    //       return AdmobInterstitial.testAdUnitId;
+    //     } else if (Platform.isAndroid) {
+    //       return widget.interstIsAd;
+    //     } else if (Platform.isIOS) {
+    //       return "ca-app-pub-9553130506719526/3516689861";
+    //     } else {
+    //       throw new UnsupportedError("Unsupported platform");
+    //     }
+    //   }(),
+    //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+    //     if (event == AdmobAdEvent.closed) interstitialAd.load();
+    //   },
+    // );
+
+    // interstitialAd.load();
 
     getCuontCommentsData();
   }
@@ -180,9 +187,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 horizontal: kDefaultPadding * 1.5,
                 vertical: kDefaultPadding / 2,
               ),
-              child: Text(
-                ' ${widget.group.createdDt.hour}:${widget.group.createdDt.second}   ${widget.group.createdDt.day} / ${widget.group.createdDt.month} / ${widget.group.createdDt.year}',
-                style: TextStyle(color: Colors.white, fontSize: 19.0),
+              child: Text(timeago.format(widget.group.createdDt),style: TextStyle(color: Colors.white, fontSize: 19.0),
               ),
             ),
           ),
@@ -191,11 +196,11 @@ class _DetailsBodyState extends State<DetailsBody> {
               // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
-                  if (interstitialAd != null) {
-                    if (widget.group.id % 2 == 0) {
-                      interstitialAd.show();
-                    }
-                  }
+                  // if (interstitialAd != null) {
+                  //   if (widget.group.id % 2 == 0) {
+                  //     interstitialAd.show();
+                  //   }
+                  // }
                   Get.to(
                     () => CommentsPage(
                       groupId: widget.group.id.toString(),

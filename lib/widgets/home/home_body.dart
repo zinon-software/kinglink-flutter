@@ -96,7 +96,8 @@ class _HomeBodyState extends State<HomeBody> {
                   );
                   return Future.value(false);
                 },
-                child: FutureBuilder(
+                child:
+                 FutureBuilder(
                     future: fetchApi.fetchProducts(widget.urlServer, 'Groub'),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       List<GroupsModel> groups = snapshot.data;
@@ -114,11 +115,11 @@ class _HomeBodyState extends State<HomeBody> {
                             groups: groups[index],
                             press: () {
                               if (groups[index].activation == true) {
-                                if (interstitialAd != null) {
-                                  if (groups[index].id % 2 == 0) {
-                                    interstitialAd.show(); 
-                                  }
-                                }
+                                // if (interstitialAd != null) {
+                                //   if (groups[index].id % 2 == 0) {
+                                //     interstitialAd.show(); 
+                                //   }
+                                // }
                                 selectViews(
                                     groups[index].id,
                                     groups[index].views + 1,
@@ -244,11 +245,11 @@ class _HomeBodyState extends State<HomeBody> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  if (interstitialAd != null) {
-                                    if (sections[index].id % 2 == 0) {
-                                      interstitialAd.show(); 
-                                    }
-                                  }
+                                  // if (interstitialAd != null) {
+                                  //   if (sections[index].id % 2 == 0) {
+                                  //     interstitialAd.show(); 
+                                  //   }
+                                  // }
                                   Get.to(
                                     () => FilterDataGroup(
                                       sectionsId:

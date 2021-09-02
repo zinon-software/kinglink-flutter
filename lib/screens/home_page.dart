@@ -37,14 +37,14 @@ class _HomePageState extends State<HomePage> {
       final defaults = <String, dynamic>{
         'urlServer': 'kinglink',
         'banarAdsisAndroid': '',
-        'AdmobInterstitialisAndroid': '',
+        'AdmobInterstitialisAndroidV2': '',
         'NativeAdmobisAndroid': '',
       };
     
       setState(() {
         urlServer = defaults['urlServer'];
         bannarIsAd = defaults['banarAdsisAndroid'];
-        interstIsAd = defaults['AdmobInterstitialisAndroid'];
+        interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
         nativeIsAd = defaults['NativeAdmobisAndroid'];
       });
     
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         urlServer = remoteConfig.getString("urlServer");
         bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
-        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroid");
+        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
         nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
       });
     });
@@ -108,6 +108,22 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
+      bottomNavigationBar: Container(
+        child: AdmobBanner(
+          adUnitId: (){
+            if (_testMode == true) {
+              return AdmobBanner.testAdUnitId;
+            } else if (Platform.isAndroid) {
+              return bannarIsAd;
+            } else if (Platform.isIOS) {
+              return "ca-app-pub-9553130506719526/3053655439";
+            } else {
+              throw new UnsupportedError("Unsupported platform");
+            }
+          }(),
+          adSize: AdmobBannerSize.SMART_BANNER(context),
+        ),
+      ),
     );
   }
 
@@ -119,12 +135,14 @@ class _HomePageState extends State<HomePage> {
         style: GoogleFonts.getFont('Almarai'),
       ),
       centerTitle: false,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: Icon(Icons.menu),
+      //     onPressed: () {
+      //      Get.to(()=> AdExampleApp());
+      //     },
+      //   ),
+      // ],
     );
   }
 

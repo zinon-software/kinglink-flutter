@@ -11,8 +11,10 @@ MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\int
 MERGED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-14:12
 MERGED from [:path_provider] D:\flutter\kinglink-flutter\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_native_admob] D:\flutter\kinglink-flutter\build\flutter_native_admob\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0136f16e60446fa8320f6024a6d24082\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-core:17.5.1] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\49e800f6526f3dec126dcce61c39758a\jetified-firebase-core-17.5.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:2:1-31:12
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.firebase:firebase-abt:19.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c91d38db6c47c166b9cef05572f97a27\jetified-firebase-abt-19.1.0\AndroidManifest.xml:2:1-19:12
 MERGED from [com.google.firebase:firebase-ads:19.4.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\4e1ce20d91aaaf3b835b53bf1a0b9151\jetified-firebase-ads-19.4.0\AndroidManifest.xml:2:1-9:12
@@ -52,8 +54,8 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\Administrator\
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\9f5b53d2ff9653c96009d1ce6f1ffe71\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\b4223b357497de3a6336868e9f31da63\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0309f89952c0e43397f97a1c0a17db80\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a55931cccc780bac654c12cde018d7e1\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\5c33b3b8e4c18f0f61885c8def1a27b7\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d5dda234de610198c06f11570a952b09\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\feb65c5334a0658937c84d9c974b1dd9\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -87,6 +89,8 @@ MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\int
 MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-67
 MERGED from [:flutter_native_admob] D:\flutter\kinglink-flutter\build\flutter_native_admob\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-67
 MERGED from [:flutter_native_admob] D:\flutter\kinglink-flutter\build\flutter_native_admob\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:15:5-67
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:15:5-67
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:26:5-67
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:22:5-67
@@ -111,8 +115,12 @@ MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\int
 MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-55
+MERGED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-55
 MERGED from [com.google.firebase:firebase-core:17.5.1] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\49e800f6526f3dec126dcce61c39758a\jetified-firebase-core-17.5.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:17.5.1] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\49e800f6526f3dec126dcce61c39758a\jetified-firebase-core-17.5.1\AndroidManifest.xml:7:5-20
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:18:5-29:19
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.firebase:firebase-abt:19.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c91d38db6c47c166b9cef05572f97a27\jetified-firebase-abt-19.1.0\AndroidManifest.xml:11:5-17:19
@@ -159,6 +167,8 @@ MERGED from [com.google.android.gms:play-services-ads-base:19.4.0] C:\Users\Admi
 		ADDED from [androidx.core:core:1.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\8531e969ef9c5609895297e0dbbece7f\core-1.2.0\AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:5:9-32
+	android:hardwareAccelerated
+		ADDED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:7:18-52
 	android:icon
 		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:6:9-43
 	android:name
@@ -227,10 +237,14 @@ MERGED from [:path_provider] D:\flutter\kinglink-flutter\build\path_provider\int
 MERGED from [:path_provider] D:\flutter\kinglink-flutter\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_native_admob] D:\flutter\kinglink-flutter\build\flutter_native_admob\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_native_admob] D:\flutter\kinglink-flutter\build\flutter_native_admob\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:facebook_audience_network] D:\flutter\kinglink-flutter\build\facebook_audience_network\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0136f16e60446fa8320f6024a6d24082\multidex-2.0.0\AndroidManifest.xml:20:5-43
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0136f16e60446fa8320f6024a6d24082\multidex-2.0.0\AndroidManifest.xml:20:5-43
 MERGED from [com.google.firebase:firebase-core:17.5.1] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\49e800f6526f3dec126dcce61c39758a\jetified-firebase-core-17.5.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-core:17.5.1] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\49e800f6526f3dec126dcce61c39758a\jetified-firebase-core-17.5.1\AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:21:5-23:41
 MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:21:5-23:41
 MERGED from [com.google.firebase:firebase-abt:19.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c91d38db6c47c166b9cef05572f97a27\jetified-firebase-abt-19.1.0\AndroidManifest.xml:6:5-8:41
@@ -309,10 +323,10 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Administrator
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\b4223b357497de3a6336868e9f31da63\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0309f89952c0e43397f97a1c0a17db80\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\0309f89952c0e43397f97a1c0a17db80\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a55931cccc780bac654c12cde018d7e1\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a55931cccc780bac654c12cde018d7e1\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\c233a1ead5248b9829ebef112ead82a6\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\5c33b3b8e4c18f0f61885c8def1a27b7\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\5c33b3b8e4c18f0f61885c8def1a27b7\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d5dda234de610198c06f11570a952b09\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
@@ -381,8 +395,16 @@ ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\interm
 		ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
+queries
+ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:11:5-13:15
+package#com.facebook.katana
+ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:12:9-55
+	android:name
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:12:18-52
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
+ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:16:5-79
+MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\cebd3e328979e47e6c47e8537c58f22a\jetified-firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
@@ -396,7 +418,25 @@ MERGED from [com.google.android.gms:play-services-ads-lite:19.4.0] C:\Users\Admi
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
 	android:name
-		ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:22-76
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:16:22-76
+activity#com.facebook.ads.AudienceNetworkActivity
+ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:19:9-23:75
+	android:exported
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:22:13-37
+	android:configChanges
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:21:13-74
+	android:theme
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:23:13-72
+	android:name
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:20:13-68
+provider#com.facebook.ads.AudienceNetworkContentProvider
+ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:25:9-28:40
+	android:authorities
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:27:13-82
+	android:exported
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [com.facebook.android:audience-network-sdk:6.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\d52a8b25e0cd2057eada02d2d7a14f42\jetified-audience-network-sdk-6.6.0\AndroidManifest.xml:26:13-75
 meta-data#com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar
 ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:32:13-34:85
 	android:value

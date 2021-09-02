@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
 
 class GroupCard extends StatelessWidget {
   const GroupCard({
@@ -152,8 +154,7 @@ class GroupCard extends StatelessWidget {
                           size: 18,
                         ),
                         SizedBox(width: 7),
-                        Text(
-                            ' ${groups.createdDt.hour}:${groups.createdDt.second}   ${groups.createdDt.day} / ${groups.createdDt.month} / ${groups.createdDt.year}'),
+                        Text(timeago.format(groups.createdDt)),
                       ],
                     ),
                   )
