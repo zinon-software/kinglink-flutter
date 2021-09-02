@@ -48,6 +48,7 @@ class _DetailsBodyState extends State<DetailsBody> {
     return "Sucess";
   }
 
+  // ignore: unused_field
   static bool _testMode = false; // مفعل الاعلانات
 
   //////
