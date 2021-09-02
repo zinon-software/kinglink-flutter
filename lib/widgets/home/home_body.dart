@@ -13,13 +13,18 @@ import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
 import 'dart:io';
 
-
 class HomeBody extends StatefulWidget {
   final urlServer;
   final interstIsAd;
   final nativeIsAd;
   final bannarIsAd;
-  const HomeBody({Key key, this.urlServer, this.nativeIsAd, this.interstIsAd, this.bannarIsAd}) : super(key: key);
+  const HomeBody(
+      {Key key,
+      this.urlServer,
+      this.nativeIsAd,
+      this.interstIsAd,
+      this.bannarIsAd})
+      : super(key: key);
 
   @override
   _HomeBodyState createState() => _HomeBodyState();
@@ -31,7 +36,7 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
-  static bool _testMode = false;  // مفعل الاعلانات
+  static bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -39,18 +44,18 @@ class _HomeBodyState extends State<HomeBody> {
 
     //Ads
     interstitialAd = AdmobInterstitial(
-      adUnitId: (){
-          if (_testMode == true) {
-            // return '';
-            return AdmobInterstitial.testAdUnitId;
-          } else if (Platform.isAndroid) {
-            return widget.interstIsAd;
-          } else if (Platform.isIOS) {
-            return "ca-app-pub-9553130506719526/3516689861";
-          } else {
-            throw new UnsupportedError("Unsupported platform");
-          }
-        }(),
+      adUnitId: () {
+        if (_testMode == true) {
+          // return '';
+          return AdmobInterstitial.testAdUnitId;
+        } else if (Platform.isAndroid) {
+          return widget.interstIsAd;
+        } else if (Platform.isIOS) {
+          return "ca-app-pub-9553130506719526/3516689861";
+        } else {
+          throw new UnsupportedError("Unsupported platform");
+        }
+      }(),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
       },
@@ -96,8 +101,7 @@ class _HomeBodyState extends State<HomeBody> {
                   );
                   return Future.value(false);
                 },
-                child:
-                 FutureBuilder(
+                child: FutureBuilder(
                     future: fetchApi.fetchProducts(widget.urlServer, 'Groub'),
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       List<GroupsModel> groups = snapshot.data;
@@ -117,7 +121,7 @@ class _HomeBodyState extends State<HomeBody> {
                               if (groups[index].activation == true) {
                                 // if (interstitialAd != null) {
                                 //   if (groups[index].id % 2 == 0) {
-                                //     interstitialAd.show(); 
+                                //     interstitialAd.show();
                                 //   }
                                 // }
                                 selectViews(
@@ -126,7 +130,13 @@ class _HomeBodyState extends State<HomeBody> {
                                     groups[index].name,
                                     groups[index].link);
                                 Get.to(
-                                  () => DetailPage(group: groups[index], urlServer:widget.urlServer, bannarIsAd: widget.bannarIsAd, interstIsAd: widget.interstIsAd , nativeIsAd: widget.nativeIsAd,),
+                                  () => DetailPage(
+                                    group: groups[index],
+                                    urlServer: widget.urlServer,
+                                    bannarIsAd: widget.bannarIsAd,
+                                    interstIsAd: widget.interstIsAd,
+                                    nativeIsAd: widget.nativeIsAd,
+                                  ),
                                 );
                               } else {
                                 showDialog<String>(
@@ -160,7 +170,8 @@ class _HomeBodyState extends State<HomeBody> {
   }
 
   selectViews(int id, int views, String name, String link) async {
-    GroupsModel data = await fetchApi.updateViews(widget.urlServer, id, views, name, link);
+    GroupsModel data =
+        await fetchApi.updateViews(widget.urlServer, id, views, name, link);
 
     setState(() {
       groupModel = data;
@@ -247,7 +258,7 @@ class _HomeBodyState extends State<HomeBody> {
                                 onTap: () {
                                   // if (interstitialAd != null) {
                                   //   if (sections[index].id % 2 == 0) {
-                                  //     interstitialAd.show(); 
+                                  //     interstitialAd.show();
                                   //   }
                                   // }
                                   Get.to(
@@ -256,6 +267,9 @@ class _HomeBodyState extends State<HomeBody> {
                                           '?sections=${sections[index].id.toString()}',
                                       sectionsName: sections[index].name,
                                       urlServer: widget.urlServer,
+                                      bannarIsAd: widget.bannarIsAd,
+                                      interstIsAd: widget.interstIsAd,
+                                      nativeIsAd: widget.nativeIsAd,
                                     ),
                                   );
                                 },

@@ -60,6 +60,7 @@ class _DetailPageState extends State<DetailPage> {
         urlServer: widget.urlServer,
         interstIsAd:widget.interstIsAd,
         nativeIsAd:widget.nativeIsAd,
+        bannarIsAd: widget.bannarIsAd,
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(

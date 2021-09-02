@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_admob/flutter_native_admob.dart';
-import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/filter_home_body.dart';
 
@@ -30,22 +28,8 @@ class FilterDataGroup extends StatefulWidget {
 }
 
 class _FilterDataGroupState extends State<FilterDataGroup> {
-  final _nativeAdController = NativeAdmobController();
   static bool _testMode = false; // مفعل الاعلانات
 
-  @override
-  void initState() {
-    super.initState();
-    //Ads
-    _nativeAdController.reloadAd(forceRefresh: true);
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    _nativeAdController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,47 +37,14 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
       appBar: detailsAppBar(context),
       body: SafeArea(
         bottom: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: kDefaultPadding / 3,
-              ),
-              Container(
-                color: Colors.white,
-                height: MediaQuery.of(context).size.width / 3,
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(bottom: 20.0),
-                child: NativeAdmob(
-                  adUnitID: () {
-                    if (_testMode == true) {
-                      return "ca-app-pub-3940256099942544/2247696110";
-                    } else if (Platform.isAndroid) {
-                      return widget.nativeIsAd;
-                    } else if (Platform.isIOS) {
-                      return "ca-app-pub-9553130506719526/7695414503";
-                    } else {
-                      throw new UnsupportedError("Unsupported platform");
-                    }
-                  }(),
-                  numberAds: 3,
-                  controller: _nativeAdController,
-                  type: NativeAdmobType.full,
-                ),
-              ),
-              SizedBox(
-                height: kDefaultPadding / 3,
-              ),
-              FilterHomeBody(
-                sectionsId: widget.sectionsId,
-                urlServer: widget.urlServer,
-                bannarIsAd: widget.bannarIsAd,
-                interstIsAd: widget.interstIsAd,
-                nativeIsAd: widget.nativeIsAd,
-              ),
-            ],
-          ),
-        ),
+        child: 
+            FilterHomeBody(
+              sectionsId: widget.sectionsId,
+              urlServer: widget.urlServer,
+              bannarIsAd: widget.bannarIsAd,
+              interstIsAd: widget.interstIsAd,
+              nativeIsAd: widget.nativeIsAd,
+            ),
       ),
       bottomNavigationBar: Container(
         child: AdmobBanner(

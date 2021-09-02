@@ -22,9 +22,10 @@ class DetailsBody extends StatefulWidget {
   final urlServer;
   final interstIsAd;
   final nativeIsAd;
+  final bannarIsAd;
 
   const DetailsBody(
-      {Key key, this.group, this.urlServer, this.nativeIsAd, this.interstIsAd})
+      {Key key, this.group, this.urlServer, this.nativeIsAd, this.interstIsAd, this.bannarIsAd})
       : super(key: key);
 
   @override
@@ -207,6 +208,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                       groupId: widget.group.id.toString(),
                       groupName: widget.group.name,
                       urlServer: widget.urlServer,
+        bannarIsAd: widget.bannarIsAd,
+
                     ),
                   );
                 },

@@ -9,7 +9,8 @@ class CommentsPage extends StatelessWidget {
   final groupId;
   final groupName;
   final urlServer;
-  const CommentsPage({Key key, this.groupId, this.groupName, this.urlServer}) : super(key: key);
+  final bannarIsAd;
+  const CommentsPage({Key key, this.groupId, this.groupName, this.urlServer, this.bannarIsAd}) : super(key: key);
 
   static bool _testMode = false;  // مفعل الاعلانات
 
@@ -27,7 +28,7 @@ class CommentsPage extends StatelessWidget {
             if (_testMode == true) {
       return AdmobBanner.testAdUnitId;
     } else if (Platform.isAndroid) {
-      return "ca-app-pub-9553130506719526/2231417956";
+      return bannarIsAd;
     } else if (Platform.isIOS) {
       return "ca-app-pub-9553130506719526/3053655439";
     } else {
