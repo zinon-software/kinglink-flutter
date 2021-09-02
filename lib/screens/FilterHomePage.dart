@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/filter_home_body.dart';
@@ -18,6 +21,8 @@ class FilterDataGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   bool _testMode = false;  // مفعل الاعلانات
+
     return Scaffold(
       appBar: detailsAppBar(context),
       body: SafeArea(
@@ -35,6 +40,22 @@ class FilterDataGroup extends StatelessWidget {
               nativeIsAd: nativeIsAd,
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        child: AdmobBanner(
+          adUnitId: (){
+            if (_testMode == true) {
+              return AdmobBanner.testAdUnitId;
+            } else if (Platform.isAndroid) {
+              return bannarIsAd;
+            } else if (Platform.isIOS) {
+              return "ca-app-pub-9553130506719526/3053655439";
+            } else {
+              throw new UnsupportedError("Unsupported platform");
+            }
+          }(),
+          adSize: AdmobBannerSize.SMART_BANNER(context),
         ),
       ),
     );

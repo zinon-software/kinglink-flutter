@@ -42,25 +42,25 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
   void initState() {
     super.initState();
     //Ads
-    interstitialAd = AdmobInterstitial(
-      adUnitId: (){
-          if (_testMode == true) {
-            // return '';
-            return AdmobInterstitial.testAdUnitId;
-          } else if (Platform.isAndroid) {
-            return widget.interstIsAd;
-          } else if (Platform.isIOS) {
-            return "ca-app-pub-9553130506719526/3516689861";
-          } else {
-            throw new UnsupportedError("Unsupported platform");
-          }
-        }(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-      },
-    );
+    // interstitialAd = AdmobInterstitial(
+    //   adUnitId: (){
+    //       if (_testMode == true) {
+    //         // return '';
+    //         return AdmobInterstitial.testAdUnitId;
+    //       } else if (Platform.isAndroid) {
+    //         return widget.interstIsAd;
+    //       } else if (Platform.isIOS) {
+    //         return "ca-app-pub-9553130506719526/3516689861";
+    //       } else {
+    //         throw new UnsupportedError("Unsupported platform");
+    //       }
+    //     }(),
+    //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+    //     if (event == AdmobAdEvent.closed) interstitialAd.load();
+    //   },
+    // );
 
-    interstitialAd.load();
+    // interstitialAd.load();
   }
 
   @override
@@ -112,11 +112,11 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
                         groups: groups[index],
                         press: () {
                           if (groups[index].activation == true) {
-                            if (interstitialAd != null) {
-                              if (groups[index].id % 2 != 0) {
-                                interstitialAd.show();
-                              }
-                            }
+                            // if (interstitialAd != null) {
+                            //   if (groups[index].id % 2 != 0) {
+                            //     interstitialAd.show();
+                            //   }
+                            // }
                             selectViews(
                                 groups[index].id,
                                 groups[index].views + 1,
