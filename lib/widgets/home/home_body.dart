@@ -210,9 +210,7 @@ class _HomeBodyState extends State<HomeBody> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      if (interstitialAd != null) {
-                        interstitialAd.show();
-                      }
+                      interstitialAd.show();
                       Get.to(
                         () => FilterDataGroup(
                           sectionsId: '/top',

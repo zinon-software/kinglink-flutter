@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,17 @@ import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/home_body.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  final urlServer;
+  final bannarIsAd;
+  final interstIsAd;
+  final nativeIsAd;
+  const HomePage(
+      {Key key,
+      this.urlServer,
+      this.bannarIsAd,
+      this.interstIsAd,
+      this.nativeIsAd})
+      : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -24,54 +33,26 @@ class _HomePageState extends State<HomePage> {
   SectionsModel sectionsModel;
   FetchApi fetchApi = FetchApi();
 
-  String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
-  static bool _testMode = false;  // مفعل الاعلانات
-
+  static bool _testMode = true; // مفعل الاعلانات
 
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final remoteConfig = await RemoteConfig.instance;
-      final defaults = <String, dynamic>{
-        'urlServer': 'kinglink',
-        'banarAdsisAndroid': '',
-        'AdmobInterstitialisAndroidV2': '',
-        'NativeAdmobisAndroid': '',
-      };
-    
-      setState(() {
-        urlServer = defaults['urlServer'];
-        bannarIsAd = defaults['banarAdsisAndroid'];
-        interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
-        nativeIsAd = defaults['NativeAdmobisAndroid'];
-      });
-    
-      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
-      await remoteConfig.activateFetched();
-      setState(() {
-        urlServer = remoteConfig.getString("urlServer");
-        bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
-        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
-        nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
-      });
-    });
-
     //Ads
     interstitialAd = AdmobInterstitial(
-      adUnitId: (){
-          if (_testMode == true) {
-            // return '';
-            return AdmobInterstitial.testAdUnitId;
-          } else if (Platform.isAndroid) {
-            return interstIsAd;
-          } else if (Platform.isIOS) {
-            return "ca-app-pub-9553130506719526/3516689861";
-          } else {
-            throw new UnsupportedError("Unsupported platform");
-          }
-        }(),
+      adUnitId: () {
+        if (_testMode == true) {
+          // return '';
+          return AdmobInterstitial.testAdUnitId;
+        } else if (Platform.isAndroid) {
+          return widget.interstIsAd;
+        } else if (Platform.isIOS) {
+          return "ca-app-pub-9553130506719526/3516689861";
+        } else {
+          throw new UnsupportedError("Unsupported platform");
+        }
+      }(),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
       },
@@ -93,7 +74,12 @@ class _HomePageState extends State<HomePage> {
       appBar: homeAppBar(),
       body: SafeArea(
         bottom: false,
-        child: HomeBody(urlServer:urlServer, bannarIsAd:bannarIsAd, nativeIsAd:nativeIsAd, interstIsAd: interstIsAd,),
+        child: HomeBody(
+          urlServer: widget.urlServer,
+          bannarIsAd: widget.bannarIsAd,
+          nativeIsAd: widget.nativeIsAd,
+          interstIsAd: widget.interstIsAd,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -104,25 +90,13 @@ class _HomePageState extends State<HomePage> {
             interstitialAd.show();
           }
           Get.to(
-            () => PostPage(urlServer:urlServer, bannarIsAd:bannarIsAd, nativeIsAd:nativeIsAd, ),
+            () => PostPage(
+              urlServer: widget.urlServer,
+              bannarIsAd: widget.bannarIsAd,
+              nativeIsAd: widget.nativeIsAd,
+            ),
           );
         },
-      ),
-      bottomNavigationBar: Container(
-        child: AdmobBanner(
-          adUnitId: (){
-            if (_testMode == true) {
-              return AdmobBanner.testAdUnitId;
-            } else if (Platform.isAndroid) {
-              return bannarIsAd;
-            } else if (Platform.isIOS) {
-              return "ca-app-pub-9553130506719526/3053655439";
-            } else {
-              throw new UnsupportedError("Unsupported platform");
-            }
-          }(),
-          adSize: AdmobBannerSize.SMART_BANNER(context),
-        ),
       ),
     );
   }
@@ -135,16 +109,14 @@ class _HomePageState extends State<HomePage> {
         style: GoogleFonts.getFont('Almarai'),
       ),
       centerTitle: false,
-      // actions: [
-      //   IconButton(
-      //     icon: Icon(Icons.menu),
-      //     onPressed: () {
-      //      Get.to(()=> AdExampleApp());
-      //     },
-      //   ),
-      // ],
+      actions: [
+        IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            //  Get.to(()=> AdExampleApp());
+          },
+        ),
+      ],
     );
   }
-
-  
 }
