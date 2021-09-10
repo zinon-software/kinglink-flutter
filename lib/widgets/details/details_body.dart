@@ -16,7 +16,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:timeago/timeago.dart' as timeago;
 
-
 class DetailsBody extends StatefulWidget {
   final GroupsModel group;
   final urlServer;
@@ -25,7 +24,12 @@ class DetailsBody extends StatefulWidget {
   final bannarIsAd;
 
   const DetailsBody(
-      {Key key, this.group, this.urlServer, this.nativeIsAd, this.interstIsAd, this.bannarIsAd})
+      {Key key,
+      this.group,
+      this.urlServer,
+      this.nativeIsAd,
+      this.interstIsAd,
+      this.bannarIsAd})
       : super(key: key);
 
   @override
@@ -50,44 +54,13 @@ class _DetailsBodyState extends State<DetailsBody> {
   }
 
   // ignore: unused_field
-  static bool _testMode = false; // مفعل الاعلانات
-
-  //////
-  /////////
+  bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
     super.initState();
 
-
-    //Ads
-    // interstitialAd = AdmobInterstitial(
-    //   adUnitId: () {
-    //     if (_testMode == true) {
-    //       // return '';
-    //       return AdmobInterstitial.testAdUnitId;
-    //     } else if (Platform.isAndroid) {
-    //       return widget.interstIsAd;
-    //     } else if (Platform.isIOS) {
-    //       return "ca-app-pub-9553130506719526/3516689861";
-    //     } else {
-    //       throw new UnsupportedError("Unsupported platform");
-    //     }
-    //   }(),
-    //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-    //     if (event == AdmobAdEvent.closed) interstitialAd.load();
-    //   },
-    // );
-
-    // interstitialAd.load();
-
     getCuontCommentsData();
-  }
-
-  @override
-  void dispose() {
-    interstitialAd.dispose();
-    super.dispose();
   }
 
   @override
@@ -146,11 +119,14 @@ class _DetailsBodyState extends State<DetailsBody> {
                           height: 20,
                           width: 20,
                         ),
-                        Text( (){if (widget.group.createdBy == null ) {
-                           return '   الناشر:  مجهول';
-                        } else {
-                          return '   الناشر:   ${widget.group.createdBy}';
-                        }}(),
+                        Text(
+                          () {
+                            if (widget.group.createdBy == null) {
+                              return '   الناشر:  مجهول';
+                            } else {
+                              return '   الناشر:   ${widget.group.createdBy}';
+                            }
+                          }(),
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
@@ -189,7 +165,9 @@ class _DetailsBodyState extends State<DetailsBody> {
                 horizontal: kDefaultPadding * 1.5,
                 vertical: kDefaultPadding / 2,
               ),
-              child: Text(timeago.format(widget.group.createdDt),style: TextStyle(color: Colors.white, fontSize: 19.0),
+              child: Text(
+                timeago.format(widget.group.createdDt),
+                style: TextStyle(color: Colors.white, fontSize: 19.0),
               ),
             ),
           ),
@@ -198,18 +176,12 @@ class _DetailsBodyState extends State<DetailsBody> {
               // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
-                  // if (interstitialAd != null) {
-                  //   if (widget.group.id % 2 == 0) {
-                  //     interstitialAd.show();
-                  //   }
-                  // }
                   Get.to(
                     () => CommentsPage(
                       groupId: widget.group.id.toString(),
                       groupName: widget.group.name,
                       urlServer: widget.urlServer,
-        bannarIsAd: widget.bannarIsAd,
-
+                      bannarIsAd: widget.bannarIsAd,
                     ),
                   );
                 },
@@ -233,7 +205,7 @@ class AdsClass extends StatefulWidget {
 
 class _AdsClassState extends State<AdsClass> {
   final _nativeAdController = NativeAdmobController();
-  static bool _testMode = false; // مفعل الاعلانات
+  bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {

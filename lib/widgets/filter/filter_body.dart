@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
@@ -7,37 +6,31 @@ import 'package:whatsapp_group_links/screens/DetailPage.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
-class FilterHomeBody extends StatefulWidget {
+class FilterBody extends StatefulWidget {
   final sectionsId;
   final urlServer;
   final bannarIsAd;
   final interstIsAd;
   final nativeIsAd;
 
-  const FilterHomeBody(
-      {Key key,
-      @required this.sectionsId,
-      this.urlServer,
-      this.bannarIsAd,
-      this.nativeIsAd,
-      this.interstIsAd})
-      : super(key: key);
+  FilterBody({Key key,this.sectionsId,
+    this.urlServer,
+    this.bannarIsAd,
+    this.nativeIsAd,
+    this.interstIsAd,}) : super(key: key);
 
   @override
-  _FilterHomeBodyState createState() => _FilterHomeBodyState();
+  _FilterBodyState createState() => _FilterBodyState();
 }
 
-class _FilterHomeBodyState extends State<FilterHomeBody> {
-  // AdmobInterstitial interstitialAd;
-
+class _FilterBodyState extends State<FilterBody> {
+  
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
   @override
   Widget build(BuildContext context) {
-    // AdmobBannerSize bannerSize;
-    return Expanded(
-        child: Stack(
+    return Stack(
       children: [
         Container(
           decoration: BoxDecoration(
@@ -107,7 +100,7 @@ class _FilterHomeBodyState extends State<FilterHomeBody> {
           },
         ),
       ],
-    ));
+    );
   }
 
   selectViews(int id, int views, String name, String link) async {

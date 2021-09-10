@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
-import 'package:whatsapp_group_links/widgets/home/filter_home_body.dart';
+import 'package:whatsapp_group_links/widgets/filter/filter_body.dart';
 
-class FilterDataGroup extends StatefulWidget {
+class FilterPage extends StatelessWidget {
   final sectionsId;
   final sectionsName;
   final urlServer;
@@ -13,37 +13,22 @@ class FilterDataGroup extends StatefulWidget {
   final interstIsAd;
   final nativeIsAd;
 
-  const FilterDataGroup({
-    Key key,
-    this.sectionsId,
-    this.sectionsName,
-    this.urlServer,
-    this.bannarIsAd,
-    this.nativeIsAd,
-    this.interstIsAd,
-  }) : super(key: key);
-
-  @override
-  _FilterDataGroupState createState() => _FilterDataGroupState();
-}
-
-class _FilterDataGroupState extends State<FilterDataGroup> {
-  static bool _testMode = false; // مفعل الاعلانات
-
+  const FilterPage({Key key, this.sectionsId, this.sectionsName, this.urlServer, this.bannarIsAd, this.interstIsAd, this.nativeIsAd,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool _testMode = false;
     return Scaffold(
       appBar: detailsAppBar(context),
       body: SafeArea(
         bottom: false,
         child: 
-            FilterHomeBody(
-              sectionsId: widget.sectionsId,
-              urlServer: widget.urlServer,
-              bannarIsAd: widget.bannarIsAd,
-              interstIsAd: widget.interstIsAd,
-              nativeIsAd: widget.nativeIsAd,
+            FilterBody(
+              sectionsId: sectionsId,
+              urlServer: urlServer,
+              bannarIsAd: bannarIsAd,
+              interstIsAd: interstIsAd,
+              nativeIsAd: nativeIsAd,
             ),
       ),
       bottomNavigationBar: Container(
@@ -52,7 +37,7 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
             if (_testMode == true) {
               return AdmobBanner.testAdUnitId;
             } else if (Platform.isAndroid) {
-              return widget.bannarIsAd;
+              return bannarIsAd;
             } else if (Platform.isIOS) {
               return "ca-app-pub-9553130506719526/3053655439";
             } else {
@@ -64,7 +49,6 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
       ),
     );
   }
-
   AppBar detailsAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black45,
@@ -81,7 +65,7 @@ class _FilterDataGroupState extends State<FilterDataGroup> {
       ),
       centerTitle: false,
       title: Text(
-        widget.sectionsName,
+        sectionsName,
         style: Theme.of(context).textTheme.bodyText2,
       ),
     );

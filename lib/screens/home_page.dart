@@ -29,11 +29,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   AdmobInterstitial interstitialAd;
+  bool _testMode = false; // مفعل الاعلانات
 
   SectionsModel sectionsModel;
   FetchApi fetchApi = FetchApi();
-
-  static bool _testMode = true; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -43,7 +42,6 @@ class _HomePageState extends State<HomePage> {
     interstitialAd = AdmobInterstitial(
       adUnitId: () {
         if (_testMode == true) {
-          // return '';
           return AdmobInterstitial.testAdUnitId;
         } else if (Platform.isAndroid) {
           return widget.interstIsAd;
@@ -84,11 +82,8 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         tooltip: 'Increment',
-        // Within the `FirstRoute` widget
         onPressed: () {
-          if (interstitialAd != null) {
-            interstitialAd.show();
-          }
+          interstitialAd.show();
           Get.to(
             () => PostPage(
               urlServer: widget.urlServer,

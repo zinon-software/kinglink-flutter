@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
 
   String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
 
-
   @override
   void initState() {
     super.initState();

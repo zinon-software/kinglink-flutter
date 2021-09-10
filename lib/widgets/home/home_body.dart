@@ -6,7 +6,7 @@ import 'package:whatsapp_group_links/models/SectionsModel.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 import 'package:whatsapp_group_links/screens/DetailPage.dart';
-import 'package:whatsapp_group_links/screens/FilterHomePage.dart';
+import 'package:whatsapp_group_links/screens/Filter_Page.dart';
 import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
@@ -36,7 +36,7 @@ class _HomeBodyState extends State<HomeBody> {
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
-  static bool _testMode = false; // مفعل الاعلانات
+  bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -46,7 +46,6 @@ class _HomeBodyState extends State<HomeBody> {
     interstitialAd = AdmobInterstitial(
       adUnitId: () {
         if (_testMode == true) {
-          // return '';
           return AdmobInterstitial.testAdUnitId;
         } else if (Platform.isAndroid) {
           return widget.interstIsAd;
@@ -72,7 +71,6 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
-    // AdmobBannerSize bannerSize;
     return Column(
       children: [
         sectionsRow(),
@@ -119,11 +117,6 @@ class _HomeBodyState extends State<HomeBody> {
                             groups: groups[index],
                             press: () {
                               if (groups[index].activation == true) {
-                                // if (interstitialAd != null) {
-                                //   if (groups[index].id % 2 == 0) {
-                                //     interstitialAd.show();
-                                //   }
-                                // }
                                 selectViews(
                                     groups[index].id,
                                     groups[index].views + 1,
@@ -200,7 +193,7 @@ class _HomeBodyState extends State<HomeBody> {
                     ),
                     child: Text(
                       'جاري التحميل',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -212,7 +205,7 @@ class _HomeBodyState extends State<HomeBody> {
                     onTap: () {
                       interstitialAd.show();
                       Get.to(
-                        () => FilterDataGroup(
+                        () => FilterPage(
                           sectionsId: '/top',
                           sectionsName: 'الأكثر مشاهدة',
                           urlServer: widget.urlServer,
@@ -254,13 +247,8 @@ class _HomeBodyState extends State<HomeBody> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  // if (interstitialAd != null) {
-                                  //   if (sections[index].id % 2 == 0) {
-                                  //     interstitialAd.show();
-                                  //   }
-                                  // }
                                   Get.to(
-                                    () => FilterDataGroup(
+                                    () => FilterPage(
                                       sectionsId:
                                           '?sections=${sections[index].id.toString()}',
                                       sectionsName: sections[index].name,

@@ -32,7 +32,7 @@ class _DetailPageState extends State<DetailPage> {
   ReportModel reportModel;
   FetchApi fetchApi = FetchApi();
 
-  static bool _testMode = false; // مفعل الاعلانات
+  bool _testMode = false; // مفعل الاعلانات
 
   reportOnPressed(String message, String groupId) async {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -58,8 +58,8 @@ class _DetailPageState extends State<DetailPage> {
       body: DetailsBody(
         group: widget.group,
         urlServer: widget.urlServer,
-        interstIsAd:widget.interstIsAd,
-        nativeIsAd:widget.nativeIsAd,
+        interstIsAd: widget.interstIsAd,
+        nativeIsAd: widget.nativeIsAd,
         bannarIsAd: widget.bannarIsAd,
       ),
       bottomNavigationBar: Container(
@@ -103,9 +103,9 @@ class _DetailPageState extends State<DetailPage> {
                       Icon(Icons.report),
                       Text(" اسم المجموعة"),
                       Text(widget.group.name),
-                      Text("  "),
-                      Text("  "),
-                      Text("  "),
+                      SizedBox(
+                        height: kDefaultPadding / 3,
+                      ),
                       // ignore: deprecated_member_use
                       RaisedButton(
                         onPressed: () async {
