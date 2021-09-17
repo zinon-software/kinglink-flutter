@@ -41,14 +41,13 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   void initState() {
     super.initState();
-
     //Ads
     interstitialAd = AdmobInterstitial(
       adUnitId: () {
         if (_testMode == true) {
           return AdmobInterstitial.testAdUnitId;
         } else if (Platform.isAndroid) {
-          return widget.interstIsAd;
+          return "ca-app-pub-9553130506719526/4874471126";
         } else if (Platform.isIOS) {
           return "ca-app-pub-9553130506719526/3516689861";
         } else {

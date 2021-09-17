@@ -27,25 +27,25 @@ class _MyAppState extends State<MyApp> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final remoteConfig = await RemoteConfig.instance;
       final defaults = <String, dynamic>{
+        'AdmobInterstitialisAndroidV2': 'ca-app-pub-9553130506719526/4874471126',
         'urlServer': 'kinglink2',
         'banarAdsisAndroid': '',
-        'AdmobInterstitialisAndroidV2': 'ca-app-pub-9553130506719526/6017637180',
         'NativeAdmobisAndroid': '',
       };
     
       setState(() {
+        interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
         urlServer = defaults['urlServer'];
         bannarIsAd = defaults['banarAdsisAndroid'];
-        interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
         nativeIsAd = defaults['NativeAdmobisAndroid'];
       });
     
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
       setState(() {
+        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
         urlServer = remoteConfig.getString("urlServer");
         bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
-        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
         nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
       });
     });
