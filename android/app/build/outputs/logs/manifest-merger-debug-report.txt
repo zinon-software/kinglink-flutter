@@ -1,12 +1,13 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
-INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
-INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
-INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
-MERGED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
+INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
+INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
+INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
+MERGED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
 MERGED from [:firebase_remote_config] D:\flutter\kinglink-flutter\build\firebase_remote_config\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:shared_preferences] D:\flutter\kinglink-flutter\build\shared_preferences\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-14:12
 MERGED from [:path_provider] D:\flutter\kinglink-flutter\build\path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -71,11 +72,11 @@ INJECTED from D:\flutter\kinglink-flutter\android\app\src\debug\AndroidManifest.
 		INJECTED from D:\flutter\kinglink-flutter\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
 		INJECTED from D:\flutter\kinglink-flutter\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-52:12
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:1-54:12
 		INJECTED from D:\flutter\kinglink-flutter\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -103,8 +104,26 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:23:5-67
 	android:name
 		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:3:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:4:5-79
+MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\cebd3e328979e47e6c47e8537c58f22a\jetified-firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\cebd3e328979e47e6c47e8537c58f22a\jetified-firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\fae3adef71b2f37cb38484545755a37b\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\fae3adef71b2f37cb38484545755a37b\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\467cf326591532102bd4d163b833d493\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\467cf326591532102bd4d163b833d493\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:19.4.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\e8cc3800619d7ace61840e554203c824\jetified-play-services-ads-lite-19.4.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-ads-lite:19.4.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\e8cc3800619d7ace61840e554203c824\jetified-play-services-ads-lite-19.4.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:4:22-76
 application
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:4:4-51:19
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:6:4-53:19
 MERGED from [:firebase_remote_config] D:\flutter\kinglink-flutter\build\firebase_remote_config\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_remote_config] D:\flutter\kinglink-flutter\build\firebase_remote_config\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-13:19
@@ -158,59 +177,59 @@ MERGED from [com.google.android.gms:play-services-ads-base:19.4.0] C:\Users\Admi
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\8531e969ef9c5609895297e0dbbece7f\core-1.2.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:5:9-32
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:7:9-32
 	android:icon
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:6:9-43
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:8:9-43
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:7:9-61
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:9:9-61
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:11:9-13:69
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:13:9-15:69
 	android:value
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:13:13-67
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:15:13-67
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:12:13-69
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:14:13-69
 activity#com.example.whatsapp_group_links.MainActivity
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:16:9-44:20
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:18:9-46:20
 	android:launchMode
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:18:13-43
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:20:13-43
 	android:hardwareAccelerated
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:21:13-47
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:23:13-47
 	android:windowSoftInputMode
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:22:13-55
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:24:13-55
 	android:configChanges
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:20:13-163
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:22:13-163
 	android:theme
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:19:13-47
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:21:13-47
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:17:13-41
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:19:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:27:13-30:17
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:29:13-32:17
 	android:resource
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:29:15-52
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:31:15-52
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:28:15-70
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:30:15-70
 meta-data#io.flutter.embedding.android.SplashScreenDrawable
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:36:13-39:17
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:38:13-41:17
 	android:resource
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:38:15-61
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:40:15-61
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:37:15-79
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:39:15-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:40:13-43:29
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:42:13-45:29
 action#android.intent.action.MAIN
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:41:17-68
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:43:17-68
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:41:25-66
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:43:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:42:17-76
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:44:17-76
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:42:27-74
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:44:27-74
 meta-data#flutterEmbedding
-ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:47:9-49:33
+ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:49:9-51:33
 	android:value
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:49:13-30
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:51:13-30
 	android:name
-		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:48:13-44
+		ADDED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml:50:13-44
 uses-sdk
 INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\flutter\kinglink-flutter\android\app\src\main\AndroidManifest.xml
@@ -219,6 +238,8 @@ MERGED from [:firebase_remote_config] D:\flutter\kinglink-flutter\build\firebase
 MERGED from [:firebase_remote_config] D:\flutter\kinglink-flutter\build\firebase_remote_config\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\flutter\kinglink-flutter\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] D:\flutter\kinglink-flutter\build\shared_preferences\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] D:\flutter\kinglink-flutter\build\shared_preferences\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:admob_flutter] D:\flutter\kinglink-flutter\build\admob_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -381,22 +402,6 @@ ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\interm
 		ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-71
 	android:name
 		ADDED from [:url_launcher] D:\flutter\kinglink-flutter\build\url_launcher\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-74
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.gms:play-services-measurement-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\db3d859555b3a2f8a85842eac1dafd5e\jetified-play-services-measurement-api-17.6.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\cebd3e328979e47e6c47e8537c58f22a\jetified-firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-installations:16.3.2] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\cebd3e328979e47e6c47e8537c58f22a\jetified-firebase-installations-16.3.2\AndroidManifest.xml:10:5-79
-MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\fae3adef71b2f37cb38484545755a37b\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\fae3adef71b2f37cb38484545755a37b\jetified-play-services-measurement-17.6.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\467cf326591532102bd4d163b833d493\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\467cf326591532102bd4d163b833d493\jetified-play-services-measurement-impl-17.6.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:19.4.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\e8cc3800619d7ace61840e554203c824\jetified-play-services-ads-lite-19.4.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-ads-lite:19.4.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\e8cc3800619d7ace61840e554203c824\jetified-play-services-ads-lite-19.4.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.6.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\a66ea437ceb0ff19d57f92a103910319\jetified-play-services-measurement-sdk-api-17.6.0\AndroidManifest.xml:24:5-79
-	android:name
-		ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:25:22-76
 meta-data#com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar
 ADDED from [com.google.firebase:firebase-config:19.2.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\f386d590b8285139740b830b1ddff137\jetified-firebase-config-19.2.0\AndroidManifest.xml:32:13-34:85
 	android:value

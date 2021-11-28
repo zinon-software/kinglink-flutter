@@ -2,13 +2,38 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/screens/home_page.dart';
+import 'package:whatsapp_group_links/src/app.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'src/api/auth_services.dart';
+
 void main() {
-  runApp(MyApp());
+  // runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
+      ],
+      child: Application(),
+    ),
+  );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
@@ -18,7 +43,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
 
   @override
@@ -27,19 +51,20 @@ class _MyAppState extends State<MyApp> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final remoteConfig = await RemoteConfig.instance;
       final defaults = <String, dynamic>{
-        'AdmobInterstitialisAndroidV2': 'ca-app-pub-9553130506719526/4874471126',
+        'AdmobInterstitialisAndroidV2':
+            'ca-app-pub-9553130506719526/4874471126',
         'urlServer': 'kinglink2',
         'banarAdsisAndroid': '',
         'NativeAdmobisAndroid': '',
       };
-    
+
       setState(() {
         interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
         urlServer = defaults['urlServer'];
         bannarIsAd = defaults['banarAdsisAndroid'];
         nativeIsAd = defaults['NativeAdmobisAndroid'];
       });
-    
+
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
       setState(() {
@@ -49,8 +74,8 @@ class _MyAppState extends State<MyApp> {
         nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
       });
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -58,8 +83,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-        primaryColor: kPrimaryColor,
-        accentColor: kPrimaryColor,
+        primaryColor: kPrimaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
       ),
       // Arabic RTL
       localizationsDelegates: [
@@ -70,7 +94,12 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: [Locale("ar", "AE")],
       locale: Locale("ar", "AE"),
 
-      home: HomePage(urlServer: urlServer, bannarIsAd: bannarIsAd, interstIsAd: interstIsAd, nativeIsAd: nativeIsAd,),
+      home: HomePage(
+        urlServer: urlServer,
+        bannarIsAd: bannarIsAd,
+        interstIsAd: interstIsAd,
+        nativeIsAd: nativeIsAd,
+      ),
     );
   }
 }

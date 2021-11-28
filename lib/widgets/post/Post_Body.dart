@@ -200,6 +200,13 @@ class _PostBodyState extends State<PostBody> {
               onPressed: () async {
                 String name = nameController.text;
                 String link = linkController.text;
+                // String linkSwitch;
+
+                // linkSwitch = link.substring(0, 10);
+
+                // switch(linkSwitch){
+                //   case "https//chat": _myCategory = 1.toString();
+                // }
 
                 if (name == '') {
                   ScaffoldMessenger.of(context).showSnackBar(

@@ -22,20 +22,6 @@ class Profile extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                child: ClipOval(
-                  child: Image(
-                    height: 50.0,
-                    width: 50.0,
-                    // image: user.urlImage == ''
-                    //     ? AssetImage('assets/images/user1.png')
-                    //     : NetworkImage(user.urlImage),
-                    image: NetworkImage(
-                        'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
               Expanded(
                 flex: 1,
                 child: Column(
@@ -58,8 +44,50 @@ class Profile extends StatelessWidget {
                   ],
                 ),
               ),
+              CircleAvatar(
+                child: ClipOval(
+                  child: Image(
+                    height: 50.0,
+                    width: 50.0,
+                    // image: user.urlImage == ''
+                    //     ? AssetImage('assets/images/user1.png')
+                    //     : NetworkImage(user.urlImage),
+                    image: NetworkImage(
+                        'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ],
-          )
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 12.0),
+            child: Text(
+              "user.name",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 4.0),
+            child: Text(
+              "user.location",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(top: 2.0),
+            child: Text(
+              "user.bio",
+            ),
+          ),
         ],
       ),
     );
