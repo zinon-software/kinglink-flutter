@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:whatsapp_group_links/src/auth/authentication.dart';
-import 'package:whatsapp_group_links/src/utility/theme_handler.dart';
+import 'package:whatsapp_group_links/src/screens/authentication.dart';
+import 'package:whatsapp_group_links/src/screens/home.dart';
+import 'package:whatsapp_group_links/src/utility/widgets/theme_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'home/home_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({Key key}) : super(key: key);
@@ -60,7 +60,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     if (token != null) {
-      return HomeScreen();
+      return Home();
     } else {
       return Authentication();
     }

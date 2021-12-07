@@ -1,16 +1,16 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/src/profile/profile_screen.dart';
-import 'package:whatsapp_group_links/src/utility/widget_handler.dart';
+import 'package:whatsapp_group_links/src/screens/profile/profile_screen.dart';
+import 'package:whatsapp_group_links/src/utility/widgets/widget_handler.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   PageController _pageController;

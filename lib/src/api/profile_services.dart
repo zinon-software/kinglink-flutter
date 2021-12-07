@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/models/profile_model.dart';
 import 'dart:convert' as convert;
-import 'package:whatsapp_group_links/src/utility/api_handler.dart';
+import 'package:whatsapp_group_links/src/utility/api_handler/api_handler.dart';
 import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
 
 class ProfileServices extends APIHandler {

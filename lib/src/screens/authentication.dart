@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/src/auth/login_screen.dart';
-import 'package:whatsapp_group_links/src/auth/signup_screen.dart';
+import 'package:whatsapp_group_links/src/screens/auth/login_screen.dart';
+import 'package:whatsapp_group_links/src/screens/auth/signup_screen.dart';
 
 
 class Authentication extends StatefulWidget {
