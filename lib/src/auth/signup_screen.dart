@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/auth_services.dart';
-import 'package:whatsapp_group_links/src/utility/widget_handler.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key key, this.toggleScreen}) : super(key: key);
@@ -36,8 +35,6 @@ class _SignupScreenState extends State<SignupScreen> {
       }
     }
 
-    
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -47,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  WidgetHandler.nameApp,
+                  "إنشاء حساب",
                   style: TextStyle(
                     fontFamily: "Billabong",
                     fontSize: 50.0,
@@ -64,6 +61,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: "Username",
+                            prefixIcon: Icon(Icons.person),
+                            hintText: "Enter your Username",
                           ),
                           validator: (input) => input.trim().isEmpty
                               ? 'Please enter avalid Username'
@@ -75,7 +74,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 30.0, vertical: 10.0),
                         child: TextFormField(
-                          decoration: InputDecoration(labelText: "Email"),
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            prefixIcon: Icon(Icons.email),
+                            hintText: "Enter your Email",
+                          ),
                           validator: (input) => !input.contains('@')
                               ? 'Please enter avalid email'
                               : null,
@@ -88,6 +91,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: "Password",
+                            prefixIcon: Icon(Icons.password),
+                            hintText: "Enter your Password",
                           ),
                           validator: (input) => input.length < 6
                               ? 'Must be least 6 characters'

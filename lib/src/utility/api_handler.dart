@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert' as convert;
+import 'package:whatsapp_group_links/src/home/home_screen.dart';
+import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
 
 /*
  * This class used to hendler API Response Error
@@ -27,14 +29,15 @@ class APIResponseErrorHandler {
  */
 class APIHandler with ChangeNotifier {
   // URL API
-  var basicUrl = "https://kinglink2.herokuapp.com";
+  var basicUrl = "https://apitestings.herokuapp.com";
 
   // Headers Login API
   Map<String, String> headersAuth = {
     HttpHeaders.contentTypeHeader: "application/json",
   };
 
-  var jsonResponse;
+  HttpClient client = HttpClient();
+
   http.Response response;
 
   // Loading API
@@ -60,14 +63,32 @@ class APIHandler with ChangeNotifier {
     _errorMessage = message;
     notifyListeners();
   }
+}
 
-  Future<void> savePref(
-      String token, String username, String email, String id) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+class APIResponseHandler {
+  static void responseAuth(http.Response response, BuildContext context) {
+    var jsonResponse;
 
-    sharedPreferences.setString("token", token);
-    if (username != null) sharedPreferences.setString("username", username);
-    if (email != null) sharedPreferences.setString("email", email);
-    if (id != null) sharedPreferences.setString("id", id);
+    if (response.statusCode == HttpStatus.ok) {
+      jsonResponse = convert.jsonDecode(response.body);
+
+      if (jsonResponse["token"] != null) {
+        SharedPreferencesHandler.saveResponseAuth(
+            jsonResponse['token'].toString());
+
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
+            (Route<dynamic> route) => false);
+      } else {
+        throw new Exception(jsonResponse);
+      }
+    } else if (response.statusCode == 400) {
+      throw new Exception('تعذر تسجيل الدخول (تاكد بان بيانات الادخال صحيحة)');
+    } else if (response.statusCode != 200 || response == null) {
+      var jsonResponseError = convert.jsonDecode(response.body);
+      throw new Exception(jsonResponseError['non_field_errors']);
+    } else {
+      throw new Exception('خطأ في تسجيل الدخول');
+    }
   }
 }

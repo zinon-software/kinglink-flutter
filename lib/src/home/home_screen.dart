@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WidgetHandler.appBar(context, "HOME PAGE"),
+      appBar: appBar(context, "HOME PAGE"),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,

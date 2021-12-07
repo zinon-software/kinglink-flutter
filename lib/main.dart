@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/screens/home_page.dart';
+import 'package:whatsapp_group_links/src/api/profile_services.dart';
 import 'package:whatsapp_group_links/src/app.dart';
+import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -16,6 +18,8 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
+        ChangeNotifierProvider<ProfileServices>(create: (_) => ProfileServices()),
+        ChangeNotifierProvider<SharedPreferencesHandler>(create: (_) => SharedPreferencesHandler()),
       ],
       child: Application(),
     ),

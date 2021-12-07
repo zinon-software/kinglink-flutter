@@ -1,6 +1,6 @@
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,8 +28,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  AdmobInterstitial interstitialAd;
-  bool _testMode = false; // مفعل الاعلانات
+  // AdmobInterstitial interstitialAd;
+  // bool _testMode = false; // مفعل الاعلانات
 
   SectionsModel sectionsModel;
   FetchApi fetchApi = FetchApi();
@@ -39,29 +39,29 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     //Ads
-    interstitialAd = AdmobInterstitial(
-      adUnitId: () {
-        if (_testMode == true) {
-          return AdmobInterstitial.testAdUnitId;
-        } else if (Platform.isAndroid) {
-          return "ca-app-pub-9553130506719526/4874471126";
-        } else if (Platform.isIOS) {
-          return "ca-app-pub-9553130506719526/3516689861";
-        } else {
-          throw new UnsupportedError("Unsupported platform");
-        }
-      }(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-      },
-    );
+    // interstitialAd = AdmobInterstitial(
+    //   adUnitId: () {
+    //     if (_testMode == true) {
+    //       return AdmobInterstitial.testAdUnitId;
+    //     } else if (Platform.isAndroid) {
+    //       return "ca-app-pub-9553130506719526/4874471126";
+    //     } else if (Platform.isIOS) {
+    //       return "ca-app-pub-9553130506719526/3516689861";
+    //     } else {
+    //       throw new UnsupportedError("Unsupported platform");
+    //     }
+    //   }(),
+    //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+    //     if (event == AdmobAdEvent.closed) interstitialAd.load();
+    //   },
+    // );
 
-    interstitialAd.load();
+    // interstitialAd.load();
   }
 
   @override
   void dispose() {
-    interstitialAd.dispose();
+    // interstitialAd.dispose();
     super.dispose();
   }
 
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
         child: Icon(Icons.add),
         tooltip: 'Increment',
         onPressed: () {
-          interstitialAd.show();
+          // interstitialAd.show();
           Get.to(
             () => PostPage(
               urlServer: widget.urlServer,

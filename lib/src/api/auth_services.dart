@@ -5,12 +5,9 @@ import 'package:http/io_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/auth/authentication.dart';
 
-import 'package:whatsapp_group_links/src/home/home_screen.dart';
 import 'package:whatsapp_group_links/src/utility/api_handler.dart';
 
 class AuthServices extends APIHandler {
-  HttpClient client = HttpClient();
-
   Future<void> signUp(BuildContext context, String username, String email,
       String password) async {
     setLoading(true);
@@ -29,36 +26,13 @@ class AuthServices extends APIHandler {
       IOClient ioClient = IOClient(client);
 
       response = await ioClient.post(
-        Uri.parse("https://apitestings.herokuapp.com/api/account/register"),
-        // Uri.parse("$basicUrl/v2/api-token-auth/"),
+        Uri.parse("$basicUrl/api/account/register"),
+        // Uri.parse("$basicUrl/api/account/register"),
         headers: headersAuth,
         body: convert.jsonEncode(bodyData),
       );
 
-      if (response.statusCode == HttpStatus.ok) {
-        jsonResponse = convert.jsonDecode(response.body);
-
-        if (jsonResponse["token"] != null) {
-          savePref(
-            jsonResponse["token"],
-            jsonResponse["username"],
-            jsonResponse["email"],
-            jsonResponse["id"].toString(),
-          );
-
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (BuildContext context) => HomeScreen()),
-              (Route<dynamic> route) => false);
-        } else {
-          throw new Exception(jsonResponse['email']);
-        }
-      } else if (response.statusCode != 200 || response == null) {
-        var jsonResponseError = convert.jsonDecode(response.body);
-        throw new Exception(jsonResponseError['non_field_errors']);
-      } else {
-        throw new Exception('خطأ في تسجيل الدخول');
-      }
+      APIResponseHandler.responseAuth(response, context);
     } catch (ex) {
       setErrorMessage(APIResponseErrorHandler.parseError(ex));
     } finally {
@@ -88,28 +62,7 @@ class AuthServices extends APIHandler {
         body: convert.jsonEncode(bodyData),
       );
 
-      if (response.statusCode == HttpStatus.ok) {
-        jsonResponse = convert.jsonDecode(response.body);
-
-        if (jsonResponse["token"] != null) {
-          savePref(jsonResponse['token'], null, null, null);
-
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (BuildContext context) => HomeScreen()),
-              (Route<dynamic> route) => false);
-        } else {
-          throw new Exception('pleas try later');
-        }
-      } else if (response.statusCode == 400) {
-        throw new Exception(
-            'تعذر تسجيل الدخول (تاكد بان بيانات الادخال صحيحة)');
-      } else if (response.statusCode != 200 || response == null) {
-        var jsonResponseError = convert.jsonDecode(response.body);
-        throw new Exception(jsonResponseError['non_field_errors']);
-      } else {
-        throw new Exception('خطأ في تسجيل الدخول');
-      }
+      APIResponseHandler.responseAuth(response, context);
     } catch (ex) {
       setErrorMessage(APIResponseErrorHandler.parseError(ex));
     } finally {

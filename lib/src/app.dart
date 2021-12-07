@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/auth/authentication.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
+import 'package:whatsapp_group_links/src/utility/theme_handler.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 import 'home/home_screen.dart';
-
 
 class Application extends StatelessWidget {
   const Application({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Whatsapp Group Links',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-        primaryColor: kPrimaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
-      ),
+      theme: themeData(),
       // Arabic RTL
       localizationsDelegates: [
         GlobalCupertinoLocalizations.delegate,
@@ -36,7 +29,6 @@ class Application extends StatelessWidget {
   }
 }
 
-
 class Wrapper extends StatefulWidget {
   Wrapper({Key key}) : super(key: key);
 
@@ -45,7 +37,6 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
-
   SharedPreferences sharedPreferences;
 
   String token;
@@ -61,16 +52,16 @@ class _WrapperState extends State<Wrapper> {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("token") != null) {
       setState(() {
-        token = sharedPreferences.getString("token");     
+        token = sharedPreferences.getString("token");
       });
     }
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     if (token != null) {
       return HomeScreen();
-    } else{
+    } else {
       return Authentication();
     }
   }

@@ -3,14 +3,9 @@ import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-
 class GroupCard extends StatelessWidget {
-  const GroupCard({
-    Key key,
-    this.itemIndex,
-    this.groups,
-    this.press,
-  }) : super(key: key);
+  const GroupCard({Key key, this.itemIndex, this.groups, this.press})
+      : super(key: key);
 
   final int itemIndex;
   final GroupsModel groups;

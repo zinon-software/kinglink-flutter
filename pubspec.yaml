@@ -23,8 +23,11 @@ dependencies:
 
   # facebook_audience_network: ^0.9.0
 
-  admob_flutter: ^1.0.1
-  flutter_native_admob: ^2.1.0+3
+  # قمت ب ايقاف هذه المكتبات بسبب انها لاتعمل مع الاصدار الجديد من فلاتر و وجود بديل افضل 
+  # admob_flutter: ^1.0.1
+  # flutter_native_admob: ^2.1.0+3
+
+
   get: ^3.24.0
 
   comment_box: ^0.0.16

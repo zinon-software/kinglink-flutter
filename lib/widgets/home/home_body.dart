@@ -1,4 +1,4 @@
-import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,6 @@ import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:whatsapp_group_links/widgets/home/group_cart.dart';
 
-import 'dart:io';
 
 class HomeBody extends StatefulWidget {
   final urlServer;
@@ -31,40 +30,40 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  AdmobInterstitial interstitialAd;
+  // AdmobInterstitial interstitialAd;
 
   GroupsModel groupModel;
   FetchApi fetchApi = FetchApi();
 
-  bool _testMode = false; // مفعل الاعلانات
+  // bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
     super.initState();
     //Ads
-    interstitialAd = AdmobInterstitial(
-      adUnitId: () {
-        if (_testMode == true) {
-          return AdmobInterstitial.testAdUnitId;
-        } else if (Platform.isAndroid) {
-          return "ca-app-pub-9553130506719526/4874471126";
-        } else if (Platform.isIOS) {
-          return "ca-app-pub-9553130506719526/3516689861";
-        } else {
-          throw new UnsupportedError("Unsupported platform");
-        }
-      }(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-      },
-    );
+    // interstitialAd = AdmobInterstitial(
+    //   adUnitId: () {
+    //     if (_testMode == true) {
+    //       return AdmobInterstitial.testAdUnitId;
+    //     } else if (Platform.isAndroid) {
+    //       return "ca-app-pub-9553130506719526/4874471126";
+    //     } else if (Platform.isIOS) {
+    //       return "ca-app-pub-9553130506719526/3516689861";
+    //     } else {
+    //       throw new UnsupportedError("Unsupported platform");
+    //     }
+    //   }(),
+    //   listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+    //     if (event == AdmobAdEvent.closed) interstitialAd.load();
+    //   },
+    // );
 
-    interstitialAd.load();
+    // interstitialAd.load();
   }
 
   @override
   void dispose() {
-    interstitialAd.dispose();
+    // interstitialAd.dispose();
     super.dispose();
   }
 
@@ -202,7 +201,7 @@ class _HomeBodyState extends State<HomeBody> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      interstitialAd.show();
+                      // interstitialAd.show();
                       Get.to(
                         () => FilterPage(
                           sectionsId: '/top',

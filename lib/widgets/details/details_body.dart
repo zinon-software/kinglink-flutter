@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_admob/flutter_native_admob.dart';
-import 'package:flutter_native_admob/native_admob_controller.dart';
+// import 'package:flutter_native_admob/flutter_native_admob.dart';
+// import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
@@ -37,7 +36,7 @@ class DetailsBody extends StatefulWidget {
 }
 
 class _DetailsBodyState extends State<DetailsBody> {
-  AdmobInterstitial interstitialAd;
+  // AdmobInterstitial interstitialAd;
 
   List dataCuontComments = []; //edited line
 
@@ -204,8 +203,8 @@ class AdsClass extends StatefulWidget {
 }
 
 class _AdsClassState extends State<AdsClass> {
-  final _nativeAdController = NativeAdmobController();
-  bool _testMode = false; // مفعل الاعلانات
+  // final _nativeAdController = NativeAdmobController();
+  // bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
@@ -213,12 +212,12 @@ class _AdsClassState extends State<AdsClass> {
 
     //Ads
 
-    _nativeAdController.reloadAd(forceRefresh: true);
+    // _nativeAdController.reloadAd(forceRefresh: true);
   }
 
   @override
   void dispose() {
-    _nativeAdController.dispose();
+    // _nativeAdController.dispose();
 
     super.dispose();
   }
@@ -230,22 +229,22 @@ class _AdsClassState extends State<AdsClass> {
       height: MediaQuery.of(context).size.width / 3,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(bottom: 20.0),
-      child: NativeAdmob(
-        adUnitID: () {
-          if (_testMode == true) {
-            return "ca-app-pub-3940256099942544/2247696110";
-          } else if (Platform.isAndroid) {
-            return widget.nativeIsAd;
-          } else if (Platform.isIOS) {
-            return "ca-app-pub-9553130506719526/7695414503";
-          } else {
-            throw new UnsupportedError("Unsupported platform");
-          }
-        }(),
-        numberAds: 3,
-        controller: _nativeAdController,
-        type: NativeAdmobType.full,
-      ),
+      // child: NativeAdmob(
+      //   adUnitID: () {
+      //     if (_testMode == true) {
+      //       return "ca-app-pub-3940256099942544/2247696110";
+      //     } else if (Platform.isAndroid) {
+      //       return widget.nativeIsAd;
+      //     } else if (Platform.isIOS) {
+      //       return "ca-app-pub-9553130506719526/7695414503";
+      //     } else {
+      //       throw new UnsupportedError("Unsupported platform");
+      //     }
+      //   }(),
+      //   numberAds: 3,
+      //   controller: _nativeAdController,
+      //   type: NativeAdmobType.full,
+      // ),
     );
   }
 }

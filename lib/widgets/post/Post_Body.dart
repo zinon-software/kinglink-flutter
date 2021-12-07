@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_admob/flutter_native_admob.dart';
-import 'package:flutter_native_admob/native_admob_controller.dart';
+// import 'package:flutter_native_admob/flutter_native_admob.dart';
+// import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:whatsapp_group_links/models/groupsModel.dart';
 import 'package:whatsapp_group_links/network/fetchApi.dart';
 
@@ -52,16 +51,16 @@ class _PostBodyState extends State<PostBody> {
   TextEditingController nameController = TextEditingController();
   TextEditingController linkController = TextEditingController();
 
-  final _nativeAdController = NativeAdmobController();
+  // final _nativeAdController = NativeAdmobController();
 
-  static bool _testMode = false; // مفعل الاعلانات
+  // static bool _testMode = false; // مفعل الاعلانات
 
   @override
   void initState() {
     super.initState();
 
     //Ads
-    _nativeAdController.reloadAd(forceRefresh: true);
+    // _nativeAdController.reloadAd(forceRefresh: true);
 
     this.getSectionsData();
     this.getCategoryData();
@@ -73,7 +72,7 @@ class _PostBodyState extends State<PostBody> {
     nameController.dispose();
     linkController.dispose();
 
-    _nativeAdController.dispose();
+    // _nativeAdController.dispose();
 
     super.dispose();
   }
@@ -90,22 +89,22 @@ class _PostBodyState extends State<PostBody> {
               height: MediaQuery.of(context).size.width / 3,
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.only(bottom: 20.0),
-              child: NativeAdmob(
-                adUnitID: () {
-                  if (_testMode == true) {
-                    return "ca-app-pub-3940256099942544/2247696110";
-                  } else if (Platform.isAndroid) {
-                    return widget.nativeIsAd;
-                  } else if (Platform.isIOS) {
-                    return "ca-app-pub-9553130506719526/7695414503";
-                  } else {
-                    throw new UnsupportedError("Unsupported platform");
-                  }
-                }(),
-                numberAds: 3,
-                controller: _nativeAdController,
-                type: NativeAdmobType.full,
-              ),
+              // child: NativeAdmob(
+              //   adUnitID: () {
+              //     if (_testMode == true) {
+              //       return "ca-app-pub-3940256099942544/2247696110";
+              //     } else if (Platform.isAndroid) {
+              //       return widget.nativeIsAd;
+              //     } else if (Platform.isIOS) {
+              //       return "ca-app-pub-9553130506719526/7695414503";
+              //     } else {
+              //       throw new UnsupportedError("Unsupported platform");
+              //     }
+              //   }(),
+              //   numberAds: 3,
+              //   controller: _nativeAdController,
+              //   type: NativeAdmobType.full,
+              // ),
             ),
             Container(
               decoration: BoxDecoration(
