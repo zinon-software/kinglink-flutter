@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/profile_services.dart';
-import 'package:whatsapp_group_links/src/models/profile_model.dart';
+import 'package:whatsapp_group_links/src/api/group_services.dart';
+import 'package:whatsapp_group_links/src/models/group_model.dart';
+import 'package:whatsapp_group_links/src/utility/widgets/widget_handler.dart';
 
 class Profile extends StatelessWidget {
   final String title;
@@ -10,6 +11,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar(context, "HOME PAGE"),
       body: ListView(
         children: [
           buildProfileHeader(),
@@ -121,10 +123,10 @@ class Profile extends StatelessWidget {
   }
 
   buildMyGroupHeader(BuildContext context) {
-    final profileProvider = Provider.of<ProfileServices>(context);
+    final groupProvider = Provider.of<GroupServices>(context);
 
     return FutureBuilder(
-      future: profileProvider.getMyGroups(context),
+      future: groupProvider.getGroup(context),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
@@ -136,7 +138,7 @@ class Profile extends StatelessWidget {
           final error = snapshot.error;
           return Text(error.toString());
         } else if (snapshot.hasData) {
-          List<Todos> group = snapshot.data;
+          List<GroupModel> group = snapshot.data;
           if (snapshot.data.toString() == '[]') {
             return Container(
               child: Column(
@@ -170,15 +172,13 @@ class Profile extends StatelessWidget {
                     onTap: () {
                       print('Card tapped.');
                     },
-                    child: Text(group[index].task),
+                    child: Text(group[index].name),
                   ),
                 ),
               ),
             );
           }
-        } else if(snapshot.data.toString() == 'no internet'){
-          return Text('لايوجد اتصال ب الانترنت');
-        }else {
+        } else {
           return Text('حدث خطاْ');
         }
       },

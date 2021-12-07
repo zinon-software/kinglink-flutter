@@ -36,7 +36,6 @@ class AuthServices extends APIHandler {
 
       response = await ioClient.post(
         Uri.parse("$basicUrl/api/account/register"),
-        // Uri.parse("$basicUrl/api/account/register"),
         headers: headersAuth,
         body: convert.jsonEncode(bodyData),
       );
@@ -65,8 +64,7 @@ class AuthServices extends APIHandler {
       IOClient ioClient = IOClient(client);
 
       response = await ioClient.post(
-        Uri.parse("https://apitestings.herokuapp.com/api/account/login"),
-        // Uri.parse("$basicUrl/api/account/login"),
+        Uri.parse("$basicUrl/api/account/login"),
         headers: headersAuth,
         body: convert.jsonEncode(bodyData),
       );

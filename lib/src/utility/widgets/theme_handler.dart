@@ -3,12 +3,11 @@ import 'package:whatsapp_group_links/static/constants.dart';
 
 ThemeData themeData() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    fontFamily: "Billabong",
     appBarTheme: appBarTheme(),
     textTheme: textTheme(),
     inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    primarySwatch: Colors.grey,
   );
 }
 

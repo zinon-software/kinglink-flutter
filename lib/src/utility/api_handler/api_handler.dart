@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
-
 /*
  * This class used to hendler API Var And  ErrorMessage And Loading
  */
@@ -35,5 +33,4 @@ class APIHandler with ChangeNotifier {
     _errorMessage = message;
     notifyListeners();
   }
-  
 }
