@@ -39,26 +39,26 @@ class ProfileServices extends APIHandler {
     return null;
   }
 
-  // setMyGroup(BuildContext context) async {
-  //   final sphProvider = Provider.of<SharedPreferencesHandler>(context);
-  //   var token = await sphProvider.getToken();
-  //   Map<String, String> headers = {
-  //     "Authorization": "Token $token",
-  //     "Content-Type": "application/json",
-  //   };
-  //   response = await http.post(
-  //       Uri.parse("https://apitestings.herokuapp.com/todos/api/"),
-  //       headers: headers,
-  //       body: {
-  //         'task': "Add 3",
-  //         'completed': false,
-  //       });
+  setMyGroup(BuildContext context) async {
+    final sphProvider = Provider.of<SharedPreferencesHandler>(context);
+    var token = await sphProvider.getToken();
+    Map<String, String> headers = {
+      "Authorization": "Token $token",
+      "Content-Type": "application/json",
+    };
+    response = await http.post(
+        Uri.parse("https://apitestings.herokuapp.com/todos/api/"),
+        headers: headers,
+        body: {
+          'task': "Add 3",
+          'completed': false,
+        });
 
-  //   if (response.statusCode == 201) {
-  //     String responseString = response.body;
-  //     todosFromJson(responseString);
-  //   } else {
-  //     return null;
-  //   }
-  // }
+    if (response.statusCode == 201) {
+      String responseString = response.body;
+      // todosFromJson(responseString);
+    } else {
+      return null;
+    }
+  }
 }
