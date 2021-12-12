@@ -12,6 +12,7 @@ import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'src/api/auth_services.dart';
+import 'src/utility/widgets/theme_handler.dart';
 
 void main() {
   // runApp(MyApp());
@@ -19,8 +20,10 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
-        ChangeNotifierProvider<ProfileServices>(create: (_) => ProfileServices()),
-        ChangeNotifierProvider<SharedPreferencesHandler>(create: (_) => SharedPreferencesHandler()),
+        ChangeNotifierProvider<ProfileServices>(
+            create: (_) => ProfileServices()),
+        ChangeNotifierProvider<SharedPreferencesHandler>(
+            create: (_) => SharedPreferencesHandler()),
         ChangeNotifierProvider<GroupServices>(create: (_) => GroupServices()),
       ],
       child: Application(),
@@ -28,18 +31,28 @@ void main() {
   );
 }
 
+class Application extends StatelessWidget {
+  const Application({Key key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Whatsapp Group Links',
+      debugShowCheckedModeBanner: false,
+      theme: themeData(),
+      // Arabic RTL
+      localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [Locale("ar", "AE")],
+      locale: Locale("ar", "AE"),
 
-
-
-
-
-
-
-
-
-
-
+      home: Wrapper(),
+    );
+  }
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
@@ -89,7 +102,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-        primaryColor: kPrimaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
+        primaryColor: kPrimaryColor,
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
       ),
       // Arabic RTL
       localizationsDelegates: [

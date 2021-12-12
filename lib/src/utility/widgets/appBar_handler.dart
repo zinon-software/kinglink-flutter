@@ -5,7 +5,12 @@ import 'package:whatsapp_group_links/src/api/auth_services.dart';
 AppBar appBar(BuildContext context, String title) {
   final signOutProvider = Provider.of<AuthServices>(context);
   return AppBar(
-    title: Text(title),
+    title: Text(
+      title,
+      style: TextStyle(color: Colors.black),
+    ),
+    iconTheme: IconThemeData(color: Colors.blue),
+    backgroundColor: Colors.white,
     actions: [
       IconButton(
         icon: Icon(Icons.logout),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_group_links/src/screens/home/home_screen.dart';
 import 'package:whatsapp_group_links/src/screens/profile/profile_screen.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/widget_handler.dart';
+import 'package:whatsapp_group_links/src/screens/reels/reels_screen.dart';
+import 'package:whatsapp_group_links/src/screens/search/search_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -19,11 +21,11 @@ class _HomeState extends State<Home> {
   }
 
   final List<Widget> _children = [
-    Profile(title: "Home"),
+    HomeScreen(),
+    Search(),
+    Reels(),
     Text("Notification"),
-    Text("Profile"),
-    Text("Notification"),
-    Text("Profile"),
+    Profile(title: "Profile"),
   ];
 
   @override

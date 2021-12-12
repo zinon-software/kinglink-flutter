@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/models/group_model.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/widget_handler.dart';
+import 'package:whatsapp_group_links/src/api/user_services.dart';
+import 'package:whatsapp_group_links/src/utility/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/utility/widgets/appBar_handler.dart';
 
 class Profile extends StatelessWidget {
   final String title;
@@ -11,7 +12,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context, "HOME PAGE"),
+      appBar: appBar(context, "الحساب"),
       body: ListView(
         children: [
           buildProfileHeader(),
@@ -123,64 +124,12 @@ class Profile extends StatelessWidget {
   }
 
   buildMyGroupHeader(BuildContext context) {
-    final groupProvider = Provider.of<GroupServices>(context);
+    final groupProvider = Provider.of<ProfileServices>(context);
 
     return FutureBuilder(
-      future: groupProvider.getGroup(context),
+      future: groupProvider.getProfile(context),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        } else if (snapshot.hasError) {
-          final error = snapshot.error;
-          return Text(error.toString());
-        } else if (snapshot.hasData) {
-          List<GroupModel> group = snapshot.data;
-          if (snapshot.data.toString() == '[]') {
-            return Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // SvgPicture.asset('assets/images/no_content.svg', height: 260.0),
-                  Icon(Icons.sync_problem),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Text(
-                      "No Posts",
-                      style: TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: group.length,
-              itemBuilder: (context, index) => Center(
-                child: Card(
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      print('Card tapped.');
-                    },
-                    child: Text(group[index].name),
-                  ),
-                ),
-              ),
-            );
-          }
-        } else {
-          return Text('حدث خطاْ');
-        }
+        return snapshotHandler(snapshot);
       },
     );
   }

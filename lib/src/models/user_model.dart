@@ -1,41 +1,55 @@
 // To parse this JSON data, do
 //
-//     final todos = todosFromJson(jsonString);
+//     final profileModel = profileModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Todos> todosFromJson(String str) => List<Todos>.from(json.decode(str).map((x) => Todos.fromJson(x)));
+import 'package:whatsapp_group_links/src/models/group_model.dart';
 
-String todosToJson(List<Todos> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+ProfileModel profileModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
 
-class Todos {
-    Todos({
-        this.task,
-        this.completed,
-        this.timestamp,
-        this.updated,
-        this.user,
+String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
+
+class ProfileModel {
+    ProfileModel({
+        this.postCount,
+        this.follows,
+        this.followers,
+        this.name,
+        this.username,
+        this.bio,
+        this.avatar,
+        this.groupList,
     });
 
-    String task;
-    bool completed;
-    DateTime timestamp;
-    DateTime updated;
-    int user;
+    int postCount;
+    int follows;
+    int followers;
+    String name;
+    String username;
+    String bio;
+    String avatar;
+    List<GroupModel> groupList;
 
-    factory Todos.fromJson(Map<String, dynamic> json) => Todos(
-        task: json["task"],
-        completed: json["completed"],
-        timestamp: DateTime.parse(json["timestamp"]),
-        updated: DateTime.parse(json["updated"]),
-        user: json["user"],
+    factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+        postCount: json["post_count"],
+        follows: json["follows"],
+        followers: json["followers"],
+        name: json["name"],
+        username: json["username"],
+        bio: json["bio"],
+        avatar: json["avatar"],
+        groupList: List<GroupModel>.from(json["group_list"].map((x) => GroupModel.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "task": task,
-        "completed": completed,
-        "timestamp": timestamp.toIso8601String(),
-        "updated": updated.toIso8601String(),
-        "user": user,
+        "post_count": postCount,
+        "follows": follows,
+        "followers": followers,
+        "name": name,
+        "username": username,
+        "bio": bio,
+        "avatar": avatar,
+        "group_list": List<dynamic>.from(groupList.map((x) => x.toJson())),
     };
 }

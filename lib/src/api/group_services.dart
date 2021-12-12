@@ -13,7 +13,6 @@ class GroupServices extends APIHandler {
   var jsonResponse;
 
   Future<List<GroupModel>> getGroup(BuildContext context) async {
-
     final sphProvider = Provider.of<SharedPreferencesHandler>(context);
     var token = await sphProvider.getToken();
 
@@ -21,7 +20,7 @@ class GroupServices extends APIHandler {
       "Authorization": "Token $token",
       "Content-Type": "application/json",
     };
-    
+
     response = await http.get(
       Uri.parse("$basicUrl/api/group/"),
       headers: headers,
@@ -38,6 +37,7 @@ class GroupServices extends APIHandler {
       return group;
     }
     notifyListeners();
+    return null;
   }
 
   Future<GroupModel> postGroup() async {}

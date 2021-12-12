@@ -2,32 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/screens/authentication.dart';
 import 'package:whatsapp_group_links/src/screens/home.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/theme_handler.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 
-class Application extends StatelessWidget {
-  const Application({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Whatsapp Group Links',
-      debugShowCheckedModeBanner: false,
-      theme: themeData(),
-      // Arabic RTL
-      localizationsDelegates: [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [Locale("ar", "AE")],
-      locale: Locale("ar", "AE"),
-
-      home: Wrapper(),
-    );
-  }
-}
 
 class Wrapper extends StatefulWidget {
   Wrapper({Key key}) : super(key: key);

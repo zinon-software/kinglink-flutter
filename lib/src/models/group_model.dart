@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-List<GroupModel> groupModelFromJson(String str) => List<GroupModel>.from(json.decode(str).map((x) => GroupModel.fromJson(x)));
+GroupModel groupModelFromJson(String str) => GroupModel.fromJson(json.decode(str));
 
-String groupModelToJson(List<GroupModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String groupModelToJson(GroupModel data) => json.encode(data.toJson());
 
 class GroupModel {
     GroupModel({
         this.id,
-        this.name,
+        this.titel,
         this.link,
         this.activation,
         this.createdDt,
@@ -19,10 +19,11 @@ class GroupModel {
         this.createdBy,
         this.category,
         this.sections,
+        this.likes,
     });
 
     int id;
-    String name;
+    String titel;
     String link;
     bool activation;
     DateTime createdDt;
@@ -30,10 +31,11 @@ class GroupModel {
     CreatedBy createdBy;
     Category category;
     Category sections;
+    List<CreatedBy> likes;
 
     factory GroupModel.fromJson(Map<String, dynamic> json) => GroupModel(
         id: json["id"],
-        name: json["name"],
+        titel: json["titel"],
         link: json["link"],
         activation: json["activation"],
         createdDt: DateTime.parse(json["created_dt"]),
@@ -41,11 +43,12 @@ class GroupModel {
         createdBy: CreatedBy.fromJson(json["created_by"]),
         category: Category.fromJson(json["category"]),
         sections: Category.fromJson(json["sections"]),
+        likes: List<CreatedBy>.from(json["likes"].map((x) => CreatedBy.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
+        "titel": titel,
         "link": link,
         "activation": activation,
         "created_dt": createdDt.toIso8601String(),
@@ -53,6 +56,7 @@ class GroupModel {
         "created_by": createdBy.toJson(),
         "category": category.toJson(),
         "sections": sections.toJson(),
+        "likes": List<dynamic>.from(likes.map((x) => x.toJson())),
     };
 }
 
@@ -79,51 +83,39 @@ class Category {
 class CreatedBy {
     CreatedBy({
         this.id,
-        this.password,
-        this.email,
-        this.username,
-        this.dateJoined,
-        this.lastLogin,
-        this.isAdmin,
-        this.isActive,
-        this.isStaff,
-        this.isSuperuser,
+        this.name,
+        this.avatar,
+        this.description,
+        this.user,
+        this.follows,
+        this.followers,
     });
 
     int id;
-    String password;
-    String email;
-    String username;
-    DateTime dateJoined;
-    DateTime lastLogin;
-    bool isAdmin;
-    bool isActive;
-    bool isStaff;
-    bool isSuperuser;
+    dynamic name;
+    String avatar;
+    dynamic description;
+    int user;
+    List<int> follows;
+    List<dynamic> followers;
 
     factory CreatedBy.fromJson(Map<String, dynamic> json) => CreatedBy(
         id: json["id"],
-        password: json["password"],
-        email: json["email"],
-        username: json["username"],
-        dateJoined: DateTime.parse(json["date_joined"]),
-        lastLogin: DateTime.parse(json["last_login"]),
-        isAdmin: json["is_admin"],
-        isActive: json["is_active"],
-        isStaff: json["is_staff"],
-        isSuperuser: json["is_superuser"],
+        name: json["name"],
+        avatar: json["avatar"],
+        description: json["description"],
+        user: json["user"],
+        follows: List<int>.from(json["follows"].map((x) => x)),
+        followers: List<dynamic>.from(json["followers"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "password": password,
-        "email": email,
-        "username": username,
-        "date_joined": dateJoined.toIso8601String(),
-        "last_login": lastLogin.toIso8601String(),
-        "is_admin": isAdmin,
-        "is_active": isActive,
-        "is_staff": isStaff,
-        "is_superuser": isSuperuser,
+        "name": name,
+        "avatar": avatar,
+        "description": description,
+        "user": user,
+        "follows": List<dynamic>.from(follows.map((x) => x)),
+        "followers": List<dynamic>.from(followers.map((x) => x)),
     };
 }
