@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/group_services.dart';
 import 'package:whatsapp_group_links/src/api/user_services.dart';
-import 'package:whatsapp_group_links/src/utility/snapshot_handler.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/appBar_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/appBar_handler.dart';
 
 class Profile extends StatelessWidget {
   final String title;

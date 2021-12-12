@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/models/group_model.dart';
-import 'package:whatsapp_group_links/src/utility/snapshot_handler.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/bubble_stories_handler.dart';
-import 'package:whatsapp_group_links/src/utility/widgets/card_group_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/bubble_stories_handler.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);

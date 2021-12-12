@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/src/screens/home.dart';
 import 'dart:convert' as convert;
-import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
 
 class APIResponseHandler {
   static void responseAuth(http.Response response, BuildContext context) {

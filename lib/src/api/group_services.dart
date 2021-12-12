@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/models/group_model.dart';
-import 'package:whatsapp_group_links/src/utility/api_handler/api_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 import 'dart:convert' as convert;
 
 import 'package:http/http.dart' as http;
-import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
 
 class GroupServices extends APIHandler {
   var jsonResponse;

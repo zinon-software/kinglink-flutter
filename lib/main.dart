@@ -7,12 +7,12 @@ import 'package:whatsapp_group_links/screens/home_page.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
 import 'package:whatsapp_group_links/src/api/user_services.dart';
 import 'package:whatsapp_group_links/src/app.dart';
-import 'package:whatsapp_group_links/src/utility/shared_preferences_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
 import 'package:whatsapp_group_links/static/constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'src/api/auth_services.dart';
-import 'src/utility/widgets/theme_handler.dart';
+import 'src/utilities/widgets/theme_handler.dart';
 
 void main() {
   // runApp(MyApp());

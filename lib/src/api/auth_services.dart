@@ -5,9 +5,9 @@ import 'package:http/io_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/screens/authentication.dart';
 
-import 'package:whatsapp_group_links/src/utility/api_handler/api_handler.dart';
-import 'package:whatsapp_group_links/src/utility/api_handler/api_response_error_handler.dart';
-import 'package:whatsapp_group_links/src/utility/api_handler/api_response_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_response_error_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_response_handler.dart';
 
 class AuthServices extends APIHandler {
   HttpClient client = HttpClient();
