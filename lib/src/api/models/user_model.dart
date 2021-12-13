@@ -1,17 +1,15 @@
 // To parse this JSON data, do
 //
-//     final profileModel = profileModelFromJson(jsonString);
+//     final userModel = userModelFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:whatsapp_group_links/src/api/models/group_model.dart';
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
-ProfileModel profileModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
+String userModelToJson(UserModel data) => json.encode(data.toJson());
 
-String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
-
-class ProfileModel {
-    ProfileModel({
+class UserModel {
+    UserModel({
         this.postCount,
         this.follows,
         this.followers,
@@ -19,7 +17,6 @@ class ProfileModel {
         this.username,
         this.bio,
         this.avatar,
-        this.groupList,
     });
 
     int postCount;
@@ -29,9 +26,8 @@ class ProfileModel {
     String username;
     String bio;
     String avatar;
-    List<GroupModel> groupList;
 
-    factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+    factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         postCount: json["post_count"],
         follows: json["follows"],
         followers: json["followers"],
@@ -39,7 +35,6 @@ class ProfileModel {
         username: json["username"],
         bio: json["bio"],
         avatar: json["avatar"],
-        groupList: List<GroupModel>.from(json["group_list"].map((x) => GroupModel.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -50,6 +45,5 @@ class ProfileModel {
         "username": username,
         "bio": bio,
         "avatar": avatar,
-        "group_list": List<dynamic>.from(groupList.map((x) => x.toJson())),
     };
 }

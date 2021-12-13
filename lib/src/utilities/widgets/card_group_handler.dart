@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/src/api/models/group_model.dart';
+import 'package:whatsapp_group_links/src/screens/profile/profile_screen.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/liks_handler.dart';
 
 class GroupCard extends StatelessWidget {
@@ -21,37 +22,48 @@ class GroupCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        shape: BoxShape.circle,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Profile(user_ID: group.createdBy.id.toString()),
                       ),
-                      child: ClipOval(
-                        child: Image(
-                          height: 50.0,
-                          width: 50.0,
-                          image: group.createdBy.avatar == null
-                              ? NetworkImage(
-                                  'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png')
-                              : NetworkImage(group.createdBy.avatar),
-                          fit: BoxFit.cover,
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          shape: BoxShape.circle,
+                        ),
+                        child: ClipOval(
+                          child: Image(
+                            height: 50.0,
+                            width: 50.0,
+                            image: group.createdBy.avatar == null
+                                ? NetworkImage(
+                                    'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png')
+                                : NetworkImage(group.createdBy.avatar),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      group.createdBy.name != null
-                          ? group.createdBy.name
-                          : 'بدون اسم',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        group.createdBy.name != null
+                            ? group.createdBy.name
+                            : 'بدون اسم',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
                 Icon(Icons.menu),
               ],

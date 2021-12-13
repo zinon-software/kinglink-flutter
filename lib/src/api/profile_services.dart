@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/models/group_model.dart';
+import 'package:whatsapp_group_links/src/api/models/user_model.dart';
 import 'dart:convert' as convert;
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
@@ -11,27 +12,41 @@ import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 class ProfileServices extends APIHandler {
   var jsonResponse;
 
-  Future<List<GroupModel>> getProfile(BuildContext context) async {
+  Map<String, String> headers = {
+    "Authorization": "Token ${prefs.getString('token')}",
+    "Content-Type": "application/json",
+  };
 
-    Map<String, String> headers = {
-      "Authorization": "Token ${prefs.getString('token')}",
-      "Content-Type": "application/json",
-    };
-
+  Future<List<GroupModel>> getProfileGroups(String id) async {
     response = await http.get(
-      Uri.parse(PROFILE_URL),
+      Uri.parse(PROFILE_URL + id + "/groups"),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      var body = convert.jsonDecode(utf8.decode(response.bodyBytes));
+
+      List<GroupModel> group = [];
+
+      for (var item in body) {
+        group.add(GroupModel.fromJson(item));
+      }
+      return group;
+    }
+    notifyListeners();
+    return null;
+  }
+
+  Future<UserModel> getUser(String id) async {
+    response = await http.get(
+      Uri.parse(PROFILE_URL + id),
       headers: headers,
     );
 
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(utf8.decode(response.bodyBytes));
 
-      List<GroupModel> group = [];
-
-      for (var item in jsonResponse['group_list']) {
-        group.add(GroupModel.fromJson(item));
-      }
-      return group;
+      return UserModel.fromJson(jsonResponse);
     }
     notifyListeners();
     return null;

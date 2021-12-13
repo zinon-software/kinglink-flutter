@@ -1,12 +1,10 @@
-// import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
+import 'package:whatsapp_group_links/src/api/notification_services.dart';
 import 'package:whatsapp_group_links/src/api/profile_services.dart';
 import 'package:whatsapp_group_links/src/app.dart';
-import 'package:whatsapp_group_links/src/api/shared_preferences_services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'src/api/auth_services.dart';
@@ -28,6 +26,7 @@ void main() async {
         ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
         ChangeNotifierProvider(create: (_) => ProfileServices()),
         ChangeNotifierProvider(create: (_) => GroupServices()),
+        ChangeNotifierProvider(create: (_) => NotificationServices()),
       ],
       child: Application(),
     ),
