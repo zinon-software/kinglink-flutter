@@ -9,8 +9,9 @@ AppBar appBar(BuildContext context, String title) {
       title,
       style: TextStyle(color: Colors.black),
     ),
-    iconTheme: IconThemeData(color: Colors.blue),
-    backgroundColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.black),
+    backgroundColor: Colors.transparent,
+    elevation: 0,
     actions: [
       IconButton(
         icon: Icon(Icons.logout),

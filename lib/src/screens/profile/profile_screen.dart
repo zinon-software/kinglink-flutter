@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/user_services.dart';
-import 'package:whatsapp_group_links/src/utilities/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/api/profile_services.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/snapshot_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/appBar_handler.dart';
 
 class Profile extends StatelessWidget {
@@ -15,7 +15,13 @@ class Profile extends StatelessWidget {
       body: ListView(
         children: [
           buildProfileHeader(),
-          buildMyGroupHeader(context),
+          // buildMyGroupHeader(context),
+          FutureBuilder(
+            future: Provider.of<ProfileServices>(context).getProfile(context),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return snapshotHandler(snapshot);
+            },
+          ),
         ],
       ),
     );
@@ -122,14 +128,12 @@ class Profile extends StatelessWidget {
     );
   }
 
-  buildMyGroupHeader(BuildContext context) {
-    final groupProvider = Provider.of<ProfileServices>(context);
-
-    return FutureBuilder(
-      future: groupProvider.getProfile(context),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return snapshotHandler(snapshot);
-      },
-    );
-  }
+  // buildMyGroupHeader(BuildContext context) {
+  //   return FutureBuilder(
+  //     future: groupProvider.getProfile(context),
+  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+  //       return snapshotHandler(snapshot);
+  //     },
+  //   );
+  // }
 }

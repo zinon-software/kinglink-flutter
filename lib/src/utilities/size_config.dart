@@ -1,5 +1,0 @@
-class SizeConfig {
-  
-}
-
-// double get

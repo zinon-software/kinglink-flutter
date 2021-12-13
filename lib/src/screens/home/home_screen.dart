@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/utilities/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/snapshot_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/bubble_stories_handler.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -1,28 +1,26 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/models/group_model.dart';
+import 'package:whatsapp_group_links/main.dart';
+import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 import 'dart:convert' as convert;
 
 import 'package:http/http.dart' as http;
-import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class GroupServices extends APIHandler {
   var jsonResponse;
 
   Future<List<GroupModel>> getGroup(BuildContext context) async {
-    final sphProvider = Provider.of<SharedPreferencesHandler>(context);
-    var token = await sphProvider.getToken();
 
     Map<String, String> headers = {
-      "Authorization": "Token $token",
+      "Authorization": "Token ${prefs.getString('token')}",
       "Content-Type": "application/json",
     };
 
     response = await http.get(
-      Uri.parse("$basicUrl/api/group/"),
+      Uri.parse(GROUPS_URL),
       headers: headers,
     );
 

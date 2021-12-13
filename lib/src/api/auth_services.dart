@@ -2,12 +2,13 @@ import 'dart:io';
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'package:http/io_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/screens/authentication.dart';
 
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_response_error_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_response_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class AuthServices extends APIHandler {
   HttpClient client = HttpClient();
@@ -35,7 +36,7 @@ class AuthServices extends APIHandler {
       IOClient ioClient = IOClient(client);
 
       response = await ioClient.post(
-        Uri.parse("$basicUrl/api/account/register"),
+        Uri.parse(REGISTER_URL),
         headers: headersAuth,
         body: convert.jsonEncode(bodyData),
       );
@@ -64,7 +65,7 @@ class AuthServices extends APIHandler {
       IOClient ioClient = IOClient(client);
 
       response = await ioClient.post(
-        Uri.parse("$basicUrl/api/account/login"),
+        Uri.parse(LOGIN_URL),
         headers: headersAuth,
         body: convert.jsonEncode(bodyData),
       );
@@ -79,11 +80,9 @@ class AuthServices extends APIHandler {
   }
 
   Future<void> signOut(BuildContext context) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    sharedPreferences.clear();
+    prefs.clear();
     // ignore: deprecated_member_use
-    sharedPreferences.commit();
+    prefs.commit();
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(

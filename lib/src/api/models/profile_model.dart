@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:whatsapp_group_links/src/models/group_model.dart';
+import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 
 ProfileModel profileModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
 

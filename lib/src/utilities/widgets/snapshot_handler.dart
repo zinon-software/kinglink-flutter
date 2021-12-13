@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/src/models/group_model.dart';
+import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/card_group_handler.dart';
 
 StatelessWidget snapshotHandler(AsyncSnapshot snapshot) {

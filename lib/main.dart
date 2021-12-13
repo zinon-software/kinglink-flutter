@@ -1,30 +1,33 @@
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+// import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/screens/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/api/user_services.dart';
+import 'package:whatsapp_group_links/src/api/profile_services.dart';
 import 'package:whatsapp_group_links/src/app.dart';
-import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
+import 'package:whatsapp_group_links/src/api/shared_preferences_services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'src/api/auth_services.dart';
 import 'src/utilities/widgets/theme_handler.dart';
 
-void main() {
+SharedPreferences prefs;
+
+void main() async {
   // runApp(MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+  print(prefs.getString('token'));
+  print(prefs.getString('user_id'));
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
-        ChangeNotifierProvider<ProfileServices>(
-            create: (_) => ProfileServices()),
-        ChangeNotifierProvider<SharedPreferencesHandler>(
-            create: (_) => SharedPreferencesHandler()),
-        ChangeNotifierProvider<GroupServices>(create: (_) => GroupServices()),
+        ChangeNotifierProvider(create: (_) => ProfileServices()),
+        ChangeNotifierProvider(create: (_) => GroupServices()),
       ],
       child: Application(),
     ),
@@ -54,73 +57,78 @@ class Application extends StatelessWidget {
   }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
 
-  @override
-  _MyAppState createState() => _MyAppState();
-}
 
-class _MyAppState extends State<MyApp> {
-  String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final remoteConfig = await RemoteConfig.instance;
-      final defaults = <String, dynamic>{
-        'AdmobInterstitialisAndroidV2':
-            'ca-app-pub-9553130506719526/4874471126',
-        'urlServer': 'kinglink2',
-        'banarAdsisAndroid': '',
-        'NativeAdmobisAndroid': '',
-      };
 
-      setState(() {
-        interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
-        urlServer = defaults['urlServer'];
-        bannarIsAd = defaults['banarAdsisAndroid'];
-        nativeIsAd = defaults['NativeAdmobisAndroid'];
-      });
 
-      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
-      await remoteConfig.activateFetched();
-      setState(() {
-        interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
-        urlServer = remoteConfig.getString("urlServer");
-        bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
-        nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
-      });
-    });
-  }
+// class MyApp extends StatefulWidget {
+//   const MyApp({Key key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Whatsapp Group Links',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-        primaryColor: kPrimaryColor,
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
-      ),
-      // Arabic RTL
-      localizationsDelegates: [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [Locale("ar", "AE")],
-      locale: Locale("ar", "AE"),
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
 
-      home: HomePage(
-        urlServer: urlServer,
-        bannarIsAd: bannarIsAd,
-        interstIsAd: interstIsAd,
-        nativeIsAd: nativeIsAd,
-      ),
-    );
-  }
-}
+// class _MyAppState extends State<MyApp> {
+//   String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     WidgetsBinding.instance.addPostFrameCallback((_) async {
+//       final remoteConfig = await RemoteConfig.instance;
+//       final defaults = <String, dynamic>{
+//         'AdmobInterstitialisAndroidV2':
+//             'ca-app-pub-9553130506719526/4874471126',
+//         'urlServer': 'kinglink2',
+//         'banarAdsisAndroid': '',
+//         'NativeAdmobisAndroid': '',
+//       };
+
+//       setState(() {
+//         interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
+//         urlServer = defaults['urlServer'];
+//         bannarIsAd = defaults['banarAdsisAndroid'];
+//         nativeIsAd = defaults['NativeAdmobisAndroid'];
+//       });
+
+//       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
+//       await remoteConfig.activateFetched();
+//       setState(() {
+//         interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
+//         urlServer = remoteConfig.getString("urlServer");
+//         bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
+//         nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
+//       });
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       title: 'Whatsapp Group Links',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
+//         primaryColor: kPrimaryColor,
+//         colorScheme:
+//             ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
+//       ),
+//       // Arabic RTL
+//       localizationsDelegates: [
+//         GlobalCupertinoLocalizations.delegate,
+//         GlobalMaterialLocalizations.delegate,
+//         GlobalWidgetsLocalizations.delegate,
+//       ],
+//       supportedLocales: [Locale("ar", "AE")],
+//       locale: Locale("ar", "AE"),
+
+//       home: HomePage(
+//         urlServer: urlServer,
+//         bannarIsAd: bannarIsAd,
+//         interstIsAd: interstIsAd,
+//         nativeIsAd: nativeIsAd,
+//       ),
+//     );
+//   }
+// }

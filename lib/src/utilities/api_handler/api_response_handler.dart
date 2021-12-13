@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/src/screens/home.dart';
 import 'dart:convert' as convert;
-import 'package:whatsapp_group_links/src/utilities/shared_preferences_handler.dart';
+import 'package:whatsapp_group_links/src/api/shared_preferences_services.dart';
 
 class APIResponseHandler {
   static void responseAuth(http.Response response, BuildContext context) {
@@ -13,8 +13,8 @@ class APIResponseHandler {
       jsonResponse = convert.jsonDecode(response.body);
 
       if (jsonResponse["token"] != null) {
-        SharedPreferencesHandler.saveResponseAuth(
-            jsonResponse['token'].toString());
+        SharedPrefs.saveToken(
+            jsonResponse['token'].toString(), jsonResponse['id'].toString());
 
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => Home()),
