@@ -14,6 +14,7 @@ class UserModel {
         this.follows,
         this.followers,
         this.name,
+        this.id,
         this.username,
         this.bio,
         this.avatar,
@@ -23,6 +24,7 @@ class UserModel {
     int follows;
     int followers;
     String name;
+    int id;
     String username;
     String bio;
     String avatar;
@@ -32,6 +34,7 @@ class UserModel {
         follows: json["follows"],
         followers: json["followers"],
         name: json["name"],
+        id: json["id"],
         username: json["username"],
         bio: json["bio"],
         avatar: json["avatar"],
@@ -42,6 +45,7 @@ class UserModel {
         "follows": follows,
         "followers": followers,
         "name": name,
+        "id": id,
         "username": username,
         "bio": bio,
         "avatar": avatar,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/group_services.dart';
 import 'package:whatsapp_group_links/src/api/models/user_model.dart';
 import 'package:whatsapp_group_links/src/api/profile_services.dart';
@@ -17,8 +18,7 @@ class Profile extends StatelessWidget {
       body: ListView(
         children: [
           FutureBuilder(
-            future: Provider.of<ProfileServices>(context)
-                .getUser(user_ID),
+            future: Provider.of<ProfileServices>(context).getUser(user_ID),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 UserModel user = snapshot.data;
@@ -48,6 +48,7 @@ class Profile extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     // buildProfileButton(),
+                                    TextButton(onPressed: (){}, child: (prefs.getString('user_id') == user.id.toString()) ? Text("تعديل"): Text("متابعة"))
                                   ],
                                 ),
                               ],
@@ -104,10 +105,9 @@ class Profile extends StatelessWidget {
               }
             },
           ),
-          // buildProfileHeader(),
-          // buildMyGroupHeader(context),
           FutureBuilder(
-            future: Provider.of<ProfileServices>(context).getProfileGroups(user_ID),
+            future:
+                Provider.of<ProfileServices>(context).getProfileGroups(user_ID),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshotHandler(snapshot);
             },
@@ -117,83 +117,9 @@ class Profile extends StatelessWidget {
     );
   }
 
-  buildProfileHeader() {
-    return Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        buildCountColumn("posts", 40),
-                        buildCountColumn("followers", 654),
-                        buildCountColumn("following", 45),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        // buildProfileButton(),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              CircleAvatar(
-                child: ClipOval(
-                  child: Image(
-                    height: 50.0,
-                    width: 50.0,
-                    // image: user.urlImage == ''
-                    //     ? AssetImage('assets/images/user1.png')
-                    //     : NetworkImage(user.urlImage),
-                    image: NetworkImage(
-                        'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 12.0),
-            child: Text(
-              "user.name",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 4.0),
-            child: Text(
-              "user.location",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(top: 2.0),
-            child: Text(
-              "user.bio",
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // buildProfileHeader() {
+  //   return;
+  // }
 
   Column buildCountColumn(String label, int count) {
     return Column(
@@ -219,11 +145,6 @@ class Profile extends StatelessWidget {
   }
 
   // buildMyGroupHeader(BuildContext context) {
-  //   return FutureBuilder(
-  //     future: groupProvider.getProfile(context),
-  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-  //       return snapshotHandler(snapshot);
-  //     },
-  //   );
+  //   return ;
   // }
 }
