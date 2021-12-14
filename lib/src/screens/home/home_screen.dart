@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/utilities/widgets/snapshot_handler.dart';
+import 'package:whatsapp_group_links/src/api/models/group_model.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/card_group_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/bubble_stories_handler.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,13 +56,20 @@ class HomeScreen extends StatelessWidget {
   }
 
   buildMyGroupHeader(BuildContext context) {
-    final groupProvider = Provider.of<GroupServices>(context);
+    final groupProvider = Provider.of<List<GroupModel>>(context, listen: false);
 
-    return FutureBuilder(
-      future: groupProvider.getGroup(context),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return snapshotHandler(snapshot);
-      },
-    );
+    return groupProvider == null ? Container(child: Center(
+        child: CircularProgressIndicator(),
+      ),) : ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: groupProvider.length,
+          itemBuilder: (context, index) => GroupCard(
+                itemIndex: index,
+                group: groupProvider[index],
+                press: () {
+                  print('Card tapped.');
+                },
+              )); 
   }
 }

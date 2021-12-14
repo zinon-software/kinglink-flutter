@@ -12,12 +12,13 @@ import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 class GroupServices extends APIHandler {
   var jsonResponse;
 
-  Future<List<GroupModel>> getGroup(BuildContext context) async {
-
+  
     Map<String, String> headers = {
       "Authorization": "Token ${prefs.getString('token')}",
       "Content-Type": "application/json",
     };
+
+  Future<List<GroupModel>> getGroup() async {
 
     response = await http.get(
       Uri.parse(GROUPS_URL),
