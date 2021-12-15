@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
           margin: EdgeInsets.only(left: 10, right: 10),
           currentIndex: _selectedTab,
           dotIndicatorColor: Colors.white,
-          unselectedItemColor: Colors.grey[300],
+          unselectedItemColor: Colors.grey[500],
           // enableFloatingNavBar: false,
           onTap: _handleIndexChanged,
           items: [

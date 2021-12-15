@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   buildMyGroupHeader(BuildContext context) {
-    final groupProvider = Provider.of<List<GroupModel>>(context, listen: false);
+    final groupProvider = Provider.of<List<GroupModel>>(context);
 
     return groupProvider == null ? Container(child: Center(
         child: CircularProgressIndicator(),

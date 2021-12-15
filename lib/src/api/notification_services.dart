@@ -31,13 +31,19 @@ class NotificationServices with ChangeNotifier {
     return null;
   }
 
-  Future getShowNotification() async {
+  static Future showNotification() async {
+    Map<String, String> headers = {
+      "Authorization": "Token ${prefs.getString('token')}",
+      "Content-Type": "application/json",
+    };
     http.Response response =
         await http.get(Uri.parse(SHOW_NOTIFICATIONS_URL), headers: headers);
+    print("done");
+    print(response.statusCode);
+    print(SHOW_NOTIFICATIONS_URL);
 
     if (response.statusCode == 200) {
       print("done");
     }
-    notifyListeners();
   }
 }

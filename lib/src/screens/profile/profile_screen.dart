@@ -48,7 +48,20 @@ class Profile extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     // buildProfileButton(),
-                                    TextButton(onPressed: (){}, child: (prefs.getString('user_id') == user.id.toString()) ? Text("تعديل"): Text("متابعة"))
+                                    FloatingActionButton.extended(
+                                      onPressed: () {
+                                        // Add your onPressed code here!
+                                      },
+                                      label: (prefs.getString('user_id') ==
+                                              user.id.toString())
+                                          ? Text("تعديل",
+                                              style: TextStyle(
+                                                  color: Colors.black))
+                                          : Text("متابعة",
+                                              style: TextStyle(
+                                                  color: Colors.black)),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ],
                                 ),
                               ],

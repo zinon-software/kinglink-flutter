@@ -11,4 +11,4 @@ final GROUPS_URL = MAIN_URL + '/api/group/';
 final LIKE_URL = MAIN_URL + '/api/group/like';
 
 final NOTIFICATIONS_URL = MAIN_URL + '/api/notification/';
-final SHOW_NOTIFICATIONS_URL = NOTIFICATIONS_URL + 'show/';
+final SHOW_NOTIFICATIONS_URL = NOTIFICATIONS_URL + 'show';

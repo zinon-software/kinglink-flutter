@@ -25,8 +25,8 @@ void main() async {
       providers: [
         ChangeNotifierProvider<AuthServices>(create: (_) => AuthServices()),
         ChangeNotifierProvider(create: (_) => ProfileServices()),
-        FutureProvider(create: (_) => GroupServices().getGroup()),
-        FutureProvider(create: (_) => NotificationServices().getNotification()),
+        FutureProvider(create: (_) => GroupServices().getGroup(), initialData: null),
+        FutureProvider(create: (_) => NotificationServices().getNotification(), initialData: null),
       ],
       child: Application(),
     ),
