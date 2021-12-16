@@ -28,7 +28,7 @@ class GroupCard extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            Profile(user_ID: group.createdBy.id.toString()),
+                            Profile(userID: group.createdBy.id.toString()),
                       ),
                     );
                   },

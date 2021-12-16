@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 import 'dart:convert' as convert;
@@ -10,13 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class GroupServices extends APIHandler {
-  var jsonResponse;
-
-  
-    Map<String, String> headers = {
-      "Authorization": "Token ${prefs.getString('token')}",
-      "Content-Type": "application/json",
-    };
 
   Future<List<GroupModel>> getGroup() async {
 
@@ -39,9 +29,9 @@ class GroupServices extends APIHandler {
     return null;
   }
 
-  Future<GroupModel> postGroup() async {}
+  // Future<GroupModel> postGroup() async {}
 
-  Future<GroupModel> putGroup() async {}
+  // Future<GroupModel> putGroup() async {}
 
-  Future<GroupModel> deleteGroup() async {}
+  // Future<GroupModel> deleteGroup() async {}
 }

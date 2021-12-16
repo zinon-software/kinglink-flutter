@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/auth_services.dart';
+import 'package:whatsapp_group_links/src/api/services/auth_services.dart';
 
 AppBar appBar(BuildContext context, String title) {
   final signOutProvider = Provider.of<AuthServices>(context);

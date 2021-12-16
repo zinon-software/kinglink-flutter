@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:whatsapp_group_links/src/api/group_services.dart';
-import 'package:whatsapp_group_links/src/api/notification_services.dart';
-import 'package:whatsapp_group_links/src/api/profile_services.dart';
+import 'package:whatsapp_group_links/src/api/services/avatar_services.dart';
+import 'package:whatsapp_group_links/src/api/services/group_services.dart';
+import 'package:whatsapp_group_links/src/api/services/notification_services.dart';
+import 'package:whatsapp_group_links/src/api/services/profile_services.dart';
 import 'package:whatsapp_group_links/src/app.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'src/api/auth_services.dart';
+import 'src/api/services/auth_services.dart';
 import 'src/utilities/widgets/theme_handler.dart';
 
 SharedPreferences prefs;
@@ -27,6 +28,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ProfileServices()),
         FutureProvider(create: (_) => GroupServices().getGroup(), initialData: null),
         FutureProvider(create: (_) => NotificationServices().getNotification(), initialData: null),
+        FutureProvider(create: (_) => AvatarServices().fetchAvatar(), initialData: null),
       ],
       child: Application(),
     ),

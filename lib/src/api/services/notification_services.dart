@@ -2,16 +2,11 @@ import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/models/notification_model.dart';
 import 'dart:convert' as convert;
-import 'package:flutter/material.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
 
 import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
-class NotificationServices with ChangeNotifier {
-  Map<String, String> headers = {
-    "Authorization": "Token ${prefs.getString('token')}",
-    "Content-Type": "application/json",
-  };
-  var jsonResponse;
+class NotificationServices extends APIHandler {
 
   Future<List<NotificationModel>> getNotification() async {
     http.Response response =

@@ -10,6 +10,7 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
     UserModel({
+        this.isFollowing,
         this.postCount,
         this.follows,
         this.followers,
@@ -20,6 +21,7 @@ class UserModel {
         this.avatar,
     });
 
+    bool isFollowing;
     int postCount;
     int follows;
     int followers;
@@ -30,6 +32,7 @@ class UserModel {
     String avatar;
 
     factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        isFollowing: json["isFollowing"],
         postCount: json["post_count"],
         follows: json["follows"],
         followers: json["followers"],
@@ -41,6 +44,7 @@ class UserModel {
     );
 
     Map<String, dynamic> toJson() => {
+        "isFollowing": isFollowing,
         "post_count": postCount,
         "follows": follows,
         "followers": followers,

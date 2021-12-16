@@ -1,5 +1,4 @@
 // import 'package:admob_flutter/admob_flutter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:whatsapp_group_links/models/SectionsModel.dart';

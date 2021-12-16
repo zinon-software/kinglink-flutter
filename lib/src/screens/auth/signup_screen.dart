@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whatsapp_group_links/src/api/auth_services.dart';
+import 'package:whatsapp_group_links/src/api/services/auth_services.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key key, this.toggleScreen}) : super(key: key);

@@ -10,29 +10,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "لنكاتي",
-              style: TextStyle(color: Colors.black),
-            ),
-            Row(
-              children: [
-                Icon(Icons.add),
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Icon(Icons.favorite),
-                ),
-                Icon(Icons.share),
-              ],
-            )
-          ],
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       Text(
+      //         "لنكاتي",
+      //         style: TextStyle(color: Colors.black),
+      //       ),
+      //       Row(
+      //         children: [
+      //           Icon(Icons.add),
+      //           Padding(
+      //             padding: const EdgeInsets.all(24.0),
+      //             child: Icon(Icons.favorite),
+      //           ),
+      //           Icon(Icons.share),
+      //         ],
+      //       )
+      //     ],
+      //   ),
+      // ),
       body: ListView(
         children: [
           Container(
@@ -58,18 +58,22 @@ class HomeScreen extends StatelessWidget {
   buildMyGroupHeader(BuildContext context) {
     final groupProvider = Provider.of<List<GroupModel>>(context);
 
-    return groupProvider == null ? Container(child: Center(
-        child: CircularProgressIndicator(),
-      ),) : ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: groupProvider.length,
-          itemBuilder: (context, index) => GroupCard(
-                itemIndex: index,
-                group: groupProvider[index],
-                press: () {
-                  print('Card tapped.');
-                },
-              )); 
+    return groupProvider == null
+        ? Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: groupProvider.length,
+            itemBuilder: (context, index) => GroupCard(
+                  itemIndex: index,
+                  group: groupProvider[index],
+                  press: () {
+                    print('Card tapped.');
+                  },
+                ));
   }
 }

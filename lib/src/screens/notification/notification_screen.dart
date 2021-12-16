@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/models/notification_model.dart';
-import 'package:whatsapp_group_links/src/api/notification_services.dart';
+import 'package:whatsapp_group_links/src/api/services/notification_services.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({Key key}) : super(key: key);

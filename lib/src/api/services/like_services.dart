@@ -4,12 +4,12 @@ import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class LikeServices {
-  static Future<void> makeLike(String group_id) async {
+  static Future<void> makeLike(String groupId) async {
     Map<String, String> headers = {
       "Authorization": "Token ${prefs.getString('token')}",
     };
     http.Response response = await http
-        .post(Uri.parse(LIKE_URL), headers: headers, body: {'pk': group_id});
+        .post(Uri.parse(LIKE_URL), headers: headers, body: {'pk': groupId});
 
     if (response.statusCode == 200) {
       var jsonResponse;

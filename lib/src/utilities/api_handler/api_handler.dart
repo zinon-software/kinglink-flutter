@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:whatsapp_group_links/main.dart';
 
 /*
  * This class used to hendler API Var And  ErrorMessage And Loading
@@ -29,4 +30,11 @@ class APIHandler with ChangeNotifier {
     notifyListeners();
   }
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  var jsonResponse;
+
+  Map<String, String> headers = {
+    "Authorization": "Token ${prefs.getString('token')}",
+    "Content-Type": "application/json",
+  };
 }

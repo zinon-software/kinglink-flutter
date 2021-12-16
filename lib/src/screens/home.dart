@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
     HomeScreen(),
     Search(),
     Notifications(),
-    Profile(user_ID: prefs.getString('user_id')),
+    Profile(userID: prefs.getString('user_id')),
   ];
 
   @override

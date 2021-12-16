@@ -1,10 +1,14 @@
 // Api URL
 
+// ignore_for_file: non_constant_identifier_names
+
 final MAIN_URL = 'https://linkati.herokuapp.com';
 final REGISTER_URL = MAIN_URL + '/api/account/register';
 final LOGIN_URL = MAIN_URL + '/api/account/login';
 
 final PROFILE_URL = MAIN_URL + '/api/account/';
+final FOLOWING_URL = MAIN_URL + '/api/account/follow-unfollow/';
+final AVATAR_URL = MAIN_URL + '/api/account/avatar';
 
 
 final GROUPS_URL = MAIN_URL + '/api/group/';
