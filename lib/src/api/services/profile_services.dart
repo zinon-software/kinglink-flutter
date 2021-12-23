@@ -4,10 +4,10 @@ import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 import 'package:whatsapp_group_links/src/api/models/user_model.dart';
 import 'dart:convert' as convert;
 import 'package:whatsapp_group_links/src/utilities/api_handler/api_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/api_handler/api_response_error_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class ProfileServices extends APIHandler {
-
   Future<List<GroupModel>> getProfileGroups(String id) async {
     response = await http.get(
       Uri.parse(PROFILE_URL + id + "/groups"),
@@ -44,7 +44,7 @@ class ProfileServices extends APIHandler {
   }
 
   // setMyGroup(BuildContext context) async {
-  
+
   //   response = await http.post(
   //       Uri.parse("https://apitestings.herokuapp.com/todos/api/"),
   //       headers: headers,
@@ -61,4 +61,44 @@ class ProfileServices extends APIHandler {
   //   }
   // }
 
+  Future<List<UsersModel>> fatchUsers() async {
+    response = await http.get(
+      Uri.parse(USERS_URL),
+      headers: headers,
+    );
+
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      var body = convert.jsonDecode(utf8.decode(response.bodyBytes));
+
+      List<UsersModel> users = [];
+
+      for (var item in body) {
+        users.add(UsersModel.fromJson(item));
+      }
+      return users;
+    }
+    notifyListeners();
+    return null;
+  }
+
+  Future<void> following(String userID) async {
+    setLoading(true);
+    try {
+      response =
+          await http.get(Uri.parse(FOLOWING_URL + userID), headers: headers);
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+        setErrorMessage(jsonResponse.toString());
+      }
+    } catch (ex) {
+      setErrorMessage(APIResponseErrorHandler.parseError(ex));
+    } finally {
+      setLoading(false);
+    }
+    notifyListeners();
+  }
 }

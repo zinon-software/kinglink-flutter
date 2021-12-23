@@ -19,17 +19,17 @@ class Avatar extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(
-            Icons.arrow_back_rounded,
+            Icons.done,
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    EditProfile(user: user, avatar: user.avatar),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) =>
+            //         EditProfile(user: user, avatar: user.avatar),
+            //   ),
+            // );
           },
         ),
         actions: [
@@ -56,13 +56,13 @@ class Avatar extends StatelessWidget {
           child: Card(
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        EditProfile(user: user, avatar: post.avatar),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) =>
+                //         EditProfile(user: user, avatar: post.avatar),
+                //   ),
+                // );
               },
               child: Image.network(
                 (post.avatar),

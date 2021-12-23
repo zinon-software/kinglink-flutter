@@ -117,7 +117,7 @@ class Receiver {
     String description;
     int user;
     List<int> follows;
-    List<dynamic> followers;
+    List<int> followers;
 
     factory Receiver.fromJson(Map<String, dynamic> json) => Receiver(
         id: json["id"],
@@ -126,7 +126,7 @@ class Receiver {
         description: json["description"],
         user: json["user"],
         follows: List<int>.from(json["follows"].map((x) => x)),
-        followers: List<dynamic>.from(json["followers"].map((x) => x)),
+        followers: List<int>.from(json["followers"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {

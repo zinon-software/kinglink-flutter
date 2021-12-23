@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/models/user_model.dart';
 import 'package:whatsapp_group_links/src/api/services/profile_services.dart';
+import 'package:whatsapp_group_links/src/screens/post/post_screen.dart';
+import 'package:whatsapp_group_links/src/screens/profile/avatar_screen.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/profile_button_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/snapshot_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/appBar_handler.dart';
@@ -18,13 +21,8 @@ class Profile extends StatelessWidget {
       body: ListView(
         children: [
           buildProfileHeader(context),
-          FutureBuilder(
-            future:
-                Provider.of<ProfileServices>(context).getProfileGroups(userID),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshotHandler(snapshot);
-            },
-          ),
+          buildButtonPost(context),
+          buildProfileBody(context, userID),
         ],
       ),
     );
@@ -56,6 +54,7 @@ class Profile extends StatelessWidget {
   //////////////////////////////////////
 
   buildProfileHeader(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
     return FutureBuilder(
       future: Provider.of<ProfileServices>(context).getUser(userID),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -70,21 +69,51 @@ class Profile extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        height: 50.0,
-                        width: 50.0,
-                        image: user.avatar == ''
-                            ? NetworkImage(
-                                'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png')
-                            : NetworkImage(user.avatar),
-                        fit: BoxFit.cover,
+              ///////////////////////////////////
+              Center(
+                child: Stack(
+                  children: [
+                    ClipOval(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Ink.image(
+                          image: NetworkImage(user.avatar),
+                          fit: BoxFit.cover,
+                          width: 128,
+                          height: 128,
+                          child:
+                              (user.id.toString() == prefs.getString('user_id'))
+                                  ? InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Avatar(),
+                                          ),
+                                        );
+                                      },
+                                    )
+                                  : InkWell(onTap: () {}),
+                        ),
                       ),
                     ),
-                  ),
+                    if (user.id.toString() == prefs.getString('user_id'))
+                      Positioned(
+                        bottom: 0,
+                        right: 4,
+                        child: buildEditIcon(color),
+                      ),
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 20.0,
+              ),
+              ///////////////////////////////////
+
+              Row(
+                children: <Widget>[
                   Expanded(
                     flex: 1,
                     child: Column(
@@ -126,7 +155,7 @@ class Profile extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: 4.0),
                 child: Text(
-                  user.username,
+                  '@${user.username}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -142,6 +171,78 @@ class Profile extends StatelessWidget {
             ],
           ),
         );
+      },
+    );
+  }
+
+  Widget buildEditIcon(Color color) => buildCircle(
+        color: Colors.white,
+        all: 3,
+        child: buildCircle(
+          color: color,
+          all: 8,
+          child: Icon(
+            Icons.add_a_photo,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+      );
+
+  Widget buildCircle({
+    Widget child,
+    double all,
+    Color color,
+  }) =>
+      ClipOval(
+        child: Container(
+          padding: EdgeInsets.all(all),
+          color: color,
+          child: child,
+        ),
+      );
+
+  buildButtonPost(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.only(top: 2.0),
+      // ignore: deprecated_member_use
+      child: FlatButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PostPage(),
+            ),
+          );
+        },
+        child: Container(
+          width: 200.0,
+          height: 27.0,
+          child: Text(
+            'أضافة منشور جديد',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            border: Border.all(
+              color: Colors.blue,
+            ),
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+        ),
+      ),
+    );
+  }
+
+  buildProfileBody(BuildContext context, String userID) {
+    return FutureBuilder(
+      future: Provider.of<ProfileServices>(context).getProfileGroups(userID),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return snapshotHandler(snapshot, context);
       },
     );
   }

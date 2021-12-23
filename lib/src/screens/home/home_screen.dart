@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/models/group_model.dart';
+import 'package:whatsapp_group_links/src/api/services/group_services.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/card_group_handler.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/bubble_stories_handler.dart';
+import 'package:whatsapp_group_links/src/utilities/widgets/snapshot_handler.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -56,24 +58,51 @@ class HomeScreen extends StatelessWidget {
   }
 
   buildMyGroupHeader(BuildContext context) {
-    final groupProvider = Provider.of<List<GroupModel>>(context);
+    // final groupProvider = Provider.of<List<GroupModel>>(context);
 
-    return groupProvider == null
-        ? Container(
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: groupProvider.length,
-            itemBuilder: (context, index) => GroupCard(
-                  itemIndex: index,
-                  group: groupProvider[index],
-                  press: () {
-                    print('Card tapped.');
-                  },
-                ));
+    return FutureBuilder(
+      future: Provider.of<GroupServices>(context).getGroup(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return snapshotHandler(snapshot, context);
+      },
+    );
+    // groupProvider == null
+    //     ? Container(
+    //         child: Center(
+    //           child: CircularProgressIndicator(),
+    //         ),
+    //       )
+    //     : (groupProvider.length == 0)
+    //         ? Container(
+    //             child: Column(
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               children: <Widget>[
+    //                 // SvgPicture.asset('assets/images/no_content.svg', height: 260.0),
+    //                 Icon(Icons.sync_problem),
+    //                 Padding(
+    //                   padding: EdgeInsets.only(top: 20.0),
+    //                   child: Text(
+    //                     "No Posts",
+    //                     style: TextStyle(
+    //                       color: Colors.redAccent,
+    //                       fontSize: 40.0,
+    //                       fontWeight: FontWeight.bold,
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           )
+    //         : ListView.builder(
+    //             shrinkWrap: true,
+    //             physics: const NeverScrollableScrollPhysics(),
+    //             itemCount: groupProvider.length,
+    //             itemBuilder: (context, index) => GroupCard(
+    //                   itemIndex: index,
+    //                   group: groupProvider[index],
+    //                   press: () {
+    //                     print('Card tapped.');
+    //                   },
+    //                 ));
   }
 }
