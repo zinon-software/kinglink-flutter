@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
+
+import '../constants/color.dart';
 
 ThemeData themeData() {
   return ThemeData(

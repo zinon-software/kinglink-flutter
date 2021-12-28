@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_group_links/src/utilities/widgets/post/post_body.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({

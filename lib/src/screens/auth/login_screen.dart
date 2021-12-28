@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/services/auth_services.dart';
-import 'package:whatsapp_group_links/static/constants.dart';
+import 'package:whatsapp_group_links/src/utilities/constants/color.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key, this.toggleScreen}) : super(key: key);

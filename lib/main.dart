@@ -7,17 +7,17 @@ import 'package:whatsapp_group_links/src/api/services/avatar_services.dart';
 import 'package:whatsapp_group_links/src/api/services/group_services.dart';
 import 'package:whatsapp_group_links/src/api/services/notification_services.dart';
 import 'package:whatsapp_group_links/src/api/services/profile_services.dart';
-import 'package:whatsapp_group_links/src/app.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'src/api/services/auth_services.dart';
+import 'src/screens/authentication.dart';
+import 'src/screens/home.dart';
 import 'src/utilities/widgets/theme_handler.dart';
 
 SharedPreferences prefs;
 String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
 
 void main() async {
-  // runApp(MyApp());
 
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
@@ -82,83 +82,14 @@ class Application extends StatelessWidget {
       supportedLocales: [Locale("ar", "AE")],
       locale: Locale("ar", "AE"),
 
-      home: Wrapper(),
+      initialRoute: (prefs.getString('token') != null) ? '/home' : '/auth',
+
+      routes: {
+        '/home' : (context) => Home(),
+        '/auth' : (context) => Authentication(),
+      },
+
+      // home: Wrapper(),
     );
   }
 }
-
-
-
-
-
-
-// class MyApp extends StatefulWidget {
-//   const MyApp({Key key}) : super(key: key);
-
-//   @override
-//   _MyAppState createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   String urlServer, bannarIsAd, interstIsAd, nativeIsAd;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     WidgetsBinding.instance.addPostFrameCallback((_) async {
-//       final remoteConfig = await RemoteConfig.instance;
-//       final defaults = <String, dynamic>{
-//         'AdmobInterstitialisAndroidV2':
-//             'ca-app-pub-9553130506719526/4874471126',
-//         'urlServer': 'kinglink2',
-//         'banarAdsisAndroid': '',
-//         'NativeAdmobisAndroid': '',
-//       };
-
-//       setState(() {
-//         interstIsAd = defaults['AdmobInterstitialisAndroidV2'];
-//         urlServer = defaults['urlServer'];
-//         bannarIsAd = defaults['banarAdsisAndroid'];
-//         nativeIsAd = defaults['NativeAdmobisAndroid'];
-//       });
-
-//       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
-//       await remoteConfig.activateFetched();
-//       setState(() {
-//         interstIsAd = remoteConfig.getString("AdmobInterstitialisAndroidV2");
-//         urlServer = remoteConfig.getString("urlServer");
-//         bannarIsAd = remoteConfig.getString("banarAdsisAndroid");
-//         nativeIsAd = remoteConfig.getString("NativeAdmobisAndroid");
-//       });
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetMaterialApp(
-//       title: 'Whatsapp Group Links',
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-//         primaryColor: kPrimaryColor,
-//         colorScheme:
-//             ColorScheme.fromSwatch().copyWith(secondary: kPrimaryColor),
-//       ),
-//       // Arabic RTL
-//       localizationsDelegates: [
-//         GlobalCupertinoLocalizations.delegate,
-//         GlobalMaterialLocalizations.delegate,
-//         GlobalWidgetsLocalizations.delegate,
-//       ],
-//       supportedLocales: [Locale("ar", "AE")],
-//       locale: Locale("ar", "AE"),
-
-//       home: HomePage(
-//         urlServer: urlServer,
-//         bannarIsAd: bannarIsAd,
-//         interstIsAd: interstIsAd,
-//         nativeIsAd: nativeIsAd,
-//       ),
-//     );
-//   }
-// }
