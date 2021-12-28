@@ -80,7 +80,9 @@ class Search extends StatelessWidget {
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(users[index].name),
+                            users[index].name == null
+                                ? Text('')
+                                : Text(users[index].name),
                             Text(
                                 "يتابعة ${users[index].followers.length.toString()}"),
                           ],

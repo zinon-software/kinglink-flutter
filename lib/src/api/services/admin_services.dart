@@ -25,7 +25,61 @@ class AdminServices extends APIHandler {
     return null;
   }
 
-  Future<http.Response> putAdminGroup(String groupID) {
+  Future<http.Response> putGroup({
+    String groupID,
+    String titel,
+    String sections,
+    String category,
+    String link,
+  }) {
+    return http
+        .put(
+      Uri.parse(GROUPS_URL + groupID),
+      headers: headers,
+      body: jsonEncode(<String, dynamic>{
+        'titel': titel,
+        'sections': sections,
+        'category': category,
+        'link': link,
+      }),
+    )
+        .then((value) {
+      print("تم التعديل");
+      return null;
+    });
+  }
+
+  String id; // group ID
+
+  Future<GroupModel> deleteGroup({String groupID}) async {
+    response = await http.delete(
+      Uri.parse(GROUPS_URL + groupID),
+      headers: headers,
+    );
+    
+    if (response.statusCode == 200) {
+      // will always return false on `FutureBuilder`.
+      jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
+      setErrorMessage(jsonResponse['res']);
+      id = groupID;
+      setLoading(true);
+    } else if (response.statusCode == 400) {
+      jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
+      setErrorMessage(jsonResponse['res']);
+      id = groupID;
+      setLoading(true);
+    } else {
+      // If the server did not return a "200 OK response",
+      // then throw an exception.
+      setErrorMessage('حدث خطا');
+    }
+    notifyListeners();
+    return null;
+  }
+
+  Future<http.Response> shareAdminGroup(String groupID) {
     return http.put(
       Uri.parse(ADMIN_URL),
       headers: headers,
@@ -34,33 +88,4 @@ class AdminServices extends APIHandler {
       }),
     );
   }
-
-  Future<GroupModel> deleteAdminGroup(String id) async {
-    final http.Response response = await http.delete(
-      Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      // will always return false on `FutureBuilder`.
-      return GroupModel.fromJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a "200 OK response",
-      // then throw an exception.
-      throw Exception('Failed to delete album.');
-    }
-  }
-
-  Future<http.Response> deleteAlbum(String id) async {
-  final http.Response response = await http.delete(
-    Uri.parse('https://jsonplaceholder.typicode.com/albums/$id'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  );
-
-  return response;
-}
 }

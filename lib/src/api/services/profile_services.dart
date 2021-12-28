@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:whatsapp_group_links/main.dart';
 import 'package:whatsapp_group_links/src/api/models/group_model.dart';
 import 'package:whatsapp_group_links/src/api/models/user_model.dart';
 import 'dart:convert' as convert;
@@ -100,5 +103,38 @@ class ProfileServices extends APIHandler {
       setLoading(false);
     }
     notifyListeners();
+  }
+
+  Future<void> putProfile(
+      {BuildContext context,
+      String name,
+      String avatar,
+      String description}) async {
+        
+    setLoading(true);
+
+    Map<String, String> headers = {
+      "Authorization": "Token ${prefs.getString('token')}",
+    };
+
+    response = await http.put(
+      Uri.parse(PROFILE_URL + prefs.getString('user_id')),
+      headers: headers,
+      body: {
+        'name': name,
+        'avatar': avatar,
+        'description': description,
+      },
+    );
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print(jsonResponse);
+      print("تم التعديل");
+      setLoading(false);
+      Navigator.pop(context);
+    }
+    setLoading(false);
   }
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:whatsapp_group_links/src/api/services/group_services.dart';
+import 'package:whatsapp_group_links/src/utilities/constants/urls.dart';
 
 class PostBody extends StatefulWidget {
   final urlServer;
@@ -24,7 +25,7 @@ class _PostBodyState extends State<PostBody> {
 
   Future<String> getSectionsData() async {
     var res = await http.get(
-        Uri.parse('https://kinglink.herokuapp.com/api/Sections'),
+        Uri.parse(SECTIONS_URL),
         headers: {"Accept": "application/json"});
     var resBody = jsonDecode(utf8.decode(res.bodyBytes));
     setState(() {

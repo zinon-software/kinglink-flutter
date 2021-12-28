@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:whatsapp_group_links/src/api/models/user_model.dart';
+import 'package:whatsapp_group_links/src/api/services/profile_services.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key key, this.user,}) : super(key: key);
+  const EditProfile({
+    Key key,
+    this.user,
+  }) : super(key: key);
 
   final UserModel user;
 
@@ -35,6 +40,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     print(widget.user.avatar);
+    final profileUpdateServices = Provider.of<ProfileServices>(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -47,14 +53,29 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
         ),
-        actions: <Widget>[
+        leading: profileUpdateServices.isLoading
+            ? Align(child: new CircularProgressIndicator())
+            : IconButton(
+                icon: Icon(
+                  Icons.done,
+                  color: Colors.black,
+                ),
+                onPressed: () async {
+                  await profileUpdateServices.putProfile(
+                      context: context,
+                      name: displayNameController.text,
+                      avatar: widget.user.avatar,
+                      description: bioController.text);
+                },
+              ),
+        actions: [
           IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.done,
-                size: 30.0,
-                color: Colors.green,
-              ))
+            icon: Icon(
+              Icons.close,
+              color: Colors.black,
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
         ],
       ),
       body: ListView(
@@ -62,7 +83,6 @@ class _EditProfileState extends State<EditProfile> {
           Container(
             child: Column(
               children: <Widget>[
-               
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Column(

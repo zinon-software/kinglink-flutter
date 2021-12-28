@@ -21,7 +21,7 @@ class Profile extends StatelessWidget {
       body: ListView(
         children: [
           buildProfileHeader(context),
-          buildButtonPost(context),
+          // buildButtonPost(context),
           buildProfileBody(context, userID),
         ],
       ),
@@ -60,7 +60,7 @@ class Profile extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
-            child: Text('Loading'),
+            child: Text('Loading...'),
           );
         }
         UserModel user = snapshot.data;
@@ -88,7 +88,9 @@ class Profile extends StatelessWidget {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Avatar(),
+                                            builder: (context) => Avatar(
+                                              user: user,
+                                            ),
                                           ),
                                         );
                                       },
@@ -122,9 +124,9 @@ class Profile extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            buildCountColumn("posts", user.postCount),
-                            buildCountColumn("followers", user.follows),
-                            buildCountColumn("following", user.followers),
+                            buildCountColumn("المنشورات", user.postCount),
+                            buildCountColumn("متابعون", user.followers),
+                            buildCountColumn("يتابع", user.follows),
                           ],
                         ),
                         Row(
@@ -143,30 +145,36 @@ class Profile extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: 12.0),
-                child: Text(
-                  user.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
-                  ),
-                ),
+                child: user.name == null
+                    ? Text('')
+                    : Text(
+                        user.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: 4.0),
-                child: Text(
-                  '@${user.username}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: user.username == null
+                    ? Text('')
+                    : Text(
+                        '@${user.username}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: 2.0),
-                child: Text(
-                  user.bio,
-                ),
+                child: user.bio == null
+                    ? Text('')
+                    : Text(
+                        user.bio,
+                      ),
               ),
             ],
           ),

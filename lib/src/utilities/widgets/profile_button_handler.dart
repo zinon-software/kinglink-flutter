@@ -25,21 +25,21 @@ class _BuildProfileButtonState extends State<BuildProfileButton> {
   @override
   // ignore: missing_return
   Widget build(BuildContext context) {
-    final followingProvider = Provider.of<ProfileServices>(context); 
+    final followingProvider = Provider.of<ProfileServices>(context);
 
     bool isProfileOwner =
         widget.user.id.toString() == prefs.getString('user_id');
     if (isProfileOwner) {
       return buildButton(
         followingPro: followingProvider,
-        text: "Edit Profile",
+        text: "تعديل الملف الشخصي",
         function: editProfile,
         user: widget.user,
       );
     } else if (isFollowing) {
       return buildButton(
         followingPro: followingProvider,
-        text: "Unfollow",
+        text: "الغاء المتابعة",
         // function: handleUnfollowUser,
         function: () {
           setState(() {
@@ -53,7 +53,7 @@ class _BuildProfileButtonState extends State<BuildProfileButton> {
     } else if (!isFollowing) {
       return buildButton(
         followingPro: followingProvider,
-        text: "Follow",
+        text: "متابعة",
         // function: handleFollowUser,
         function: () {
           setState(() {

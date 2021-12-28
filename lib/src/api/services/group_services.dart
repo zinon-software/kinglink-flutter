@@ -61,13 +61,16 @@ class GroupServices extends APIHandler {
           break;
       }
 
-      response =
-          await http.post(Uri.parse(GROUPS_URL), headers: headers, body: {
-        'titel': titel,
-        'link': link,
-        'category': category,
-        'sections': selection,
-      });
+      response = await http.post(
+        Uri.parse(GROUPS_URL),
+        headers: headers,
+        body: {
+          'titel': titel,
+          'link': link,
+          'category': category,
+          'sections': selection,
+        },
+      );
 
       print(response.statusCode);
 
@@ -89,8 +92,4 @@ class GroupServices extends APIHandler {
     }
     notifyListeners();
   }
-
-  // Future<GroupModel> putGroup() async {}
-
-  // Future<GroupModel> deleteGroup() async {}
 }

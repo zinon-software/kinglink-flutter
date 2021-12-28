@@ -33,7 +33,7 @@ class Notifications extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "No Posts",
+                        "No Notifications ",
                         style: TextStyle(
                           color: Colors.redAccent,
                           fontSize: 40.0,
@@ -57,7 +57,7 @@ class Notifications extends StatelessWidget {
                           child: Image(
                             height: 50.0,
                             width: 50.0,
-                            image: notify[index].receiver.avatar == ''
+                            image: notify[index].receiver.avatar == '' || notify[index].receiver.avatar == null
                                 ? NetworkImage(
                                     'https://cdn.dribbble.com/users/1577045/screenshots/4914645/media/5146d1dbf9146c4d12a7249e72065a58.png')
                                 : NetworkImage(notify[index].receiver.avatar),
@@ -65,7 +65,7 @@ class Notifications extends StatelessWidget {
                           ),
                         ),
                       ),
-                      title: Text(notify[index].action),
+                      title: notify[index].action == null ? Text('') : Text(notify[index].action),
                       trailing: Icon(Icons.more_vert),
                     ),
                   );

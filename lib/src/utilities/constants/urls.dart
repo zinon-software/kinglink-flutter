@@ -20,3 +20,5 @@ final NOTIFICATIONS_URL = MAIN_URL + '/api/notification/';
 final SHOW_NOTIFICATIONS_URL = NOTIFICATIONS_URL + 'show';
 
 final ADMIN_URL = MAIN_URL + '/api/dashboard/';
+
+final SECTIONS_URL = GROUPS_URL + 'sections';
